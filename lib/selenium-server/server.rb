@@ -1,7 +1,4 @@
-require_relative 'tasks'
-
 module SeleniumServer
-
   def self.start
     rake "start"
   end
@@ -16,7 +13,7 @@ module SeleniumServer
 
   private
 
-  def rake(task)
+  def self.rake(task)
     case task
       when "start"
         system "rake selenium:server:#{task} $"
@@ -24,5 +21,4 @@ module SeleniumServer
         system "rake selenium:server:#{task}"
    end
   end
-
 end
