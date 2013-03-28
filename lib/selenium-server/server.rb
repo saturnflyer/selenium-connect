@@ -14,11 +14,6 @@ module SeleniumServer
   private
 
   def self.rake(task)
-    case task
-      when "start"
-        system "rake selenium:server:#{task} $"
-      else
-        system "rake selenium:server:#{task}"
-   end
+    system "rake selenium:server:#{task}"
   end
 end
