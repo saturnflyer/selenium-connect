@@ -1,1 +1,1 @@
-require 'selenium-server/server'
+require 'selenium-server/wrapper'

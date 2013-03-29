@@ -14,6 +14,6 @@ module SeleniumServer
   private
 
   def self.rake(task)
-    system "rake selenium:server:#{task}"
+    system "rake server:#{task}"
   end
 end
