@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'selenium-server'
-  s.version       = '0.1.0'
+  s.version       = '0.2.0'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Dave Haeffner']
   s.email         = ['dave@arrgyle.com']

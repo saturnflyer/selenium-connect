@@ -13,7 +13,11 @@ module SeleniumServer
 
   private
 
+  def self.rake_file
+    "#{Dir.pwd}/lib/selenium-server/rake.task"
+  end
+
   def self.rake(task)
-    system "rake server:#{task}"
+    system "rake -f #{rake_file} server:#{task}"
   end
 end

@@ -7,8 +7,8 @@ A wrapper for the [Selenium Rake Server Task](http://selenium.googlecode.com/svn
 ```ruby
 require 'selenium-server'
 SeleniumServer.start
-SeleniumServer.stop
 SeleniumServer.restart
+SeleniumServer.stop
 ```  
 
 ## Helpful bits
