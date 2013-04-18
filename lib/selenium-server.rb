@@ -1,1 +1,5 @@
-require 'selenium-server/wrapper'
+require 'selenium-webdriver'
+require 'selenium-server/selenium-server'
+require 'selenium-server/configuration'
+require 'selenium-server/runner'
+require 'selenium-server/server'

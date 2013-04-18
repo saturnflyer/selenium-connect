@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name          = 'selenium-server'
-  s.version       = '0.2.1'
+  s.version       = '0.3.0'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Dave Haeffner']
   s.email         = ['dave@arrgyle.com']
   s.homepage      = 'https://github.com/arrgyle/selenium-server'
-  s.summary       = 'A wrapper and runner for the selenium-standalone-server jar file.'
+  s.summary       = 'A configurator and runner for Selenium Server.'
   s.license       = 'MIT'
 
   s.files         = `git ls-files`.split($/)
