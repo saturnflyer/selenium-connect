@@ -25,7 +25,7 @@ SeleniumServer.finish
 ## Helpful bits
 
 ### Selenium Actions Reference  
-This library uses the Selenium WebDriver Remote Bridge actions. You can find all of them [here](http://www.ruby-doc.org/gems/docs/b/bbc-selenium-webdriver-1.17.0/Selenium/WebDriver/Remote/Bridge.html).  
+This library uses the Selenium WebDriver Remote Bridge actions. You can find them [here](http://www.ruby-doc.org/gems/docs/b/bbc-selenium-webdriver-1.17.0/Selenium/WebDriver/Remote/Bridge.html).  
 
 ### Start  
 If host is set to "localhost", it will download the latest selenium-standalone-server.jar (unless it already has) and run it, backgrounded, with logging disabled, and run your Selenium commands against it.  
@@ -33,4 +33,5 @@ If host is set to "localhost", it will download the latest selenium-standalone-s
 ### Finish  
 Issues a quit command to the driver (and stops the local server if your host is set to "localhost").  
 
-Currently, Firefox is is all that is supported.
+### Support  
+Currently, Firefox is is all that is supported. More coming soon!
