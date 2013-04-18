@@ -9,7 +9,7 @@ module SeleniumServer
     @configuration = Configuration.new
   end
 
-  attr_reader :server
+  attr_reader :server, :driver
 
   def localhost?
     case @configuration.host
@@ -23,10 +23,11 @@ module SeleniumServer
       @server = Server.new(@configuration)
       server.start
     end
-    Runner.new(@configuration).driver
+    @driver = Runner.new(@configuration).driver
   end
 
   def finish
+    driver.quit
     if localhost? then server.stop end
   end
 
