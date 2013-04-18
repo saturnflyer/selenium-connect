@@ -4,28 +4,36 @@
 
 module SeleniumServer
   class Runner
-    attr_reader :driver
+    attr_reader :driver, :configuration
 
     def initialize(configuration)
-      @driver = initialize_server(configuration)
+      @configuration = configuration
+      set_sensible_defaults
+      @driver = initialize_selenium
     end
 
     private
 
-    def set_profile(profile_path)
-      profile = Selenium::WebDriver::Firefox::Profile.new(profile_path)
+    def set_sensible_defaults
+      configuration.host     = "localhost" unless configuration.host
+      configuration.port     = "4444"      unless configuration.port
+      configuration.browser  = "firefox"   unless configuration.browser
+    end
+
+    def set_profile
+      profile = Selenium::WebDriver::Firefox::Profile.new(configuration.profile_path)
       profile.assume_untrusted_certificate_issuer = false
       Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
     end
 
-    def set_server_url(host, port)
-      "http://#{host}:#{port}/wd/hub"
+    def set_server_url
+      "http://#{configuration.host}:#{configuration.port}/wd/hub"
     end
 
-    def initialize_server(configuration)
+    def initialize_selenium
       Selenium::WebDriver::Remote::Bridge.new(
-        :url => set_server_url(configuration.host, configuration.port),
-        :desired_capabilities => set_profile(configuration.profile_path))
+        :url => set_server_url,
+        :desired_capabilities => set_profile)
     end
   end
 end

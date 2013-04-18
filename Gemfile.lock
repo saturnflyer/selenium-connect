@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    selenium-server (0.3.0)
+    selenium-server (1.0.0)
       rake
       selenium-webdriver
 
