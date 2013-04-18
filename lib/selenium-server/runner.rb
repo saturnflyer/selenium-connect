@@ -1,20 +1,16 @@
+#browser type determines server type
+#browser type determines config params
+#initializer *should* be the same
+
 module SeleniumServer
   class Runner
     attr_reader :driver
 
     def initialize(configuration)
-      location_checker(configuration.host)
       @driver = initialize_server(configuration)
     end
 
     private
-
-    def location_checker(host)
-      case host
-        when "localhost"
-          Server.start
-      end
-    end
 
     def set_profile(profile_path)
       profile = Selenium::WebDriver::Firefox::Profile.new(profile_path)

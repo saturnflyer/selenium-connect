@@ -9,10 +9,26 @@ module SeleniumServer
     @configuration = Configuration.new
   end
 
-  def run
-    runner = Runner.new(@configuration)
-    return runner.driver
+  attr_reader :driver
+
+  def localhost?
+    case @configuration.host
+      when "localhost" then true
+      else false
+    end
   end
 
-  alias :show_time :run
+  def run
+    if localhost? then Server.start end
+    @driver = Runner.new(@configuration).driver
+    return driver
+  end
+
+  def finish
+    driver.quit
+    if localhost? then Server.stop end
+  end
+
+  alias :start :run
+  alias :stop :finish
 end
