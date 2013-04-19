@@ -1,0 +1,5 @@
+require 'selenium-webdriver'
+require 'selenium-connect/selenium-connect'
+require 'selenium-connect/configuration'
+require 'selenium-connect/runner'
+require 'selenium-connect/server'

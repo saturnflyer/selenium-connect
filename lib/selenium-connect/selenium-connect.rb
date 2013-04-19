@@ -1,4 +1,4 @@
-module SeleniumServer
+module SeleniumConnect
   extend self
 
   def configure

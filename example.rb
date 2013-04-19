@@ -1,13 +1,12 @@
-require 'selenium-server'
+require 'selenium-connect'
 
-SeleniumServer.configure do |c|
+SeleniumConnect.configure do |c|
   c.host          = "localhost"
   c.port          = "4444"
-  c.profile_path  = "#{Dir.pwd}/profiles/alfresco"
 end
 
-@driver = SeleniumServer.start
+@driver = SeleniumConnect.start
 
 @driver.get "http://www.google.com"
 
-SeleniumServer.finish
+SeleniumConnect.finish

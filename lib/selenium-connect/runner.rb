@@ -2,7 +2,7 @@
 #browser type determines config params
 #initializer *should* be the same
 
-module SeleniumServer
+module SeleniumConnect
   class Runner
     attr_reader :driver, :configuration
 

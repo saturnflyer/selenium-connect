@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    selenium-server (1.1.2)
+    selenium-connect (1.2.0)
       rake
       selenium-webdriver
 
@@ -25,4 +25,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  selenium-server!
+  selenium-connect!

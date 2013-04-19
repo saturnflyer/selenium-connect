@@ -1,24 +1,24 @@
-#selenium-server
+#selenium-connect
 ===============
 
 This library aims to make configuring and running your Selenium tests against a Selenium Server simple for both local and remote execution.
 
 ## Getting Started
 ```ruby
-require 'selenium-server'
+require 'selenium-connect'
 
-SeleniumServer.configure do |c|
+SeleniumConnect.configure do |c|
   c.host         = "localhost"
   c.port         = "4444"
   c.browser      = "firefox"
   c.profile_path = "#{Dir.pwd}/profiles/your_custom_firefox_profile"
 end
 
-@driver = SeleniumServer.start
+@driver = SeleniumConnect.start
 
 @driver.get "http://www.google.com"
 
-SeleniumServer.finish
+SeleniumConnect.finish
 ```  
 
 ## Helpful bits
@@ -33,7 +33,7 @@ If host is set to "localhost", it will download the latest selenium-standalone-s
 Issues a quit command to the driver (and stops the local server if your host is set to "localhost").  
 
 ### Support  
-Currently, Firefox with a custom profile is all that is supported. More coming soon!  
+Currently, Firefox solo & with a pre-fab custom profile is all that is supported. More coming soon!  
 
 ### Versioning  
 This project loosely follows [Semantic Versioning](http://semver.org/).

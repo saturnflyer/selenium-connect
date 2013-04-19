@@ -1,4 +1,4 @@
-module SeleniumServer
+module SeleniumConnect
   class Server
     attr_reader :configuration
 
