@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect)
+
 #selenium-connect
 ===============
 
