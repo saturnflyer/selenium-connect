@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    selenium-connect (1.2.0)
+    selenium-connect (1.2.1)
       rake
       selenium-webdriver
 

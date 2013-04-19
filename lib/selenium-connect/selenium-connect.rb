@@ -12,10 +12,7 @@ module SeleniumConnect
   attr_reader :server, :driver
 
   def localhost?
-    case @configuration.host
-      when "localhost" then true
-      else false
-    end
+    if @configuration.host == 'localhost' then return true end
   end
 
   def run
