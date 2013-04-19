@@ -1,6 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect)
-
-#selenium-connect
+#selenium-connect [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect)
 ===============
 
 This library aims to make configuring and running your Selenium tests against a Selenium Server simple for both local and remote execution.
