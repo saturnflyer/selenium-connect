@@ -8,16 +8,13 @@ module SeleniumConnect
 
     def initialize(configuration)
       @configuration = configuration
-      set_sensible_defaults
-      @driver = initialize_selenium
+      @driver = initialize_driver
     end
 
     private
 
-    def set_sensible_defaults
-      configuration.host     = "localhost" unless configuration.host
-      configuration.port     = "4444"      unless configuration.port
-      configuration.browser  = "firefox"   unless configuration.browser
+    def set_server_url
+      "http://#{configuration.host}:#{configuration.port}/wd/hub"
     end
 
     def set_profile
@@ -26,11 +23,7 @@ module SeleniumConnect
       Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
     end
 
-    def set_server_url
-      "http://#{configuration.host}:#{configuration.port}/wd/hub"
-    end
-
-    def initialize_selenium
+    def initialize_driver
       Selenium::WebDriver::Remote::Bridge.new(
         :url => set_server_url,
         :desired_capabilities => set_profile)
