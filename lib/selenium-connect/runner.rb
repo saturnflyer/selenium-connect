@@ -1,7 +1,3 @@
-#browser type determines server type
-#browser type determines config params
-#initializer *should* be the same
-
 module SeleniumConnect
   class Runner
     attr_reader :driver, :configuration
@@ -17,8 +13,16 @@ module SeleniumConnect
       "http://#{configuration.host}:#{configuration.port}/wd/hub"
     end
 
+    def get_profile
+      if configuration.profile_path
+        Selenium::WebDriver::Firefox::Profile.new configuration.profile_path
+      elsif configuration.profile_name
+        Selenium::WebDriver::Firefox::Profile.from_name configuration.profile_name
+      end
+    end
+
     def set_profile
-      profile = Selenium::WebDriver::Firefox::Profile.new(configuration.profile_path)
+      profile = get_profile
       profile.assume_untrusted_certificate_issuer = false
       Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
     end
