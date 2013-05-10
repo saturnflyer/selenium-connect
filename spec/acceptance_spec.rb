@@ -8,7 +8,6 @@ describe "Acceptance Tests" do
 
   context "Common" do
     it "logging", :wip => true do
-      pending ('needing it')
       SeleniumConnect.configure do |c|
         c.log = "#{Dir.pwd}/runner.out"
       end
@@ -37,13 +36,10 @@ describe "Acceptance Tests" do
     end
 
     it "profile name", :wip => true do
-#      pending "requires machine setup to run, and need a public example"
+      pending "requires machine setup to run, and need a public example"
       SeleniumConnect.configure do |c|
         c.profile_name  = "nt50_ic_egroup"
       end
-      driver.get 'https://mashup.ic.mantech.com/ispace'
-      driver.find_element(css: "#navCreate").click
-      quit
     end
 
     it "profile path" do
