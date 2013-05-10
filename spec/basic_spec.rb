@@ -1,9 +1,22 @@
 require 'selenium-connect'
 
 describe SeleniumConnect do
-  context "Firefox" do
-    let(:google) { Google.new(SeleniumConnect.start) }
 
+  let(:google) { Google.new(SeleniumConnect.start) }
+
+  context "Common" do
+    it "logging", :wip => true do
+      SeleniumConnect.configure do |c|
+        c.log = "#{Dir.pwd}/runner.out"
+      end
+      google.visit
+      SeleniumConnect.finish
+      File.read('runner.out').empty?.should == false
+      File.delete('runner.out')
+    end
+  end
+
+  context "Firefox" do
     it "blank config" do
       SeleniumConnect.configure do end
       google.visit
@@ -20,14 +33,14 @@ describe SeleniumConnect do
       SeleniumConnect.finish
     end
 
-    it "profile name", :wip => true do
+    it "profile name" do
       pending "requires machine setup to run, and need a public example"
       SeleniumConnect.configure do |c|
         c.profile_name  = "YourProfileName"
       end
     end
 
-    it "profile path", :wip => true do
+    it "profile path" do
       pending "need to add a profile to the repo"
       SeleniumConnect.configure do |c|
         c.profile_path  = "#{Dir.pwd}/path/to/profile"

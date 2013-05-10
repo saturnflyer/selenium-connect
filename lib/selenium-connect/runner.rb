@@ -23,7 +23,7 @@ module SeleniumConnect
 
     def set_profile
       profile = get_profile
-      profile.assume_untrusted_certificate_issuer = false
+      profile.assume_untrusted_certificate_issuer = false unless profile.nil?
       Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
     end
 

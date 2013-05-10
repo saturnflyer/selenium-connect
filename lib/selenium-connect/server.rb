@@ -27,7 +27,7 @@ module SeleniumConnect
          #{"t.version = :latest" unless configuration.jar}
          #{if configuration.jar then "t.jar = '#{configuration.jar}'" end}
          t.background
-         t.log = #{configuration.log ? configuration.log : "false"}
+         t.log = '#{configuration.log ? configuration.log : "false"}'
          t.port = #{configuration.port ? configuration.port : "4444"}
        end"
     end
