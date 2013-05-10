@@ -12,6 +12,7 @@ module SeleniumConnect
       @host     = "localhost" unless host
       @port     = "4444"      unless port
       @browser  = "firefox"   unless browser
+      @log      = false       unless log
     end
   end
 end

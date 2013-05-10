@@ -1,36 +1,68 @@
 module SeleniumConnect
   class Runner
-    attr_reader :driver, :configuration
+    class Firefox
+      attr_reader :config, :capabilities
 
-    def initialize(configuration)
-      @configuration = configuration
-      @driver = initialize_driver
+      def initialize(config)
+        @config = config
+        set_profile
+      end
+
+      private
+
+      def get_profile
+        if config.profile_path
+          Selenium::WebDriver::Firefox::Profile.new config.profile_path
+        elsif config.profile_name
+          Selenium::WebDriver::Firefox::Profile.from_name config.profile_name
+        end
+      end
+
+      def set_profile
+        profile = get_profile
+        profile.assume_untrusted_certificate_issuer = false unless profile.nil?
+        @capabilities = Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
+      end
+
+    end #Firefox
+
+    class InternetExplorer
+    end #InternetExplorer
+  end #Runner
+end #SeleniumConnect
+
+module SeleniumConnect
+  class Runner
+    attr_reader :driver, :config
+
+    def initialize(config)
+      @config = config
+      @driver = init_driver
     end
 
     private
 
     def set_server_url
-      "http://#{configuration.host}:#{configuration.port}/wd/hub"
+      "http://#{config.host}:#{config.port}/wd/hub"
     end
 
-    def get_profile
-      if configuration.profile_path
-        Selenium::WebDriver::Firefox::Profile.new configuration.profile_path
-      elsif configuration.profile_name
-        Selenium::WebDriver::Firefox::Profile.from_name configuration.profile_name
+    def init_driver
+      Selenium::WebDriver.for(
+        :remote,
+        :url => set_server_url,
+        :desired_capabilities => get_capabilities)
+    end
+
+    def get_capabilities
+      case config.browser
+        when "firefox"
+          Firefox.new(config).capabilities
+        when "ie"
+          InternetExplorer.new(config).capabilities
+        else
+          puts "No valid browser specified"
       end
     end
 
-    def set_profile
-      profile = get_profile
-      profile.assume_untrusted_certificate_issuer = false unless profile.nil?
-      Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
-    end
-
-    def initialize_driver
-      Selenium::WebDriver::Remote::Bridge.new(
-        :url => set_server_url,
-        :desired_capabilities => set_profile)
-    end
-  end
-end
+  end #Runner
+end #SeleniumConnect

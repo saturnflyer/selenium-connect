@@ -24,11 +24,16 @@ module SeleniumConnect
       "require 'selenium/rake/server_task'
 
        Selenium::Rake::ServerTask.new(:server) do |t|
-         #{"t.version = :latest" unless configuration.jar}
-         #{if configuration.jar then "t.jar = '#{configuration.jar}'" end}
+         #{
+            if configuration.jar
+              "t.jar = '#{configuration.jar}'"
+            else
+              "t.version = :latest"
+            end
+          }
          t.background
-         t.log = '#{configuration.log ? configuration.log : "false"}'
-         t.port = #{configuration.port ? configuration.port : "4444"}
+         t.log = '#{configuration.log}'
+         t.port = #{configuration.port}
        end"
     end
 
