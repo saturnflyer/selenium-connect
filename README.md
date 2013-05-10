@@ -1,5 +1,4 @@
 #selenium-connect [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect)
-===============
 
 This library aims to make configuring and running your Selenium tests against a Selenium Server simple for both local and remote execution.
 
@@ -11,7 +10,7 @@ SeleniumConnect.configure do |c|
   c.host         = "localhost"
   c.port         = "4444"
   c.browser      = "firefox"
-  c.profile_path = "#{Dir.pwd}/profiles/your_custom_firefox_profile"
+  c.profile_path = "#{Dir.pwd}/profiles/your_custom_firefox_profile" # or c.profile_name = "profile"
 end
 
 @driver = SeleniumConnect.start
