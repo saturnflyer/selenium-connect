@@ -35,10 +35,10 @@ describe "Acceptance Tests" do
       quit
     end
 
-    it "profile name", :wip => true do
+    it "profile name" do
       pending "requires machine setup to run, and need a public example"
       SeleniumConnect.configure do |c|
-        c.profile_name  = "nt50_ic_egroup"
+        c.profile_name  = "YourProfileNameGoesHere"
       end
     end
 
