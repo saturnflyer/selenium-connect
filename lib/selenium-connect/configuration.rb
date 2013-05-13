@@ -1,6 +1,6 @@
 module SeleniumConnect
   class Configuration
-    attr_accessor :host, :port, :browser, :profile_path, :profile_name, :version, :background, :log, :jar
+    attr_accessor :host, :port, :browser, :browser_path, :profile_path, :profile_name, :version, :background, :log, :jar
 
     def initialize
       defaults

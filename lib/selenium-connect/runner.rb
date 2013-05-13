@@ -20,10 +20,10 @@ module SeleniumConnect
       Selenium::WebDriver.for(
         :remote,
         :url => set_server_url,
-        :desired_capabilities => get_capabilities)
+        :desired_capabilities => get_browser)
     end
 
-    def get_capabilities
+    def get_browser
       case config.browser
         when "firefox"
           Firefox.new(config).capabilities

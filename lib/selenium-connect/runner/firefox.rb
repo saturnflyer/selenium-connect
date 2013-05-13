@@ -21,7 +21,10 @@ module SeleniumConnect
       def init_browser
         profile = get_profile
         profile.assume_untrusted_certificate_issuer = false unless profile.nil?
-        @capabilities = Selenium::WebDriver::Remote::Capabilities.firefox(:firefox_profile => profile)
+        browser = Selenium::WebDriver::Remote::Capabilities.firefox
+        browser[:firefox_binary] if config.browser_path
+        browser[:firefox_profile] = profile
+        @capabilities = browser
       end
 
     end #Firefox
