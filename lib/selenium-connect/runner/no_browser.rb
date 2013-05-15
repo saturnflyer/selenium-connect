@@ -1,6 +1,6 @@
 module SeleniumConnect
   class Runner
-    class InternetExplorer
+    class NoBrowser
       attr_reader :config
 
       def initialize(config)
@@ -8,19 +8,14 @@ module SeleniumConnect
       end
 
       def match?
-        config.browser == "firefox"
+        true
       end
 
       def execute
-        init_browser
+        puts "Please specify a valid browser."
+        exit 1
       end
 
-      private
-
-      def init_browser
-        config.browser.to_sym
-      end
-
-    end #InternetExplorer
+    end #NoBrowser
   end #Runner
 end #SeleniumConnect

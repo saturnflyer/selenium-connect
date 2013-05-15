@@ -27,7 +27,7 @@ describe "Acceptance Tests" do
       quit
     end
 
-    it "localhost" do
+    it "localhost", :wip => true do
       SeleniumConnect.configure do |c|
         c.host  = "localhost"
       end
@@ -60,7 +60,7 @@ describe "Acceptance Tests" do
       end
     end
 
-    it "browser path", :wip => true do
+    it "browser path" do
       #only works with Firefox
       SeleniumConnect.configure do |c|
         c.host  = "localhost"

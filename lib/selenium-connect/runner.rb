@@ -23,15 +23,18 @@ module SeleniumConnect
         :desired_capabilities => get_browser)
     end
 
+    def browsers
+      firefox     = Firefox.new(config)
+      ie          = InternetExplorer.new(config)
+      chrome      = Chrome.new(config)
+      no_browser  = NoBrowser.new(config)
+
+      browsers = [ firefox, ie, chrome ]
+    end
+
     def get_browser
-      case config.browser
-        when "firefox"
-          Firefox.new(config).capabilities
-        when "ie"
-          InternetExplorer.new(config).capabilities
-        else
-          puts "No valid browser specified"
-      end
+      browser = browsers.find { |browser| browser.match? }
+      browser.execute
     end
 
   end #Runner

@@ -1,10 +1,17 @@
 module SeleniumConnect
   class Runner
     class Firefox
-      attr_reader :config, :capabilities
+      attr_reader :config
 
       def initialize(config)
         @config = config
+      end
+
+      def match?
+        config.browser == "firefox"
+      end
+
+      def execute
         init_browser
       end
 
@@ -18,16 +25,16 @@ module SeleniumConnect
         end
       end
 
-      def set_path
-      end
-
-      def init_browser
+      def config_browser
         profile = get_profile
         profile.assume_untrusted_certificate_issuer = false unless profile.nil?
         browser = Selenium::WebDriver::Remote::Capabilities.firefox
         browser[:firefox_binary] = config.browser_path if config.browser_path
         browser[:firefox_profile] = profile
-        @capabilities = browser
+      end
+
+      def init_browser
+        config_browser
       end
 
     end #Firefox

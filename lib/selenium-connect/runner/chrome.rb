@@ -1,6 +1,6 @@
 module SeleniumConnect
   class Runner
-    class InternetExplorer
+    class Chrome
       attr_reader :config
 
       def initialize(config)
@@ -8,7 +8,7 @@ module SeleniumConnect
       end
 
       def match?
-        config.browser == "firefox"
+        config.browser == "chrome"
       end
 
       def execute
@@ -21,6 +21,6 @@ module SeleniumConnect
         config.browser.to_sym
       end
 
-    end #InternetExplorer
+    end #Chrome
   end #Runner
 end #SeleniumConnect

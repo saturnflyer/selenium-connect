@@ -1,7 +1,7 @@
 require 'selenium/rake/server_task'
 
        Selenium::Rake::ServerTask.new(:server) do |t|
-         t.jar = '/Users/more/Dropbox/_dev/Arrgyle/selenium-connect/selenium-server-standalone-2.32.0.jar'
+         t.version = :latest
          t.background
          t.log = 'false'
          t.port = 4444
