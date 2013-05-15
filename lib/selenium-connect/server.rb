@@ -32,7 +32,13 @@ module SeleniumConnect
             end
           }
          t.background
-         t.log = '#{configuration.log}'
+         #{
+          if configuration.log
+            "t.log = '#{configuration.log}'"
+          else
+            "t.log = false"
+          end
+         }
          t.port = #{configuration.port}
        end"
     end

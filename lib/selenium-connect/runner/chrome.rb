@@ -11,7 +11,7 @@ module SeleniumConnect
         config.browser == "chrome"
       end
 
-      def execute
+      def launch
         init_browser
       end
 

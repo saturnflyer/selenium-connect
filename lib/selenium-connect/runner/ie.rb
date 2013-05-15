@@ -8,10 +8,10 @@ module SeleniumConnect
       end
 
       def match?
-        config.browser == "firefox"
+        config.browser == "ie"
       end
 
-      def execute
+      def launch
         init_browser
       end
 
