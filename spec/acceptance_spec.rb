@@ -27,7 +27,7 @@ describe "Acceptance Tests" do
       quit
     end
 
-    it "localhost", :wip => true do
+    it "localhost" do
       SeleniumConnect.configure do |c|
         c.host  = "localhost"
       end

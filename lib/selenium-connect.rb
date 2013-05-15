@@ -2,35 +2,29 @@ require 'selenium-webdriver'
 require 'selenium-connect/configuration'
 require 'selenium-connect/runner'
 require 'selenium-connect/server'
+require 'selenium-connect/location'
 
 module SeleniumConnect
+
   extend self
+  attr_reader :config, :location, :server, :driver
 
   def configure
-    yield configuration
+    yield config
   end
 
-  def configuration
-    @configuration = Configuration.new
-  end
-
-  attr_reader :server, :driver
-
-  def localhost?
-    @configuration.host == 'localhost'
+  def config
+    @config = Configuration.new
   end
 
   def run
-    if localhost?
-      @server = Server.new(@configuration)
-      server.start
-    end
-    @driver = Runner.new(@configuration).driver
+    @server = Location.new(config).get_location.execute
+    @driver = Runner.new(config).driver
   end
 
   def finish
     driver.quit
-    if localhost? then server.stop end
+    if location == 'localhost' then server.stop end
   end
 
   alias :start :run

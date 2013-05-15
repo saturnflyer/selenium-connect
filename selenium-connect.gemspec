@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'selenium-webdriver'
   s.add_dependency 'rake'
+  s.add_dependency 'sauce'
 
   s.add_development_dependency 'rspec'
 

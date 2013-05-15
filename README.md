@@ -25,7 +25,9 @@ If host is set to "localhost", it will download the latest selenium-standalone-s
 Issues a quit command to the driver (and stops the local server if your host is set to "localhost").  
 
 ### Support  
-Currently, Firefox solo & with a pre-fab custom profile is all that is supported. More coming soon!  
+- Firefox (standard, profile by path, profile by name, browser binary)
+- Internet Explorer
+- Chrome
 
 ### Versioning  
-This project loosely follows [Semantic Versioning](http://semver.org/).
+This project follows [Semantic Versioning](http://semver.org/).
