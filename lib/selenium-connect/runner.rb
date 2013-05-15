@@ -1,5 +1,7 @@
 require 'selenium-connect/runner/firefox'
 require 'selenium-connect/runner/ie'
+require 'selenium-connect/runner/chrome'
+require 'selenium-connect/runner/no_browser'
 
 module SeleniumConnect
   class Runner
