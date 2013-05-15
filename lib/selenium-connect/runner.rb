@@ -26,7 +26,7 @@ module SeleniumConnect
     end
 
     def get_browser
-      browser = browsers.find { |browser| puts browser; browser.match? }
+      browser = browsers.find { |browser| browser.match? }
       browser.launch
     end
 
