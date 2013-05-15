@@ -8,7 +8,7 @@ describe "Sauce Labs" do
       c.host            = 'saucelabs'
       c.sauce_username  = ''
       c.sauce_api_key   = ''
-      c.os              = ''
+      c.os              = 'windows'
       c.browser         = ''
       c.browser_version = ''
     end

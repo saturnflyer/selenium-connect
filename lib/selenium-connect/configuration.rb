@@ -1,10 +1,10 @@
 module SeleniumConnect
   class Configuration
-    attr_accessor :host, :port, :browser, :browser_path
-    attr_accessor :profile_path, :profile_name, :version
-    attr_accessor :background, :log, :jar
-    attr_accessor :sauce_username, :sauce_api_key
-    attr_accessor :os, :browser, :browser_version
+    attr_accessor :host, :port, :browser, :browser_path,
+                  :profile_path, :profile_name, :version,
+                  :background, :log, :jar,
+                  :sauce_username, :sauce_api_key,
+                  :os, :browser, :browser_version
 
     def initialize
       defaults
@@ -13,10 +13,10 @@ module SeleniumConnect
     private
 
     def defaults
-      @host     = "localhost" unless host
-      @port     = "4444"      unless port
-      @browser  = "firefox"   unless browser
+      @host     = 'localhost' unless host
+      @port     = 4444        unless port
       @log      = false       unless log
+      @browser  = 'firefox'   unless browser
     end
   end
 end

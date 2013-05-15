@@ -13,10 +13,12 @@ module SeleniumConnect
 
       def execute
         Sauce.config do |c|
-          c.browsers = [ ['windows', 'firefox', '18'] ]
+          c.browsers = [
+            [ config.os, config.browser, config.browser_version ]
+          ]
         end
       end
 
-    end #NoLocation
+    end #SauceLabs
   end #Location
 end #SeleniumConnect

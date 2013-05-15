@@ -5,6 +5,7 @@ module SeleniumConnect
 
       def initialize(config)
         @config = config
+        puts "localhost"
       end
 
       def match?

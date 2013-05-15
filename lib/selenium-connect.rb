@@ -10,15 +10,15 @@ module SeleniumConnect
   attr_reader :config, :location, :server, :driver
 
   def configure
-    yield config
+    yield configuration
   end
 
-  def config
+  def configuration
     @config = Configuration.new
   end
 
   def run
-    @server = Location.new(config).get_location.execute
+    @server = Location.new(config).execute
     @driver = Runner.new(config).driver
   end
 
