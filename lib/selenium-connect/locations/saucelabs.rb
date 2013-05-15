@@ -12,6 +12,9 @@ module SeleniumConnect
       end
 
       def execute
+        Sauce.config do |c|
+          c.browsers = [ ['windows', 'firefox', '18'] ]
+        end
       end
 
     end #NoLocation

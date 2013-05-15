@@ -5,7 +5,12 @@ describe "Sauce Labs" do
 
   it 'hello world', :wip => true do
     SeleniumConnect.configure do |c|
-      c.host  = "saucelabs"
+      c.host            = 'saucelabs'
+      c.sauce_username  = ''
+      c.sauce_api_key   = ''
+      c.os              = ''
+      c.browser         = ''
+      c.browser_version = ''
     end
     driver = SeleniumConnect.start
     driver.get 'http://google.com'
