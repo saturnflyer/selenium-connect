@@ -1,5 +1,4 @@
 require 'selenium-connect'
-require 'sauce'
 
 describe "Sauce Labs" do
 
