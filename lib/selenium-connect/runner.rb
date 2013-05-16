@@ -2,6 +2,7 @@ require 'selenium-connect/runners/firefox'
 require 'selenium-connect/runners/ie'
 require 'selenium-connect/runners/chrome'
 require 'selenium-connect/runners/no_browser'
+require 'selenium-connect/runners/saucelabs'
 
 module SeleniumConnect
   class Runner
@@ -19,10 +20,14 @@ module SeleniumConnect
     end
 
     def init_driver
-      Selenium::WebDriver.for(
-        :remote,
-        :url => set_server_url,
-        :desired_capabilities => get_browser)
+      if config.host == 'saucelabs'
+        Saucelabs.new(config).launch
+      else
+        Selenium::WebDriver.for(
+          :remote,
+          :url => set_server_url,
+          :desired_capabilities => get_browser)
+      end
     end
 
     def get_browser

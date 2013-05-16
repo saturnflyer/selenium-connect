@@ -1,13 +1,13 @@
 #selenium-connect [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect)
 
-This library aims to make configuring and running your Selenium tests against a Selenium Server simple for both local (e.g. your own computer or grid) and cloud execution.  
+A stupid simple way to run your Selenium tests on your computer, against a Selenium Grid, or in the cloud (e.g. SauceLabs).  
 
 ## Getting Started
 ```ruby
 require 'selenium-connect'
 
 SeleniumConnect.configure do |c|
-  c.host         = "localhost"
+  c.host         = "localhost" #or "grid_ip_address" or "saucelabs"
   c.browser      = "firefox"
 end
 

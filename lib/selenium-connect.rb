@@ -2,7 +2,6 @@ require 'selenium-webdriver'
 require 'selenium-connect/configuration'
 require 'selenium-connect/runner'
 require 'selenium-connect/server'
-require 'selenium-connect/location'
 
 module SeleniumConnect
 
@@ -17,14 +16,21 @@ module SeleniumConnect
     @config = Configuration.new
   end
 
+  def localhost?
+    config.host == 'localhost'
+  end
+
   def run
-    @server = Location.new(config).execute
+    if localhost?
+      @server = Server.new(config)
+      server.start
+    end
     @driver = Runner.new(config).driver
   end
 
   def finish
     driver.quit
-    if location == 'localhost' then server.stop end
+    if localhost? then server.stop end
   end
 
   alias :start :run

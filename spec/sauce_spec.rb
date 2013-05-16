@@ -6,11 +6,12 @@ describe "Sauce Labs" do
   it 'hello world', :wip => true do
     SeleniumConnect.configure do |c|
       c.host            = 'saucelabs'
-      c.sauce_username  = ''
-      c.sauce_api_key   = ''
+      c.sauce_username  = 'testing_arrgyle'
+      c.sauce_api_key   = 'ab7a6e17-16df-42d2-9ef6-c8d2539cc38a'
       c.os              = 'windows'
-      c.browser         = ''
-      c.browser_version = ''
+      c.browser         = 'iexplore'
+      c.browser_version = '7'
+      c.description     = 'hello world from selenium-connect!'
     end
     driver = SeleniumConnect.start
     driver.get 'http://google.com'

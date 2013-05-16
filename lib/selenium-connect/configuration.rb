@@ -1,10 +1,16 @@
 module SeleniumConnect
   class Configuration
-    attr_accessor :host, :port, :browser, :browser_path,
-                  :profile_path, :profile_name, :version,
-                  :background, :log, :jar,
-                  :sauce_username, :sauce_api_key,
-                  :os, :browser, :browser_version
+    #Selenium Server
+    attr_accessor :host, :port, :version,
+                  :background, :log, :jar
+
+    #Browsers
+    attr_accessor :browser, :browser_path,
+                  :profile_path, :profile_name
+
+    #SauceLabs
+    attr_accessor :sauce_username, :sauce_api_key,
+                  :os, :browser_version, :description
 
     def initialize
       defaults
