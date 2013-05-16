@@ -28,6 +28,7 @@ Issues a quit command to the driver (and stops the local server if your host is 
 - Firefox (standard, profile by path, profile by name, browser binary)
 - Internet Explorer
 - Chrome
+- SauceLabs
 
 ### Versioning  
 This project follows [Semantic Versioning](http://semver.org/).
