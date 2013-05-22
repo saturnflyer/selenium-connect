@@ -2,7 +2,7 @@ require 'selenium-connect'
 
 describe "Sauce Labs" do
 
-  it 'hello world', :wip => true do
+  it 'hello world' do
     SeleniumConnect.configure do |c|
       c.host            = 'saucelabs'
       c.sauce_username  = 'testing_arrgyle'

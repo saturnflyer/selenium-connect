@@ -6,7 +6,7 @@ require 'selenium-connect/server'
 module SeleniumConnect
 
   extend self
-  attr_reader :config, :location, :server, :driver
+  attr_reader :config, :config_file, :location, :server, :driver
 
   def configure
     yield configuration
