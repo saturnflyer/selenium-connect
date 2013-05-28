@@ -1,8 +1,5 @@
 module SeleniumConnect
   class Configuration
-    #YAML Config File
-    attr_accessor :config_file
-
     #Selenium Server
     attr_accessor :host, :port, :version,
                   :background, :log, :jar
@@ -38,10 +35,11 @@ module SeleniumConnect
     end
 
     def set_config_values_from_file(config_file_values)
-      @host    = config_file_values['host'] || host
-      @port    = config_file_values['port'] || port
-      @log     = config_file_values['log']  || log
-      @browser = config_file_values['browser'] || browser
+      config_file_values.each do |config_parameter, config_value|
+        instance_variable_set("@#{config_parameter}", config_value)
+      end
+      defaults
     end
-  end
-end
+
+  end #Configuration
+end #SeleniumConnect
