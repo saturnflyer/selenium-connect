@@ -19,6 +19,27 @@ describe "Acceptance Tests" do
     end
   end
 
+  context "Headless" do
+    it "should run a basic test with phantom js" do
+      SeleniumConnect.configure do |c|
+        c.browser = "phantomjs"
+      end
+      google.visit
+      google.page_title.should include("Google")
+      quit
+    end
+
+    it "should not find something on a page" do
+      SeleniumConnect.configure do |c|
+        c.browser = "phantomjs"
+      end
+      google.visit
+      google.page_title.should_not include("Poogle")
+      quit
+    end
+
+  end
+
   context "Firefox" do
     it "blank config" do
       SeleniumConnect.configure do end
