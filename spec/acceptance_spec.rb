@@ -9,12 +9,19 @@ describe "Acceptance Tests" do
   context "Common" do
     it "logging" do
       SeleniumConnect.configure do |c|
-        c.log = "#{Dir.pwd}/runner.out"
+
+        logs_dir = File.join(Dir.pwd, 'build', 'tmp')
+        c.log = File.join(logs_dir, 'server.log')
+        c.logs = logs_dir
       end
       google.visit
       SeleniumConnect.finish
-      log = File.read('runner.out')
-      log.empty?.should == false
+      log = File.read(File.read(File.join(logs_dir 'server.log')))
+      log.empty?.should be false
+
+      browser_log = File.read(File.join(logs_dir 'firefox.log'))
+      browser_log.empty?.should be false
+
       File.delete('runner.out')
     end
   end
