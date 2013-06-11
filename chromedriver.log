@@ -1,0 +1,56 @@
+[0.001][INFO]:      ChromeDriver 26.0.1383.0 /Users/more/Dropbox/_dev/Arrgyle/selenium-connect/bin/chromedriver
+[1.019][FINE]:      Initializing session with capabilities {
+   "browserName": "chrome",
+   "cssSelectorsEnabled": true,
+   "javascriptEnabled": true,
+   "nativeEvents": false,
+   "platform": "ANY",
+   "rotatable": false,
+   "takesScreenshot": false,
+   "version": ""
+}
+
+[1.019][INFO]:      Launching chrome: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --disable-background-networking --disable-sync --disable-translate --disable-web-resources --safebrowsing-disable-auto-update --safebrowsing-disable-download-protection --disable-client-side-phishing-detection --disable-component-update --disable-default-apps --enable-logging --log-level=1 --use-mock-keychain --ignore-certificate-errors about:blank
+[2.960][INFO]:      Connected to Chrome successfully. Version: 27.0.1453.93
+[3.044][FINE]:      Command received (/session/d84d6ebf341008c58eee63695f329969)
+[3.045][FINE]:      Command finished (/session/d84d6ebf341008c58eee63695f329969) with response {
+   "sessionId": "d84d6ebf341008c58eee63695f329969",
+   "status": 0,
+   "value": {
+      "acceptSslCerts": false,
+      "applicationCacheEnabled": false,
+      "browserConnectionEnabled": false,
+      "browserName": "chrome",
+      "chrome.chromedriverVersion": "26.0.1383.0",
+      "cssSelectorsEnabled": true,
+      "databaseEnabled": false,
+      "handlesAlerts": true,
+      "javascriptEnabled": true,
+      "locationContextEnabled": false,
+      "nativeEvents": true,
+      "platform": "mac",
+      "rotatable": false,
+      "takesScreenshot": true,
+      "version": "27.0.1453.93",
+      "webStorageEnabled": true
+   }
+}
+
+[3.338][FINE]:      Command received (/session/d84d6ebf341008c58eee63695f329969/url) with params {
+   "url": "http://google.com"
+}
+
+[3.338][FINER]:     Waiting for all views to stop loading...
+[3.339][FINER]:     Done waiting for all views to stop loading
+[3.997][FINER]:     Waiting for all views to stop loading...
+[3.999][FINER]:     Done waiting for all views to stop loading
+[3.999][FINE]:      Command finished (/session/d84d6ebf341008c58eee63695f329969/url) with response {
+   "sessionId": "d84d6ebf341008c58eee63695f329969",
+   "status": 0,
+   "value": {
+
+   }
+}
+
+[4.011][FINE]:      Command received (/session/d84d6ebf341008c58eee63695f329969)
+[4.156][INFO]:      Chrome shutdown

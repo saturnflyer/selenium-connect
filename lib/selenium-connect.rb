@@ -20,6 +20,10 @@ module SeleniumConnect
     config.host == 'localhost'
   end
 
+  def debug_config
+    config
+  end
+
   def run
     if localhost?
       @server = Server.new(config)

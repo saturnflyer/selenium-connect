@@ -1,9 +1,10 @@
 module SeleniumConnect
   class Server
-    attr_reader :configuration
+    attr_reader :configuration, :current_dir_path
 
     def initialize(configuration)
       @configuration = configuration
+      @current_dir_path = File.join(File.dirname(File.expand_path(__FILE__)))
     end
 
     def start
@@ -30,7 +31,7 @@ module SeleniumConnect
             else
               "t.version = :latest"
             end
-          }
+         }
          t.background
          #{
           if configuration.log
@@ -40,19 +41,25 @@ module SeleniumConnect
           end
          }
          t.port = #{configuration.port}
+         #{
+            if configuration.browser == 'chrome'
+              "t.opts = '-Dwebdriver.chrome.driver=#{current_dir_path + '/../../bin/chromedriver'}'"
+            end
+         }
        end"
     end
 
     def get_rake_file
-      rake_file = File.join(File.dirname(File.expand_path(__FILE__)))
-      file = File.open(rake_file<<"/rake.task", "w")
-      file << generate_rake_task
-      file.close
-      return rake_file
+      rake_file_path = current_dir_path + '/rake.task'
+      rake_file = File.open(rake_file_path, 'w')
+      rake_file << generate_rake_task
+      rake_file.close
+      return rake_file_path
     end
 
     def rake(task)
       system "rake -f #{get_rake_file} server:#{task}"
     end
-  end
-end
+
+  end #Server
+end #SeleniumConnect
