@@ -23,8 +23,6 @@ module SeleniumConnect
     def init_driver
       if config.host == 'saucelabs'
         Saucelabs.new(config).launch
-      elsif config.browser == 'phantomjs'
-        Selenium::WebDriver.for(:phantomjs)
       else
         Selenium::WebDriver.for(
           :remote,

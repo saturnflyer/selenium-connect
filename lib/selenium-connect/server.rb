@@ -8,7 +8,11 @@ module SeleniumConnect
     end
 
     def start
-      rake "start"
+#      if configuration.browser == 'ghostdriver'
+#        start_phantomjs
+#      else
+        rake "start"
+#      end
     end
 
     def stop
@@ -35,7 +39,7 @@ module SeleniumConnect
          t.background
          #{
           if configuration.log
-            "t.log = '#{configuration.log}'"
+            "t.log = '#{configuration.log}/server.log'"
           else
             "t.log = false"
           end
@@ -60,6 +64,10 @@ module SeleniumConnect
     def rake(task)
       system "rake -f #{get_rake_file} server:#{task}"
     end
+
+#    def start_phantomjs
+#      system "#{current_dir_path} + '/../../bin/phantomjs --webdriver=#{configuration.port}"
+#    end
 
   end #Server
 end #SeleniumConnect
