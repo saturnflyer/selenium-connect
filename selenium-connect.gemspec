@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name          = 'selenium-connect'
-  s.version       = '1.8.1'
+  s.version       = '1.9.0'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Dave Haeffner']
   s.email         = ['dave@arrgyle.com']
   s.homepage      = 'https://github.com/arrgyle/selenium-connect'
   s.summary       = 'A stupid simple way to run your Selenium tests on localhost, against a Selenium Grid, or in the cloud (e.g. SauceLabs).'
-  s.description   = 'Locking in the sauce gem version to pre-version 3 since there are breaking changes that need to be tested.'
+  s.description   = 'Changed the log option so all you need to provide is a directory. The selenium log and browser specific logs will then show up there. Also added GhostDriver support.'
   s.license       = 'MIT'
 
   s.files         = `git ls-files`.split($/)
