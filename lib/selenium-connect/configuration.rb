@@ -12,6 +12,9 @@ module SeleniumConnect
     attr_accessor :sauce_username, :sauce_api_key,
                   :os, :browser_version, :description
 
+    #Logging
+    #attr_accessor :logs
+
     def config_file=(file)
       set_config_values_from_file(get_config_values_from_file(file))
     end

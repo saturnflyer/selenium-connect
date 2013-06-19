@@ -22,12 +22,15 @@ module SeleniumConnect
           Selenium::WebDriver::Firefox::Profile.new config.profile_path
         elsif config.profile_name
           Selenium::WebDriver::Firefox::Profile.from_name config.profile_name
+        else
+          Selenium::WebDriver::Firefox::Profile.new
         end
       end
 
       def config_browser
         profile = get_profile
         profile.assume_untrusted_certificate_issuer = false unless profile.nil?
+        profile.log_file = File.join(config.log, 'firefox.log') if config.log
         browser = Selenium::WebDriver::Remote::Capabilities.firefox
         browser[:firefox_binary] = config.browser_path if config.browser_path
         browser[:firefox_profile] = profile

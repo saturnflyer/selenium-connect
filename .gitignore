@@ -4,6 +4,8 @@ profiles/
 *.jar
 *.gem
 *.rbc
+*.log
+*.out
 .bundle
 .config
 coverage
