@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name          = 'selenium-connect'
-  s.version       = '1.9.1'
+  s.version       = '1.9.2'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Dave Haeffner']
   s.email         = ['dave@arrgyle.com']
   s.homepage      = 'https://github.com/arrgyle/selenium-connect'
   s.summary       = 'A stupid simple way to run your Selenium tests on localhost, against a Selenium Grid, or in the cloud (e.g. SauceLabs).'
-  s.description   = 'Minor cleanup and refactoring.'
+  s.description   = 'Fixed logging bug.'
   s.license       = 'MIT'
 
   s.files         = `git ls-files`.split($/)
