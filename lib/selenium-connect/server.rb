@@ -35,7 +35,7 @@ module SeleniumConnect
          t.background
          #{
           if configuration.log
-            "t.log = '#{configuration.log}/server.log'"
+            "t.log = '#{File.join(Dir.getwd, configuration.log, 'server.log')}'"
           else
             "t.log = false"
           end
