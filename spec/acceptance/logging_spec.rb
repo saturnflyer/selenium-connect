@@ -3,22 +3,24 @@ require_relative 'helper'
 
 describe "Logging" do
   let(:google)    { Google.new(SeleniumConnect.start) }
-  let(:logs_dir)  { File.join(Dir.pwd, 'build') }
+  let(:log_dir)  { File.join(Dir.pwd, 'build') }
 
-  it "logging" do
+  before(:all) do
     SeleniumConnect.configure do |c|
-      c.log = logs_dir
+      c.log = log_dir
     end
 
     google.visit
     SeleniumConnect.finish
+  end
 
-    server_log = File.read(logs_dir+'/server.log')
+  it "server" do
+    server_log = File.read(log_dir+'/server.log')
     server_log.empty?.should be false
+  end
 
-    browser_log = File.read(logs_dir+'/firefox.log')
+  it "browser" do
+    browser_log = File.read(log_dir+'/firefox.log')
     browser_log.empty?.should be false
-
-#    File.delete('runner.out')
   end
 end
