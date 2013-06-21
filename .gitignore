@@ -1,3 +1,5 @@
+*.task
+*.gem
 *.lock
 *.swp
 profiles/
