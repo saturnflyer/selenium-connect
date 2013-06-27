@@ -3,7 +3,6 @@
 *.lock
 *.swp
 profiles/
-*.jar
 *.gem
 *.rbc
 *.log
