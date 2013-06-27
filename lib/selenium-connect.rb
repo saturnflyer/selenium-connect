@@ -33,7 +33,11 @@ module SeleniumConnect
   end
 
   def finish
-    driver.quit
+    begin
+      driver.quit
+    rescue Selenium::WebDriver::Error::WebDriverError
+      #no-op
+    end
     if localhost? then server.stop end
   end
 
