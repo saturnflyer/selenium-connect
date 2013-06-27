@@ -3,7 +3,7 @@ require_relative 'helper'
 
 describe "Logging" do
   let(:google)    { Google.new(SeleniumConnect.start) }
-  let(:log_dir)  { File.join(Dir.pwd, 'build') }
+  let(:log_dir)   { 'build' }
 
   before(:all) do
     SeleniumConnect.configure do |c|
