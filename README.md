@@ -19,16 +19,24 @@ SeleniumConnect.finish
 ## Helpful bits
 
 ### Start
-If host is set to "localhost", it will download the latest selenium-standalone-server.jar (unless it already has) and run it. Or, you can specify your own jar (if you have one you prefer to use). If no additional parameters are set, it will be exected in the background, with logging disabled. This functionality is driven using the [Selenium Rake Server Task](http://selenium.googlecode.com/svn/trunk/docs/api/rb/Selenium/Rake/ServerTask.html).
+If host is set to "localhost" and no jar file is specified, it will run the version of [selenium-standalone-server.jar](https://code.google.com/p/selenium/downloads/list) that is bundled with the library (currently 2.33.0). Or, you can specify your own jar if you have one you prefer to use. This is done with c.jar = 'path-to-jar-file'.  
+
+If no additional parameters are set, the Selenium Server will be run in the background with logging disabled. If a logging directory is provided (with c.log = 'path-to-log-dir') then 3 output files will be generated:  
++ Selenium Server JSON Wire Protocol output (server.log)  
++ Browser output (browser.log) -- currently only available for Firefox  
++ Test output (SPEC-testname.xml)  
+
+This localhost functionality is driven using the [Selenium Rake Server Task](http://selenium.googlecode.com/svn/trunk/docs/api/rb/Selenium/Rake/ServerTask.html).  
 
 ### Finish
-Issues a quit command to the driver (and stops the local server if your host is set to "localhost").
+The finish command issues a quit command to the driver and stops the local server if your host is set to "localhost".
 
 ### Support
-- Firefox (standard, profile by path, profile by name, browser binary)
-- Internet Explorer
-- Chrome
-- SauceLabs
+- Firefox (standard, profile by path, profile by name, browser binary)  
+- Chrome  
+- Internet Explorer  
+- PhantomJS via GhostDriver  
+- SauceLabs  
 
 ## Contributing
 
@@ -40,4 +48,4 @@ This project conforms to the [neverstopbuilding/craftsmanship](https://github.co
 
 ### Run the Tests
 
-    bundle exec rspec
+    bundle exec rake build

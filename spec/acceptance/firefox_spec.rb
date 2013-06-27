@@ -25,7 +25,7 @@ describe "Firefox" do
   it "local jar file specified" do
     SeleniumConnect.configure do |c|
       c.host  = "localhost"
-      c.jar   = "#{Dir.pwd}/selenium-server-standalone-2.33.0.jar"
+      c.jar   = "#{Dir.pwd}/bin/selenium-server-standalone-2.33.0.jar"
     end
     google.visit
     google.page_title.should include("Google")
