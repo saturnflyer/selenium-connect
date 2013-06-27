@@ -34,7 +34,7 @@ The finish command issues a quit command to the driver and stops the local serve
 ### Support
 - [Firefox](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/firefox_spec.rb)  
 - [Chrome](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/chrome_spec.rb)  
-- [Internet Explorer(https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/ie_spec.rb)  
+- [Internet Explorer](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/ie_spec.rb)  
 - [PhantomJS](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/headless_spec.rb)  
 - [SauceLabs](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/sauce_spec.rb)  
 
