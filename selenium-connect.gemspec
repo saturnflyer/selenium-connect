@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
 
   s.files         = `git ls-files`.split($/)
-  s.files.reject! { |file| file.include? '.jar' }
   s.require_paths = ['lib']
 
   s.required_ruby_version = '>=1.9'
