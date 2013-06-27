@@ -8,8 +8,8 @@ host: 'localhost'
 port:
 
 
-#Browser & Host
-browser:      'chrome'
+#Browser
+browser:      'firefox'
 browser_path:
 profile_path:
 profile_name:

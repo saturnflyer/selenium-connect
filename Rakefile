@@ -4,7 +4,7 @@ require 'rspec/core/rake_task'
 task :default => [:build]
 
 desc 'Runs standard build activities.'
-task :build => [:clean, :spec]
+task :build => [:clean, :prepare, :spec]
 
 desc 'Removes the build directory.'
 task :clean do
