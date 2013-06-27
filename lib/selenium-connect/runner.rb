@@ -1,6 +1,7 @@
 require 'selenium-connect/runners/firefox'
 require 'selenium-connect/runners/ie'
 require 'selenium-connect/runners/chrome'
+require 'selenium-connect/runners/phantomjs'
 require 'selenium-connect/runners/no_browser'
 require 'selenium-connect/runners/saucelabs'
 
@@ -39,9 +40,10 @@ module SeleniumConnect
       firefox     = Firefox.new(config)
       ie          = InternetExplorer.new(config)
       chrome      = Chrome.new(config)
+      phantomjs   = PhantomJS.new(config)
       no_browser  = NoBrowser.new(config)
 
-      browsers = [ firefox, ie, chrome, no_browser ]
+      browsers = [ firefox, ie, chrome, phantomjs, no_browser ]
     end
 
   end #Runner

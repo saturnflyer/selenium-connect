@@ -25,7 +25,6 @@ module SeleniumConnect
     def defaults
       @host     = 'localhost' unless host
       @port     = 4444        unless port
-      @log      = false       unless log
       @browser  = 'firefox'   unless browser
     end
 
