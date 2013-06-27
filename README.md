@@ -32,11 +32,11 @@ This localhost functionality is driven using the [Selenium Rake Server Task](htt
 The finish command issues a quit command to the driver and stops the local server if your host is set to "localhost".
 
 ### Support
-- Firefox (standard, profile by path, profile by name, browser binary)  
-- Chrome  
-- Internet Explorer  
-- PhantomJS via GhostDriver  
-- SauceLabs  
+- [Firefox](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/firefox_spec.rb)  
+- [Chrome](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/chrome_spec.rb)  
+- [Internet Explorer(https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/ie_spec.rb)  
+- [PhantomJS](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/headless_spec.rb)  
+- [SauceLabs](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/sauce_spec.rb)  
 
 ## Contributing
 
