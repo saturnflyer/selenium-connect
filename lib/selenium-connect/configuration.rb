@@ -4,6 +4,7 @@ require 'yaml'
 
 module SeleniumConnect
   class Configuration
+
     # Selenium Server
     attr_accessor :host, :port, :version,
                   :background, :log, :jar
@@ -22,19 +23,23 @@ module SeleniumConnect
       @browser  = 'firefox'
     end
 
-    def populate_with_hash(hash)
+    def hash=(hash)
       hash.each do |key, value|
         self.send "#{key}=", value unless value.nil?
       end
     end
 
-    def populate_with_yaml(file)
-      populate_with_hash YAML.load_file file
-    end
+    alias :populate_with_hash :hash=
 
-    # maintained for backwards compatability
     def config_file=(file)
       populate_with_yaml file
     end
+
+    private
+
+      def populate_with_yaml(file)
+        populate_with_hash YAML.load_file file
+      end
+
   end # Configuration
 end # SeleniumConnect
