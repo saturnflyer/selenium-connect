@@ -23,23 +23,17 @@ module SeleniumConnect
       @browser  = 'firefox'
     end
 
-    def hash=(hash)
+    def populate_with_hash(hash)
       hash.each do |key, value|
         self.send "#{key}=", value unless value.nil?
       end
     end
 
-    alias :populate_with_hash :hash=
-
-    def config_file=(file)
-      populate_with_yaml file
+    def populate_with_yaml(file)
+        populate_with_hash YAML.load_file file
     end
 
-    private
-
-      def populate_with_yaml(file)
-        populate_with_hash YAML.load_file file
-      end
+    alias_method :config_file=, :populate_with_yaml
 
   end # Configuration
 end # SeleniumConnect
