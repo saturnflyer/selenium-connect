@@ -19,4 +19,31 @@ describe "YAML" do
     driver.get 'http://google.com'
     SeleniumConnect.finish
   end
+
+    it 'chrome', :wip => true do
+    SeleniumConnect.configure do |c|
+      c.config_file = "#{Dir.pwd}/spec/example.yaml"
+    end
+    driver = SeleniumConnect.start
+    driver.get 'http://google.com'
+    SeleniumConnect.finish
+  end
+
+    it 'chrome', :wip => true do
+    SeleniumConnect.configure do |c|
+      c.config_file = "#{Dir.pwd}/spec/example.yaml"
+    end
+    driver = SeleniumConnect.start
+    driver.get 'http://google.com'
+    SeleniumConnect.finish
+  end
+
+    it 'chrome', :wip => true do
+    SeleniumConnect.configure do |c|
+      c.config_file = "#{Dir.pwd}/spec/example.yaml"
+    end
+    driver = SeleniumConnect.start
+    driver.get 'http://google.com'
+    SeleniumConnect.finish
+  end
 end

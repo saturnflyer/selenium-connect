@@ -17,7 +17,7 @@ profile_name:
 
 #Saucelabs
 os:
-sauce_username:
+sauce_username: 'test_user_name'
 sauce_api_key:
 browser_version:
 description:
