@@ -1,6 +1,6 @@
 require 'selenium-connect'
 
-describe "Quit and Finish" do
+describe "Quit and Finish", selenium: true do
 
   it "quit when already finished doesn't blow up" do
     SeleniumConnect.configure do |c| end

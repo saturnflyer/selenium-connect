@@ -2,7 +2,7 @@ require 'selenium-connect/configuration'
 require 'selenium-connect/runners/phantomjs'
 require 'selenium-webdriver'
 
-describe "phantomjs runner" do
+describe "phantomjs runner", selenium: true do
   it "should match against phantomjs if configured as such" do
     config = SeleniumConnect::Configuration.new
     config.browser = 'phantomjs'

@@ -1,7 +1,7 @@
 require 'selenium-connect'
 require_relative 'helper'
 
-describe "Headless" do
+describe "Headless", selenium: true do
 
   let(:google)  { Google.new(SeleniumConnect.start) }
   let(:quit)    { SeleniumConnect.finish }

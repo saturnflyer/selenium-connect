@@ -1,7 +1,7 @@
 require 'selenium-connect'
 require_relative 'helper'
 
-describe "Logging" do
+describe "Logging", selenium: true do
 
   before(:all) do
     @log_dir = 'build'

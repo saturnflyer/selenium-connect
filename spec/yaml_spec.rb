@@ -11,7 +11,7 @@ describe "YAML" do
     config.inspect.empty?.should == false
   end
 
-  it 'chrome', :wip => true do
+  it 'chrome', :wip => true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end
@@ -20,7 +20,7 @@ describe "YAML" do
     SeleniumConnect.finish
   end
 
-    it 'chrome', :wip => true do
+    it 'chrome', :wip => true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end
@@ -29,7 +29,7 @@ describe "YAML" do
     SeleniumConnect.finish
   end
 
-    it 'chrome', :wip => true do
+    it 'chrome', :wip => true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end
@@ -38,7 +38,7 @@ describe "YAML" do
     SeleniumConnect.finish
   end
 
-    it 'chrome', :wip => true do
+    it 'chrome', :wip => true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end

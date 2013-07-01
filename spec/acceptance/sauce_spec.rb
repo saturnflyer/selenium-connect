@@ -1,6 +1,6 @@
 require 'selenium-connect'
 
-describe "Sauce Labs" do
+describe "Sauce Labs", selenium: true do
 
   it 'hello world' do
     SeleniumConnect.configure do |c|
