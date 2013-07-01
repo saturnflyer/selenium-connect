@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 module SeleniumConnect
   class Runner
     class Chrome
@@ -8,7 +10,7 @@ module SeleniumConnect
       end
 
       def match?
-        config.browser == "chrome"
+        config.browser == 'chrome'
       end
 
       def launch
@@ -21,6 +23,6 @@ module SeleniumConnect
         config.browser.to_sym
       end
 
-    end #Chrome
-  end #Runner
-end #SeleniumConnect
+    end # Chrome
+  end # Runner
+end # SeleniumConnect

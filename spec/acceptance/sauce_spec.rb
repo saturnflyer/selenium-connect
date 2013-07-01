@@ -1,6 +1,8 @@
+# Encoding: utf-8
+
 require 'selenium-connect'
 
-describe "Sauce Labs", selenium: true do
+describe 'Sauce Labs', selenium: true do
 
   it 'hello world' do
     SeleniumConnect.configure do |c|

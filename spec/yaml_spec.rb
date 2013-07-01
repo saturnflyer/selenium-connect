@@ -1,17 +1,19 @@
+# Encoding: utf-8
+
 require 'selenium-connect'
 
-describe "YAML" do
+describe 'YAML' do
 
   it 'setting config_file returns a proper config object' do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end
     config = SeleniumConnect.debug_config
-    config.class.should == SeleniumConnect::Configuration
-    config.inspect.empty?.should == false
+    config.class.should eq SeleniumConnect::Configuration
+    config.inspect.empty?.should be_false
   end
 
-  it 'chrome', :wip => true, selenium: true do
+  it 'chrome', wip: true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end
@@ -20,7 +22,7 @@ describe "YAML" do
     SeleniumConnect.finish
   end
 
-    it 'chrome', :wip => true, selenium: true do
+    it 'chrome', wip: true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end
@@ -29,7 +31,7 @@ describe "YAML" do
     SeleniumConnect.finish
   end
 
-    it 'chrome', :wip => true, selenium: true do
+    it 'chrome', wip: true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end
@@ -38,7 +40,7 @@ describe "YAML" do
     SeleniumConnect.finish
   end
 
-    it 'chrome', :wip => true, selenium: true do
+    it 'chrome', wip: true, selenium: true do
     SeleniumConnect.configure do |c|
       c.config_file = "#{Dir.pwd}/spec/example.yaml"
     end

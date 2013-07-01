@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 module SeleniumConnect
   class Runner
     class Firefox
@@ -8,7 +10,7 @@ module SeleniumConnect
       end
 
       def match?
-        config.browser == "firefox"
+        config.browser == 'firefox'
       end
 
       def launch
@@ -41,6 +43,6 @@ module SeleniumConnect
         config_browser
       end
 
-    end #Firefox
-  end #Runner
-end #SeleniumConnect
+    end # Firefox
+  end # Runner
+end # SeleniumConnect

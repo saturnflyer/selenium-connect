@@ -1,7 +1,9 @@
+# Encoding: utf-8
+
 require 'selenium-connect'
 require_relative 'helper'
 
-describe "Logging", selenium: true do
+describe 'Logging', selenium: true do
 
   before(:all) do
     @log_dir = 'build'
@@ -14,13 +16,13 @@ describe "Logging", selenium: true do
     SeleniumConnect.finish
   end
 
-  it "server" do
-    server_log = File.read(@log_dir+'/server.log')
+  it 'server' do
+    server_log = File.read(@log_dir + '/server.log')
     server_log.empty?.should be false
   end
 
-  it "browser" do
-    browser_log = File.read(@log_dir+'/firefox.log')
+  it 'browser' do
+    browser_log = File.read(@log_dir + '/firefox.log')
     browser_log.empty?.should be false
   end
 end
