@@ -1,7 +1,9 @@
 # Encoding: utf-8
 
 module SeleniumConnect
+  # Runner
   class Runner
+    # Chrome browser runner
     class Chrome
       attr_reader :config
 

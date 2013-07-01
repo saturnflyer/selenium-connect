@@ -1,7 +1,9 @@
 # Encoding: utf-8
 
 module SeleniumConnect
+  # Runner
   class Runner
+    # PhantomJS browser runner
     class PhantomJS
       attr_reader :config
 

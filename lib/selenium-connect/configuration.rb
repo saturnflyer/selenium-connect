@@ -3,6 +3,7 @@
 require 'yaml'
 
 module SeleniumConnect
+  # Encapsulates the configuration
   class Configuration
 
     # Selenium Server

@@ -1,6 +1,7 @@
 # Encoding: utf-8
 
 module SeleniumConnect
+  # Creates a server connection
   class Server
     attr_reader :configuration, :current_dir_path
 

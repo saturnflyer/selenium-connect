@@ -1,7 +1,9 @@
 # Encoding: utf-8
 
 module SeleniumConnect
+  # Runner
   class Runner
+    # Firefox browser runner
     class Firefox
       attr_reader :config
 

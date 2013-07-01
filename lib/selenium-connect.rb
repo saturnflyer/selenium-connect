@@ -5,6 +5,7 @@ require 'selenium-connect/configuration'
 require 'selenium-connect/runner'
 require 'selenium-connect/server'
 
+# Selenium Connect main module
 module SeleniumConnect
 
   extend self

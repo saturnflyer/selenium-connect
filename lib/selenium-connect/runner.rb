@@ -8,6 +8,7 @@ require 'selenium-connect/runners/no_browser'
 require 'selenium-connect/runners/saucelabs'
 
 module SeleniumConnect
+  # Initializes the driver
   class Runner
     attr_reader :driver, :config
 

@@ -31,7 +31,7 @@ describe SeleniumConnect::Configuration do
   it 'should throw an exception for unsupported config variable' do
     expect do
       @configuration.hash = { bad: 'config-value' }
-      end.to raise_error NoMethodError
+    end.to raise_error NoMethodError
   end
 
   it 'sensible defaults persist when nothing is set' do

@@ -1,7 +1,9 @@
 # Encoding: utf-8
 
 module SeleniumConnect
+  # Runner
   class Runner
+    # IE Browser Runner
     class InternetExplorer
       attr_reader :config
 

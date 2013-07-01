@@ -3,7 +3,9 @@
 require 'sauce'
 
 module SeleniumConnect
+  # Runner
   class Runner
+    # Sauce runner
     class Saucelabs
       attr_reader :config
 
