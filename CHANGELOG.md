@@ -1,3 +1,5 @@
+#2.1.0 (2013-07-02)
+
 #2.0.0 (2013-06-27)
 - Added selenium server jar as explicit dependency
 - Updated ruby version
