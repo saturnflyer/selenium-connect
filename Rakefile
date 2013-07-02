@@ -8,7 +8,7 @@ task default: :build_ci
 task build_ci: [:clean, :prepare, :rubocop, :spec_unit]
 
 desc 'Runs standard build activities.'
-task build: [:clean, :prepare, :rubocop, :spec_unit, :spec]
+task build: [:clean, :prepare, :rubocop, :spec_unit, :spec_full]
 
 desc 'Removes the build directory.'
 task :clean do
