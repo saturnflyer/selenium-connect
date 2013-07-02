@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 require 'selenium-connect/runners/firefox'
 require 'selenium-connect/runners/ie'
 require 'selenium-connect/runners/chrome'
@@ -6,6 +8,7 @@ require 'selenium-connect/runners/no_browser'
 require 'selenium-connect/runners/saucelabs'
 
 module SeleniumConnect
+  # Initializes the driver
   class Runner
     attr_reader :driver, :config
 
@@ -26,13 +29,14 @@ module SeleniumConnect
       else
         Selenium::WebDriver.for(
           :remote,
-          :url => set_server_url,
-          :desired_capabilities => get_browser)
+          url: set_server_url,
+          desired_capabilities: get_browser
+        )
       end
     end
 
     def get_browser
-      browser = browsers.find { |browser| browser.match? }
+      browser = browsers.find { |found_browser| found_browser.match? }
       browser.launch
     end
 
@@ -42,9 +46,8 @@ module SeleniumConnect
       chrome      = Chrome.new(config)
       phantomjs   = PhantomJS.new(config)
       no_browser  = NoBrowser.new(config)
-
-      browsers = [ firefox, ie, chrome, phantomjs, no_browser ]
+      [firefox, ie, chrome, phantomjs, no_browser]
     end
 
-  end #Runner
-end #SeleniumConnect
+  end # Runner
+end # SeleniumConnect

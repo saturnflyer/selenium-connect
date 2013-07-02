@@ -1,4 +1,7 @@
+# Encoding: utf-8
+
 module SeleniumConnect
+  # Creates a server connection
   class Server
     attr_reader :configuration, :current_dir_path
 
@@ -8,15 +11,15 @@ module SeleniumConnect
     end
 
     def start
-      rake "start"
+      rake 'start'
     end
 
     def stop
-      rake "stop"
+      rake 'stop'
     end
 
     def restart
-      rake "restart"
+      rake 'restart'
     end
 
     private
@@ -61,5 +64,5 @@ module SeleniumConnect
       system "rake -f #{get_rake_file} server:#{task}"
     end
 
-  end #Server
-end #SeleniumConnect
+  end # Server
+end # SeleniumConnect

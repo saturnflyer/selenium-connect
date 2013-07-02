@@ -1,7 +1,11 @@
+# Encoding: utf-8
+
 require 'sauce'
 
 module SeleniumConnect
+  # Runner
   class Runner
+    # Sauce runner
     class Saucelabs
       attr_reader :config
 
@@ -23,12 +27,12 @@ module SeleniumConnect
       def init_browser
         get_credentials
         Sauce::Selenium2.new({
-          :os               =>  config.os,
-          :browser          =>  config.browser,
-          :browser_version  =>  config.browser_version,
-          :job_name         =>  config.description })
+          os:                 config.os,
+          browser:            config.browser,
+          browser_version:    config.browser_version,
+          job_name:           config.description })
       end
 
-    end #Saucelabs
-  end #Runner
-end #SeleniumConnect
+    end # Saucelabs
+  end # Runner
+end # SeleniumConnect

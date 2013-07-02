@@ -1,8 +1,11 @@
+# Encoding: utf-8
+
 require 'selenium-webdriver'
 require 'selenium-connect/configuration'
 require 'selenium-connect/runner'
 require 'selenium-connect/server'
 
+# Selenium Connect main module
 module SeleniumConnect
 
   extend self
@@ -35,12 +38,14 @@ module SeleniumConnect
   def finish
     begin
       driver.quit
+    # rubocop:disable HandleExceptions
     rescue Selenium::WebDriver::Error::WebDriverError
-      #no-op
+      # rubocop:enable HandleExceptions
+      # no-op
     end
-    if localhost? then server.stop end
+    server.stop unless localhost?
   end
 
-  alias :start :run
-  alias :stop :finish
+  alias_method :start, :run
+  alias_method :stop, :finish
 end
