@@ -1,5 +1,9 @@
+# Encoding: utf-8
+
 module SeleniumConnect
+  # Runner
   class Runner
+    # PhantomJS browser runner
     class PhantomJS
       attr_reader :config
 
@@ -8,7 +12,7 @@ module SeleniumConnect
       end
 
       def match?
-        config.browser == "phantomjs"
+        config.browser == 'phantomjs'
       end
 
       def launch
@@ -19,7 +23,7 @@ module SeleniumConnect
 
       def get_executable_path
         current_dir_path = File.join(File.dirname(File.expand_path(__FILE__)))
-        current_dir_path + "/../../../bin/phantomjs"
+        current_dir_path + '/../../../bin/phantomjs'
       end
 
       def config_browser
@@ -33,6 +37,6 @@ module SeleniumConnect
         config_browser
       end
 
-    end #Chrome
-  end #Runner
-end #SeleniumConnect
+    end # Chrome
+  end # Runner
+end # SeleniumConnect

@@ -1,5 +1,9 @@
+# Encoding: utf-8
+
 module SeleniumConnect
+  # Runner
   class Runner
+    # IE Browser Runner
     class InternetExplorer
       attr_reader :config
 
@@ -8,7 +12,7 @@ module SeleniumConnect
       end
 
       def match?
-        config.browser == "ie"
+        config.browser == 'ie'
       end
 
       def launch
@@ -21,6 +25,6 @@ module SeleniumConnect
         config.browser.to_sym
       end
 
-    end #InternetExplorer
-  end #Runner
-end #SeleniumConnect
+    end # InternetExplorer
+  end # Runner
+end # SeleniumConnect

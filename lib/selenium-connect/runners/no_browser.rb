@@ -1,5 +1,9 @@
+# Encoding: utf-8
+
 module SeleniumConnect
+  # Runner
   class Runner
+    # No Browser Runner
     class NoBrowser
       attr_reader :config
 
@@ -12,10 +16,10 @@ module SeleniumConnect
       end
 
       def execute
-        puts "Please specify a valid browser."
+        puts 'Please specify a valid browser.'
         exit 1
       end
 
-    end #NoBrowser
-  end #Runner
-end #SeleniumConnect
+    end # NoBrowser
+  end # Runner
+end # SeleniumConnect

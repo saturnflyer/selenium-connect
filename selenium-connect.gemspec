@@ -19,5 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'sauce', '~> 2.4.4'
 
   s.add_development_dependency 'rspec'
+  s.add_development_dependency "rubocop", "~> 0.9.0"
 
 end

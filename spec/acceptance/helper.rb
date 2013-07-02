@@ -1,3 +1,5 @@
+# Encoding: utf-8
+
 class Google
   attr_accessor :page
 
@@ -6,7 +8,7 @@ class Google
   end
 
   def visit
-    page.get "http://www.google.com"
+    page.get 'http://www.google.com'
   end
 
   def page_title

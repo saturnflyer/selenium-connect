@@ -1,44 +1,40 @@
+# Encoding: utf-8
+
+require 'yaml'
+
 module SeleniumConnect
+  # Encapsulates the configuration
   class Configuration
-    #Selenium Server
+
+    # Selenium Server
     attr_accessor :host, :port, :version,
                   :background, :log, :jar
 
-    #Browsers
+    # Browsers
     attr_accessor :browser, :browser_path,
                   :profile_path, :profile_name
 
-    #SauceLabs
+    # SauceLabs
     attr_accessor :sauce_username, :sauce_api_key,
                   :os, :browser_version, :description
 
-    def config_file=(file)
-      set_config_values_from_file(get_config_values_from_file(file))
-    end
-
-    private
-
     def initialize
-      defaults
+      @host     = 'localhost'
+      @port     = 4444
+      @browser  = 'firefox'
     end
 
-    def defaults
-      @host     = 'localhost' unless host
-      @port     = 4444        unless port
-      @browser  = 'firefox'   unless browser
-    end
-
-    def get_config_values_from_file(file)
-      require 'yaml'
-      YAML.load_file(file)
-    end
-
-    def set_config_values_from_file(config_file_values)
-      config_file_values.each do |config_parameter, config_value|
-        instance_variable_set("@#{config_parameter}", config_value)
+    def populate_with_hash(hash)
+      hash.each do |key, value|
+        self.send "#{key}=", value unless value.nil?
       end
-      defaults
     end
 
-  end #Configuration
-end #SeleniumConnect
+    def populate_with_yaml(file)
+        populate_with_hash YAML.load_file file
+    end
+
+    alias_method :config_file=, :populate_with_yaml
+
+  end # Configuration
+end # SeleniumConnect
