@@ -43,7 +43,7 @@ module SeleniumConnect
       # rubocop:enable HandleExceptions
       # no-op
     end
-    server.stop unless localhost?
+    server.stop if localhost?
   end
 
   alias_method :start, :run
