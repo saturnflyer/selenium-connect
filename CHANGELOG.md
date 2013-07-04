@@ -1,3 +1,9 @@
+#2.1.1 (2013-07-04)
+- Updated rakefile to propperly fetch the previous version for changelog purposes
+- Bumped version to 2.1.1 to prepare for release.
+- fixed bug with the server shutdown process and improved the exception handling for invalid configuration parameters
+- updated changelog
+
 #2.1.0 (2013-07-02)
 - Updated configuration method
 - Code quality fixes
