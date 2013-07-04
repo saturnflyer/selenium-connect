@@ -30,8 +30,8 @@ describe SeleniumConnect::Configuration do
 
   it 'should throw an exception for unsupported config variable' do
     expect do
-      @configuration.hash = { bad: 'config-value' }
-    end.to raise_error NoMethodError
+      @configuration.populate_with_hash  bad: 'config-value'
+    end.to raise_error ArgumentError, 'The config key: "bad" is unknown!'
   end
 
   it 'sensible defaults persist when nothing is set' do

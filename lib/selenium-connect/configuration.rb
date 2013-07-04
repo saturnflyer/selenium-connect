@@ -26,7 +26,11 @@ module SeleniumConnect
 
     def populate_with_hash(hash)
       hash.each do |key, value|
-        self.send "#{key}=", value unless value.nil?
+        begin
+          self.send "#{key}=", value unless value.nil?
+        rescue NoMethodError
+          raise ArgumentError.new "The config key: \"#{key}\" is unknown!"
+        end
       end
     end
 
