@@ -6,6 +6,7 @@ describe 'Sauce Labs', selenium: true do
 
   it 'hello world' do
     SeleniumConnect.configure do |c|
+      c.log             = File.join('build', 'tmp')
       c.host            = 'saucelabs'
       c.sauce_username  = 'testing_arrgyle'
       c.sauce_api_key   = 'ab7a6e17-16df-42d2-9ef6-c8d2539cc38a'
@@ -17,7 +18,9 @@ describe 'Sauce Labs', selenium: true do
     driver = SeleniumConnect.start
     driver.get 'http://google.com'
     driver.title.should include('Google')
+    id = driver.session_id
     SeleniumConnect.finish
+    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "sauce_job_#{id}.log")).should be_true
   end
 
 end

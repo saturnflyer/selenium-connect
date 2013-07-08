@@ -1,3 +1,9 @@
+#2.2.0 (2013-07-08)
+- Bumped version to 2.2.0 to prepare for release.
+- updated tests and log namming to account for possible parallel usage
+- added test and fixed the log path
+- first cut of grabbing the server log from sauce labs after a job
+
 #2.1.1 (2013-07-04)
 - Updated rakefile to propperly fetch the previous version for changelog purposes
 - Bumped version to 2.1.1 to prepare for release.

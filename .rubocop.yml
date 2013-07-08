@@ -3,6 +3,3 @@ LineLength:
 
 MethodLength:
   Max: 30
-
-EndAlignment:
-  Enabled: true
