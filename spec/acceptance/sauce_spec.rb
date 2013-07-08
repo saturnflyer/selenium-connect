@@ -6,6 +6,7 @@ describe 'Sauce Labs', selenium: true do
 
   it 'hello world' do
     SeleniumConnect.configure do |c|
+      c.log             = File.join(Dir.pwd, 'build', 'tmp')
       c.host            = 'saucelabs'
       c.sauce_username  = 'testing_arrgyle'
       c.sauce_api_key   = 'ab7a6e17-16df-42d2-9ef6-c8d2539cc38a'
