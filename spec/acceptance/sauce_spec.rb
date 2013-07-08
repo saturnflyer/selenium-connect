@@ -18,8 +18,9 @@ describe 'Sauce Labs', selenium: true do
     driver = SeleniumConnect.start
     driver.get 'http://google.com'
     driver.title.should include('Google')
+    id = driver.session_id
     SeleniumConnect.finish
-    File.exist?(File.join(Dir.pwd, 'build', 'tmp', 'sauce.log')).should be_true
+    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "sauce_job_#{id}.log")).should be_true
   end
 
 end

@@ -66,7 +66,7 @@ module SeleniumConnect
       url: url
     ).execute
 
-    log_file = File.join(Dir.getwd, config.log, 'sauce.log') if config.log
+    log_file = File.join(Dir.getwd, config.log, "sauce_job_#{job_id}.log") if config.log
 
     File.open(log_file, 'w') do |log|
       log.write response
