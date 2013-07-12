@@ -1,3 +1,8 @@
+#2.3.0 (2013-07-12)
+- removed debug information from the sauce_spec
+- Bumped version to 2.3.0 to prepare for release.
+- SeleniumConnect.finish now returns a hash of arbitrary data, which at this time contains sauce labs job information, for those runs
+
 #2.2.0 (2013-07-08)
 - Bumped version to 2.2.0 to prepare for release.
 - updated tests and log namming to account for possible parallel usage
