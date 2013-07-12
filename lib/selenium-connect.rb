@@ -38,15 +38,20 @@ module SeleniumConnect
   end
 
   def finish
+    # TODO this should grow into a standardized artifact returned
+    # by the driver
+    return_data = {}
     begin
       driver.quit
-      fetch_logs if config.host == 'saucelabs'
+      return_data = fetch_logs if config.host == 'saucelabs'
     # rubocop:disable HandleExceptions
     rescue Selenium::WebDriver::Error::WebDriverError
       # rubocop:enable HandleExceptions
       # no-op
     end
     server.stop if localhost?
+
+    return_data
   end
 
   def fetch_logs
@@ -71,7 +76,7 @@ module SeleniumConnect
     File.open(log_file, 'w') do |log|
       log.write response
     end
-
+    { sauce_job: sauce_job }
   end
 
   alias_method :start, :run
