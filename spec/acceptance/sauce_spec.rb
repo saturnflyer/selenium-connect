@@ -21,9 +21,7 @@ describe 'Sauce Labs', selenium: true do
     id = driver.session_id
     data = SeleniumConnect.finish
     File.exist?(File.join(Dir.pwd, 'build', 'tmp', "sauce_job_#{id}.log")).should be_true
-
     data.empty?.should be_false
-    puts data
   end
 
 end
