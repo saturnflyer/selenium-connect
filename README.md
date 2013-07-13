@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png)](https://coveralls.io/r/arrgyle/selenium-connect)
+[![Gem Version](https://badge.fury.io/rb/selenium-connect.png)](http://badge.fury.io/rb/selenium-connect) [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png)](https://coveralls.io/r/arrgyle/selenium-connect)
 
 #selenium-connect
 A stupid simple way to run your Selenium tests on your computer, against a Selenium Grid, or in the cloud (e.g. SauceLabs).
@@ -66,6 +66,14 @@ rake unit         # unit tests
 rake integration  # integration tests
 rake system       # system tests
 ```
+
+### Or get your Guard On!
+
+Running:
+
+    guard
+
+Will start watching the code and run the unit tests on save. Cool.
 
 ## Deployment
 The release process is rather automated, just use one rake task with the new version number:
