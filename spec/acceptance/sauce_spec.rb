@@ -4,7 +4,7 @@ require 'selenium-connect'
 
 describe 'Sauce Labs', selenium: true do
 
-  it 'hello world' do
+  before(:each) do
     SeleniumConnect.configure do |c|
       c.log             = File.join('build', 'tmp')
       c.host            = 'saucelabs'
@@ -15,13 +15,23 @@ describe 'Sauce Labs', selenium: true do
       c.browser_version = '7'
       c.description     = 'hello world from selenium-connect!'
     end
-    driver = SeleniumConnect.start
-    driver.get 'http://google.com'
-    driver.title.should include('Google')
-    id = driver.session_id
+    @driver = SeleniumConnect.start
+  end
+
+  it 'hello world' do
+    @driver.get 'http://google.com'
+    @driver.title.should include('Google')
+    id = @driver.session_id
     data = SeleniumConnect.finish
     File.exist?(File.join(Dir.pwd, 'build', 'tmp', "sauce_job_#{id}.log")).should be_true
     data.empty?.should be_false
   end
 
+  # it 'should not find something on the page' do
+  #   @driver.get 'http://google.com'
+  #   @driver.title.should_not include('Google')
+  #   id = @driver.session_id
+  #   SeleniumConnect.finish
+  #   SeleniumConnect.job_info(id)
+  # end
 end

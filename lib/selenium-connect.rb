@@ -37,6 +37,24 @@ module SeleniumConnect
     @driver = Runner.new(config).driver
   end
 
+  def job_info(id)
+    sauce_client = Sauce::Client.new
+    sauce_job = Sauce::Job.find(id)
+    # poll while job is in progress
+    while sauce_job.status == 'in progress'
+      sleep 5
+      sauce_job.refresh!
+    end
+
+    url = "#{sauce_client.api_url}jobs/#{id}/assets/"
+    response = RestClient::Request.new(
+      method: :get,
+      url: url
+    ).execute
+
+    puts response
+  end
+
   def finish
     # TODO this should grow into a standardized artifact returned
     # by the driver
