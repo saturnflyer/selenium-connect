@@ -1,10 +1,15 @@
-Master Branch: [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png?branch=master)](https://travis-ci.org/arrgyle/selenium-connect)
+[![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png)](https://coveralls.io/r/arrgyle/selenium-connect)
 
-Develop Branch: [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png?branch=develop)](https://travis-ci.org/arrgyle/selenium-connect)
-
-#selenium-connect [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect)
-
+#selenium-connect
 A stupid simple way to run your Selenium tests on your computer, against a Selenium Grid, or in the cloud (e.g. SauceLabs).
+
+All the documentation for Selenium Connect can be found in this README, organized as follows:
+
+- [Getting Started](#getting-started)
+- [Helpful Bits](#helpful-bits)
+- [Configuration](#configuration)
+- [Contribution Guidelines](#contribution-guidelines)
+- [Deployment](#deployment)
 
 ## Getting Started
 ```ruby
@@ -20,7 +25,7 @@ end
 SeleniumConnect.finish
 ```
 
-## Helpful bits
+## Helpful Bits
 
 ### Start
 If host is set to "localhost" and no jar file is specified, it will run the version of [selenium-standalone-server.jar](https://code.google.com/p/selenium/downloads/list) that is bundled with the library (currently 2.33.0). Or, you can specify your own jar if you have one you prefer to use. This is done with c.jar = 'path-to-jar-file'.
@@ -42,7 +47,10 @@ The finish command issues a quit command to the driver and stops the local serve
 - [PhantomJS](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/headless_spec.rb)
 - [SauceLabs](https://github.com/arrgyle/selenium-connect/blob/develop/spec/acceptance/sauce_spec.rb)
 
-## Contributing
+## Configuration
+Coming soon!
+
+## Contribution Guidelines
 
 This project conforms to the [neverstopbuilding/craftsmanship](https://github.com/neverstopbuilding/craftsmanship) guidelines. Specifically related to the branching model and versioning. Please see the guidelines for details.
 
@@ -50,6 +58,22 @@ This project conforms to the [neverstopbuilding/craftsmanship](https://github.co
 
     bundle install
 
-### Run the Tests
+### Run the Tests!
 
-    bundle exec rake build
+```
+rake              # defaults to 'build' task, code quality, unit, and integration tests
+rake unit         # unit tests
+rake integration  # integration tests
+rake system       # system tests
+```
+
+## Deployment
+The release process is rather automated, just use one rake task with the new version number:
+
+    rake release_start['2.1.0']
+
+And another to finish the release:
+
+    rake release_finish['A helpful tag message that will be included in the gemspec.']
+
+This handles updating the change log, committing, and tagging the release.
