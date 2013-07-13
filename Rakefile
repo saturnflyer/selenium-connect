@@ -13,8 +13,8 @@ task build_full: [:clean, :prepare, :rubocop, :unit, :integration, :system]
 desc 'Removes the build directory.'
 task :clean do
   FileUtils.rm_rf 'build'
-  FileUtils.rm 'chromedriver.log'
-  FileUtils.rm 'libpeerconnection.log'
+  FileUtils.rm 'chromedriver.log' if File.exist? 'chromedriver.log'
+  FileUtils.rm 'libpeerconnection.log' if File.exist? 'libpeerconnection.log'
 end
 desc 'Adds the build tmp directory for test kit creation.'
 task :prepare do
