@@ -1,5 +1,6 @@
 # Encoding: utf-8
 
+require 'spec_helper'
 require 'selenium_connect'
 
 describe 'Sauce Labs', selenium: true do

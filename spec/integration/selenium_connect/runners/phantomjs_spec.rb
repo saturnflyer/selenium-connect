@@ -1,5 +1,6 @@
 # Encoding: utf-8
 
+require 'spec_helper'
 require 'selenium_connect/configuration'
 require 'selenium_connect/runners/phantomjs'
 require 'selenium-webdriver'

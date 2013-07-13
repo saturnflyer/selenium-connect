@@ -1,5 +1,6 @@
 # Encoding: utf-8
 
+require 'spec_helper'
 require 'selenium_connect/configuration'
 
 describe SeleniumConnect::Configuration do
@@ -19,12 +20,12 @@ describe SeleniumConnect::Configuration do
   end
 
   it 'can be populated with a yaml file' do
-    @configuration.populate_with_yaml "#{Dir.pwd}/spec/example.yaml"
+    @configuration.populate_with_yaml "#{ENV['SUPPORT_PATH']}/example.yaml"
     @configuration.sauce_username.should eq VALID_SAUCE_USERNAME
   end
 
   it 'supports the config_file= method' do
-    @configuration.config_file= "#{Dir.pwd}/spec/example.yaml"
+    @configuration.config_file= "#{ENV['SUPPORT_PATH']}/example.yaml"
     @configuration.sauce_username.should eq VALID_SAUCE_USERNAME
   end
 

@@ -3,26 +3,42 @@
 require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 
-task default: :build_ci
+task default: :build
 
-task build_ci: [:clean, :prepare, :rubocop, :spec_unit]
+task build: [:clean, :prepare, :rubocop, :unit, :integration]
 
 desc 'Runs standard build activities.'
-task build: [:clean, :prepare, :rubocop, :spec_unit, :spec_full]
+task build_full: [:clean, :prepare, :rubocop, :unit, :integration, :system]
 
 desc 'Removes the build directory.'
 task :clean do
   FileUtils.rm_rf 'build'
   FileUtils.rm 'chromedriver.log'
+  FileUtils.rm 'libpeerconnection.log'
 end
 desc 'Adds the build tmp directory for test kit creation.'
 task :prepare do
   FileUtils.mkdir_p('build/tmp')
+  FileUtils.mkdir_p('build/spec')
 end
-RSpec::Core::RakeTask.new(:spec_full)
 
-RSpec::Core::RakeTask.new(:spec_unit) do |t|
-  t.rspec_opts = '--tag ~selenium'
+def get_rspec_flags(log_name, others = nil)
+  "--format documentation --out build/spec/#{log_name}.log --format html --out build/spec/#{log_name}.html --format progress #{others}"
+end
+
+RSpec::Core::RakeTask.new(:unit) do |t|
+  t.pattern = FileList['spec/unit/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('unit')
+end
+
+RSpec::Core::RakeTask.new(:integration) do |t|
+  t.pattern = FileList['spec/integration/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('integration', '--tag ~selenium')
+end
+
+RSpec::Core::RakeTask.new(:system) do |t|
+  t.pattern = FileList['spec/integration/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('system', '--tag selenium')
 end
 
 desc 'Runs code quality check'
