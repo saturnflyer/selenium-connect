@@ -12,7 +12,8 @@ task build: [:clean, :prepare, :rubocop, :spec_unit, :spec_full]
 
 desc 'Removes the build directory.'
 task :clean do
-  FileUtils.rm_rf('build')
+  FileUtils.rm_rf 'build'
+  FileUtils.rm 'chromedriver.log'
 end
 desc 'Adds the build tmp directory for test kit creation.'
 task :prepare do

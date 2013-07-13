@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-require 'selenium-connect/configuration'
+require 'selenium_connect/configuration'
 
 describe SeleniumConnect::Configuration do
 

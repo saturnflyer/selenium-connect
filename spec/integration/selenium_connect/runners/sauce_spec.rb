@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-require 'selenium-connect'
+require 'selenium_connect'
 
 describe 'Sauce Labs', selenium: true do
 
@@ -13,7 +13,7 @@ describe 'Sauce Labs', selenium: true do
       c.os              = 'windows'
       c.browser         = 'iexplore'
       c.browser_version = '7'
-      c.description     = 'hello world from selenium-connect!'
+      c.description     = 'hello world from selenium_connect!'
     end
     @driver = SeleniumConnect.start
   end

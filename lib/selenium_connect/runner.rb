@@ -1,11 +1,11 @@
 # Encoding: utf-8
 
-require 'selenium-connect/runners/firefox'
-require 'selenium-connect/runners/ie'
-require 'selenium-connect/runners/chrome'
-require 'selenium-connect/runners/phantomjs'
-require 'selenium-connect/runners/no_browser'
-require 'selenium-connect/runners/saucelabs'
+require 'selenium_connect/runners/firefox'
+require 'selenium_connect/runners/ie'
+require 'selenium_connect/runners/chrome'
+require 'selenium_connect/runners/phantomjs'
+require 'selenium_connect/runners/no_browser'
+require 'selenium_connect/runners/saucelabs'
 
 module SeleniumConnect
   # Initializes the driver

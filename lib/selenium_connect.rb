@@ -1,9 +1,9 @@
 # Encoding: utf-8
 
 require 'selenium-webdriver'
-require 'selenium-connect/configuration'
-require 'selenium-connect/runner'
-require 'selenium-connect/server'
+require 'selenium_connect/configuration'
+require 'selenium_connect/runner'
+require 'selenium_connect/server'
 require 'sauce/client'
 require 'rest_client'
 

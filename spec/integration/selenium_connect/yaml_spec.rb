@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-require 'selenium-connect'
+require 'selenium_connect'
 
 describe 'YAML' do
 

@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
-require 'selenium-connect/configuration'
-require 'selenium-connect/runners/phantomjs'
+require 'selenium_connect/configuration'
+require 'selenium_connect/runners/phantomjs'
 require 'selenium-webdriver'
 
 describe 'phantomjs runner', selenium: true do
