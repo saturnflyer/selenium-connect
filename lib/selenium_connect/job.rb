@@ -32,25 +32,25 @@ class SeleniumConnect
       # extracted from the earlier main finish
       begin
         @driver.quit
+        data = {}
         job_id = @driver.session_id
         if @config.host == 'saucelabs'
           if opts.has_key?(:failed) && opts[:failed]
             fail_job job_id
             if opts.has_key?(:failshot) && opts[:failshot]
-              save_last_screenshot job_id
+              data[:failshot] = save_last_screenshot job_id
             end
           end
           if opts.has_key?(:passed) && opts[:passed]
             pass_job job_id
           end
-          data = fetch_logs(job_id)
-          report_data = symbolize_keys sauce_data: data
+          data.merge! fetch_logs(job_id)
         end
       # rubocop:disable HandleExceptions
       rescue Selenium::WebDriver::Error::WebDriverError
       # rubocop:enable HandleExceptions
       end
-
+      report_data = symbolize_keys data
       @report_factory.build :job, report_data
     end
 
@@ -62,9 +62,11 @@ class SeleniumConnect
         begin
         # Seemingly need to wait slightly for the images to be processed
         sleep(2)
+        filename = "failed_#{job_id}.png"
         image = SauceWhisk::Jobs.fetch_asset job_id, 'final_screenshot.png'
-        image_file = File.join(Dir.getwd, @config.log, "failed_#{job_id}.png") if @config.log
+        image_file = File.join(Dir.getwd, @config.log, filename) if @config.log
         File.open(image_file, 'w') { |f| f.write image }
+        filename
         rescue RestClient::ResourceNotFound
           puts 'Unable to download image!'
         end
@@ -82,10 +84,11 @@ class SeleniumConnect
         sauce_job = Sauce::Job.find(job_id)
         # Seemingly need to wait slightly for the images to be processed
         sleep(2)
+        filename = "sauce_job_#{job_id}.log"
         server_log = SauceWhisk::Jobs.fetch_asset job_id, 'selenium-server.log'
-        log_file = File.join(Dir.getwd, @config.log, "sauce_job_#{job_id}.log") if @config.log
+        log_file = File.join(Dir.getwd, @config.log, filename) if @config.log
         File.open(log_file, 'w') { |f| f.write server_log }
-        JSON.parse(sauce_job.to_json)
+        { server_log: filename, sauce_data: JSON.parse(sauce_job.to_json) }
       end
 
       # TODO this should be pulled out into a generic report... or something
