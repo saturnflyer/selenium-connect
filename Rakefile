@@ -89,6 +89,8 @@ task :release_finish, :update_message do |t, args|
   gemspec   = File.join(Dir.getwd, 'selenium-connect.gemspec')
   changelog = File.join(Dir.getwd, 'CHANGELOG.md')
   version   = File.read(gemspec).match(/s.version\s+=\s?["|'](.+)["|']/)[1]
+  readme = File.join(Dir.getwd, 'README.md')
+  date = Time.new.strftime('%Y-%m-%d')
 
   ### Changelog
   # get the latest tag
@@ -101,7 +103,6 @@ task :release_finish, :update_message do |t, args|
   log = `git log --format="- %s" --no-merges #{hash.chomp}..HEAD`
 
   changelog_contents = File.read(changelog)
-  date = Time.new.strftime('%Y-%m-%d')
   # create the new heading
   updated_changelog = "##{version} (#{date})\n" + log + "\n" + changelog_contents
   # update the contents
@@ -115,8 +116,15 @@ task :release_finish, :update_message do |t, args|
   )
   File.open(gemspec, 'w') { |f| f.write(updated_gemspec) }
 
-  # Commit the updated change log and gemspec
-  system "git commit -am 'Updated CHANGELOG.md and gemspec for #{version} release.'"
+  ### Update the readme heading
+  updated = File.read(readme).gsub(
+    /^#selenium-connect \d+\.\d+.\d+ \(.+\)/,
+    "#selenium-connect #{version} (#{date})"
+  )
+  File.open(readme, 'w') { |f| f.write(updated) }
+
+  # Commit the updated change log and gemspec and readme
+  system "git commit -am 'Updated CHANGELOG.md gemspec and readme heading for #{version} release.'"
 
   # build the gem
   system 'gem build selenium-connect.gemspec'

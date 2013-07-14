@@ -1,6 +1,7 @@
+#selenium-connect 3.0.0 (2013-07-14)
+
 [![Gem Version](https://badge.fury.io/rb/selenium-connect.png)](http://badge.fury.io/rb/selenium-connect) [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png)](https://coveralls.io/r/arrgyle/selenium-connect)
 
-#selenium-connect
 A stupid simple way to run your Selenium tests on your computer, against a Selenium Grid, or in the cloud (e.g. SauceLabs). For a rocking implementation of this library, checkout [ChemistryKit](https://github.com/arrgyle/chemistrykit)!
 
 All the documentation for Selenium Connect can be found in this README, organized as follows:
@@ -62,8 +63,8 @@ The finish command issues a quit command to the driver and stops the local serve
 Configuration of Selenium Connect is SUPER SIMPLE if you want it to be:
 
     config = SeleniumConnect::Configuration.new
-    
-By default it will run a local instance of selenium server on port 4444 and launch firefox. Get going without a whole bunch of shenanigans. 
+
+By default it will run a local instance of selenium server on port 4444 and launch firefox. Get going without a whole bunch of shenanigans.
 
 If however you want to install custom settings you can use any of the following:
 
@@ -74,7 +75,7 @@ log: # the logs go to this folder
 
 # Where to run your tests
 host: 'localhost' # local, a grid ip or "saucelabs"
-port: 
+port:
 
 # Browser
 browser:      'firefox'
@@ -94,12 +95,12 @@ description: #sauce job/test description
 You can pass parameters into the new config object like:
 
     config = SeleniumConnect::Configuration.new host: 'sauce labs', log: 'build'
-    
+
 Or you can load them up from a YAML file:
 
     config = SeleniumConnect::Configuration.new.populate_with_yaml '/my/config.yaml'
-    
-    
+
+
 ###Additional Configuration
 When you create your job you can pass in parameters, right now just `:name` that lets you configure a job at runtime. This is helpful for using Sauce Labs where you'd want to update the description to whatever test job you are running:
 
@@ -120,7 +121,7 @@ report = job.finish passed: true
 report = job.finish failed: true, failshot: true
 ```
 
-The `report` is simply a container for arbitrary data. Right now we are passing back the sauce details. 
+The `report` is simply a container for arbitrary data. Right now we are passing back the sauce details.
 
 ## Contribution Guidelines
 
