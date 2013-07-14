@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rake'
   s.add_dependency 'sauce', '~> 2.4.4'
   s.add_dependency 'sauce_whisk', '~> 0.0.8'
-  s.add_dependency 'curb', '~> 0.8.4'
 
   s.add_development_dependency 'rspec', '~> 2.14.1'
   s.add_development_dependency 'rubocop', '~> 0.9.0'
