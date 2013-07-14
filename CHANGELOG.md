@@ -1,3 +1,11 @@
+#3.1.2 (2013-07-14)
+removed references to curb
+
+- Bumped version to 3.2.1 to prepare for release.
+- removed references to curb
+- removed curb as that is also not needed
+- Update README.md
+
 #3.1.1 (2013-07-14)
 fixed a bug with the job id for non sauce tests
 
