@@ -37,6 +37,7 @@ job.finish
 
 # go have some fun!
 sc.finish
+```
 
 ## Helpful Bits
 
