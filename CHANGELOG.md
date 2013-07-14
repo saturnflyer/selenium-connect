@@ -1,3 +1,19 @@
+#3.0.0 (2013-07-14)
+- updated rake file to run all the tests on a release start
+- Bumped version to 3.0.0 to prepare for release.
+- updated coverage badge in the docs and did a little ditty to jive gem name with proper file naming
+- updated the build process to add the version number and date to the top of the readme on release so that people know how old the docs is #5
+- updated documentation to reflect the changes in #5
+- added a facility to download a job tagged failure image to the logs directory
+- now sending a passed or failed bool in the finish command will mark sauce labs jobs as such #5
+- major refactoring of public api per #5 and updating the tests to match
+- added guard configuration and updated the coverage reports to go to the build directory #5
+- added coveralls code coverage information #5
+- added catch to rakefile for log deletions #5
+- updated tests for new support files location, cleaned up build process adding good logging and seperation of unit, integration, and system tests #5
+- moved specs into standard format, updated names to standard class file name convention #5
+- fixed some minor code quality issues
+
 #2.3.0 (2013-07-12)
 - removed debug information from the sauce_spec
 - Bumped version to 2.3.0 to prepare for release.

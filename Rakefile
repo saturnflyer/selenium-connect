@@ -62,7 +62,7 @@ task :release_start, :version do |t, args|
   system 'git pull --no-edit origin develop'
 
   # next assure all the tests run
-  task(:build).invoke
+  task(:build_full).invoke
 
   # start the release process
   system "git flow release start #{version}"
