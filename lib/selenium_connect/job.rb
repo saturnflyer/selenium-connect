@@ -22,7 +22,6 @@ class SeleniumConnect
 
       # TODO this could be refactored out into an options parser of sorts
       @config.description = opts[:name] if opts.has_key? :name
-
       @driver = Runner.new(@config).driver
     end
 
@@ -33,8 +32,8 @@ class SeleniumConnect
       begin
         @driver.quit
         data = {}
-        job_id = @driver.session_id
         if @config.host == 'saucelabs'
+          job_id = @driver.session_id
           if opts.has_key?(:failed) && opts[:failed]
             fail_job job_id
             if opts.has_key?(:failshot) && opts[:failshot]
