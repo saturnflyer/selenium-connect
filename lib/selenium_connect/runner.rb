@@ -7,7 +7,8 @@ require 'selenium_connect/runners/phantomjs'
 require 'selenium_connect/runners/no_browser'
 require 'selenium_connect/runners/saucelabs'
 
-module SeleniumConnect
+# selenium connect
+class SeleniumConnect
   # Initializes the driver
   class Runner
     attr_reader :driver, :config

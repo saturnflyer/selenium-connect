@@ -2,7 +2,8 @@
 
 require 'sauce'
 
-module SeleniumConnect
+# selenium connect
+class SeleniumConnect
   # Runner
   class Runner
     # Sauce runner

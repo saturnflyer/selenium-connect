@@ -1,102 +1,49 @@
 # Encoding: utf-8
 
-require 'selenium-webdriver'
-require 'selenium_connect/configuration'
-require 'selenium_connect/runner'
+require 'selenium_connect/job'
 require 'selenium_connect/server'
-require 'sauce/client'
-require 'rest_client'
+require 'selenium_connect/configuration'
+require 'selenium_connect/report/report_factory'
 
 # Selenium Connect main module
-module SeleniumConnect
+class SeleniumConnect
 
-  extend self
-  attr_reader :config, :config_file, :location, :server, :driver
+  attr_reader :config
 
-  def configure
-    yield configuration
+  # initializes and returns a new SeleniumConnect object
+  def self.start(config)
+    report_factory = SeleniumConnect::Report::ReportFactory.new
+    new config, report_factory
   end
 
-  def configuration
-    @config = Configuration.new
+  def initialize(config, report_factory)
+    raise ArgumentError, 'Instance of SeleniumConnect::Configuration expected.' unless config.is_a? SeleniumConnect::Configuration
+    @config = config
+    @report_factory = report_factory
+    server_start
   end
 
-  def localhost?
-    config.host == 'localhost'
-  end
-
-  def debug_config
-    config
-  end
-
-  def run
-    if localhost?
-      @server = Server.new(config)
-      server.start
-    end
-    @driver = Runner.new(config).driver
-  end
-
-  def job_info(id)
-    sauce_client = Sauce::Client.new
-    sauce_job = Sauce::Job.find(id)
-    # poll while job is in progress
-    while sauce_job.status == 'in progress'
-      sleep 5
-      sauce_job.refresh!
-    end
-
-    url = "#{sauce_client.api_url}jobs/#{id}/assets/"
-    response = RestClient::Request.new(
-      method: :get,
-      url: url
-    ).execute
-
-    puts response
+  def create_job(opts = {})
+    SeleniumConnect::Job.new @config, @report_factory
   end
 
   def finish
-    # TODO this should grow into a standardized artifact returned
-    # by the driver
-    return_data = {}
-    begin
-      driver.quit
-      return_data = fetch_logs if config.host == 'saucelabs'
-    # rubocop:disable HandleExceptions
-    rescue Selenium::WebDriver::Error::WebDriverError
-      # rubocop:enable HandleExceptions
-      # no-op
-    end
-    server.stop if localhost?
-
-    return_data
+    @server.stop unless @server.nil?
+    # returning empty report for now
+    @report_factory.build :main, {}
   end
 
-  def fetch_logs
-    # this could be pulled out into the specific sauce runner
-    job_id = driver.session_id
-    sauce_client = Sauce::Client.new
-    sauce_job = Sauce::Job.find(job_id)
-    # poll while job is in progress
-    while sauce_job.status == 'in progress'
-      sleep 5
-      sauce_job.refresh!
+  private
+
+    def server_start
+      if @config.host == 'localhost'
+        # TODO this is just temp,
+        # in the next iteration we will inject this in by default in start
+        # to a required argument in initialize
+        @server = Server.new(config)
+        @server.start
+      else
+        @server = nil
+      end
     end
-
-    url = "#{sauce_client.api_url}jobs/#{job_id}/assets/selenium-server.log"
-    response = RestClient::Request.new(
-      method: :get,
-      url: url
-    ).execute
-
-    log_file = File.join(Dir.getwd, config.log, "sauce_job_#{job_id}.log") if config.log
-
-    File.open(log_file, 'w') do |log|
-      log.write response
-    end
-    { sauce_job: sauce_job }
-  end
-
-  alias_method :start, :run
-  alias_method :stop, :finish
 end

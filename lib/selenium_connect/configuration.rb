@@ -2,7 +2,8 @@
 
 require 'yaml'
 
-module SeleniumConnect
+# selenium connect
+class SeleniumConnect
   # Encapsulates the configuration
   class Configuration
 
@@ -18,10 +19,11 @@ module SeleniumConnect
     attr_accessor :sauce_username, :sauce_api_key,
                   :os, :browser_version, :description
 
-    def initialize
+    def initialize(opts = {})
       @host     = 'localhost'
       @port     = 4444
       @browser  = 'firefox'
+      populate_with_hash opts unless opts.empty?
     end
 
     def populate_with_hash(hash)

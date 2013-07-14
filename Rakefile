@@ -32,7 +32,7 @@ end
 
 RSpec::Core::RakeTask.new(:integration) do |t|
   t.pattern = FileList['spec/integration/**/*_spec.rb']
-  t.rspec_opts = get_rspec_flags('integration', '--tag ~selenium')
+  t.rspec_opts = get_rspec_flags('integration', '--tag=~selenium')
 end
 
 RSpec::Core::RakeTask.new(:system) do |t|

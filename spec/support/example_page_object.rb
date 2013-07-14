@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-class Google
+class ExamplePageObject
   attr_accessor :page
 
   def initialize(driver)

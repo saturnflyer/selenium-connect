@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sauce', '~> 2.4.4'
 
   s.add_development_dependency 'rspec', '~> 2.14.1'
+  s.add_development_dependency 'mocha', '~> 0.14.0'
   s.add_development_dependency 'rubocop', '~> 0.9.0'
   s.add_development_dependency 'guard-rspec', '~> 3.0.2'
   s.add_development_dependency 'coveralls', '~> 0.6.7'

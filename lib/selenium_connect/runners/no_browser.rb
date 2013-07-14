@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-module SeleniumConnect
+class SeleniumConnect
   # Runner
   class Runner
     # No Browser Runner

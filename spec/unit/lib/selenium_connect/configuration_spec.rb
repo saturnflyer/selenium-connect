@@ -13,6 +13,11 @@ describe SeleniumConnect::Configuration do
     @configuration = SeleniumConnect::Configuration.new
   end
 
+  it 'can recieve a simple hash of options on initialization' do
+    config = SeleniumConnect::Configuration.new host: 'newhost'
+    config.host.should == 'newhost'
+  end
+
   it 'can be populated by a hash' do
     @configuration.populate_with_hash jar: VALID_JAR, host: VALID_HOST
     @configuration.jar.should eq VALID_JAR
