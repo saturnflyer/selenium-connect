@@ -4,6 +4,8 @@ require 'sauce/client'
 require 'rest_client'
 require 'selenium-webdriver'
 require 'json'
+require 'sauce_whisk'
+require 'curb'
 
 # selenium connect
 class SeleniumConnect
@@ -30,14 +32,18 @@ class SeleniumConnect
       # extracted from the earlier main finish
       begin
         @driver.quit
+        job_id = @driver.session_id
         if @config.host == 'saucelabs'
           if opts.has_key?(:failed) && opts[:failed]
-            update_job_passed(false)
+            fail_job job_id
+            if opts.has_key?(:failshot) && opts[:failshot]
+              save_last_screenshot job_id
+            end
           end
           if opts.has_key?(:passed) && opts[:passed]
-            update_job_passed(true)
+            pass_job job_id
           end
-          data = fetch_logs
+          data = fetch_logs(job_id)
           report_data = symbolize_keys sauce_data: data
         end
       # rubocop:disable HandleExceptions
@@ -50,36 +56,35 @@ class SeleniumConnect
 
     private
 
-      def update_job_passed(bool)
-        job_id = @driver.session_id
-        # sauce_client = Sauce::Client.new
-        sauce_job = Sauce::Job.find(job_id)
-        sauce_job.passed = bool
-        sauce_job.save
+      # TODO all this sauce stuff needs to be pulled out of the job class
+      # TODO need to put error handling around the sauce api requests
+      def save_last_screenshot(job_id)
+        begin
+        # Seemingly need to wait slightly for the images to be processed
+        sleep(2)
+        image = SauceWhisk::Jobs.fetch_asset job_id, 'final_screenshot.png'
+        image_file = File.join(Dir.getwd, @config.log, "failed_#{job_id}.png") if @config.log
+        File.open(image_file, 'w') { |f| f.write image }
+        rescue RestClient::ResourceNotFound
+          puts 'Unable to download image!'
+        end
       end
 
-      def fetch_logs
-        # this could be pulled out into the specific sauce runner
-        job_id = @driver.session_id
-        sauce_client = Sauce::Client.new
+      def fail_job(job_id)
+        SauceWhisk::Jobs.fail_job job_id
+      end
+
+      def pass_job(job_id)
+        SauceWhisk::Jobs.pass_job job_id
+      end
+
+      def fetch_logs(job_id)
         sauce_job = Sauce::Job.find(job_id)
-        # poll while job is in progress
-        while sauce_job.status == 'in progress'
-          sleep 5
-          sauce_job.refresh!
-        end
-
-        url = "#{sauce_client.api_url}jobs/#{job_id}/assets/selenium-server.log"
-        response = RestClient::Request.new(
-          method: :get,
-          url: url
-        ).execute
-
+        # Seemingly need to wait slightly for the images to be processed
+        sleep(2)
+        server_log = SauceWhisk::Jobs.fetch_asset job_id, 'selenium-server.log'
         log_file = File.join(Dir.getwd, @config.log, "sauce_job_#{job_id}.log") if @config.log
-
-        File.open(log_file, 'w') do |log|
-          log.write response
-        end
+        File.open(log_file, 'w') { |f| f.write server_log }
         JSON.parse(sauce_job.to_json)
       end
 
