@@ -1,3 +1,9 @@
+#3.1.1 (2013-07-14)
+fixed a bug with the job id for non sauce tests
+
+- Bumped version to 3.1.1 to prepare for release.
+- fixed bug with an unset job id for non sauce runs
+
 #3.1.0 (2013-07-14)
 return the log file names in the report object
 
