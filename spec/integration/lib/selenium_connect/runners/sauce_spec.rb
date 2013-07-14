@@ -19,14 +19,25 @@ describe 'Sauce Labs', selenium: true do
     @sc = SeleniumConnect.start config
   end
 
-  it 'hello world' do
+  it 'just execute a sauce job successfully' do
     job = @sc.create_job
-    driver = job.start name: 'some random job name'
+    name = 'successful sauce job'
+    driver = job.start name: name
     execute_simple_test driver
-    report = job.finish
+    report = job.finish passed: true
     sauce_id = report.data[:sauce_data][:id]
-    report.data[:sauce_data][:name].should be == 'some random job name'
+    report.data[:sauce_data][:name].should be == name
+    report.data[:sauce_data][:passed].should be === true
     File.exist?(File.join(Dir.pwd, 'build', 'tmp', "sauce_job_#{sauce_id}.log")).should be_true
+  end
+
+  it 'should mark a sauce job as failed' do
+    job = @sc.create_job
+    name = 'failing sauce job'
+    driver = job.start name: name
+    # we don't even need to run anything
+    report = job.finish failed: true
+    report.data[:sauce_data][:passed].should be === false
   end
 
   after(:each) do

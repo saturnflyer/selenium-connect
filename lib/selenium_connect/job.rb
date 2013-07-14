@@ -31,6 +31,12 @@ class SeleniumConnect
       begin
         @driver.quit
         if @config.host == 'saucelabs'
+          if opts.has_key?(:failed) && opts[:failed]
+            update_job_passed(false)
+          end
+          if opts.has_key?(:passed) && opts[:passed]
+            update_job_passed(true)
+          end
           data = fetch_logs
           report_data = symbolize_keys sauce_data: data
         end
@@ -44,22 +50,12 @@ class SeleniumConnect
 
     private
 
-      def job_info(id)
-        sauce_client = Sauce::Client.new
-        sauce_job = Sauce::Job.find(id)
-        # poll while job is in progress
-        while sauce_job.status == 'in progress'
-          sleep 5
-          sauce_job.refresh!
-        end
-
-        url = "#{sauce_client.api_url}jobs/#{id}/assets/"
-        response = RestClient::Request.new(
-          method: :get,
-          url: url
-        ).execute
-
-        puts response
+      def update_job_passed(bool)
+        job_id = @driver.session_id
+        # sauce_client = Sauce::Client.new
+        sauce_job = Sauce::Job.find(job_id)
+        sauce_job.passed = bool
+        sauce_job.save
       end
 
       def fetch_logs
