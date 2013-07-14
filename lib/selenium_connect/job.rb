@@ -5,7 +5,6 @@ require 'rest_client'
 require 'selenium-webdriver'
 require 'json'
 require 'sauce_whisk'
-require 'curb'
 
 # selenium connect
 class SeleniumConnect
