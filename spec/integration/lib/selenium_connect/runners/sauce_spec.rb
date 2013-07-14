@@ -28,6 +28,7 @@ describe 'Sauce Labs', selenium: true do
     sauce_id = report.data[:sauce_data][:id]
     report.data[:sauce_data][:name].should be == name
     report.data[:sauce_data][:passed].should be_true
+    report.data[:server_log].should be == "sauce_job_#{sauce_id}.log"
     File.exist?(File.join(Dir.pwd, 'build', 'tmp', "sauce_job_#{sauce_id}.log")).should be_true
   end
 
@@ -40,7 +41,7 @@ describe 'Sauce Labs', selenium: true do
     report.data[:sauce_data][:passed].should be false
   end
 
-  it 'should download save a screenshot on failure' do
+  it 'should download a screenshot on failure' do
     # pending 'need to resolve the api issues first'
     job = @sc.create_job
     name = 'failshot'
@@ -53,8 +54,10 @@ describe 'Sauce Labs', selenium: true do
       # simulate a failure situation
       report = job.finish failed: true, failshot: true
     end
-
+    sauce_id = report.data[:sauce_data][:id]
     report.data[:sauce_data][:passed].should be false
+    report.data[:failshot].should be == "failed_#{sauce_id}.png"
+    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "failed_#{sauce_id}.png")).should be_true
   end
 
   after(:each) do

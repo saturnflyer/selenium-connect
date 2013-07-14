@@ -1,3 +1,11 @@
+#3.1.0 (2013-07-14)
+return the log file names in the report object
+
+- Bumped version to 3.1.0 to prepare for release.
+- now passing back the sauce job and log file name in the report data
+- removed mocha from gemspec as it was not being used
+- updated rakefile to include release message at the top of the changelog stuff
+
 #3.0.0 (2013-07-14)
 - updated rake file to run all the tests on a release start
 - Bumped version to 3.0.0 to prepare for release.

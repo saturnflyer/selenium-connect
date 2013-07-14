@@ -1,4 +1,4 @@
-#selenium-connect 3.0.0 (2013-07-14)
+#selenium-connect 3.1.0 (2013-07-14)
 
 [![Gem Version](https://badge.fury.io/rb/selenium-connect.png)](http://badge.fury.io/rb/selenium-connect) [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png?branch=develop)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png?branch=develop)](https://coveralls.io/r/arrgyle/selenium-connect?branch=develop)
 
@@ -89,7 +89,6 @@ sauce_username: 'test_user_name'
 sauce_api_key:
 browser_version:
 description: #sauce job/test description
-
 ```
 
 You can pass parameters into the new config object like:
@@ -121,7 +120,11 @@ report = job.finish passed: true
 report = job.finish failed: true, failshot: true
 ```
 
-The `report` is simply a container for arbitrary data. Right now we are passing back the sauce details.
+The `report` is simply a container for arbitrary data. Right now we are passing back the sauce details. Here is an example of `report.data` for a failed job:
+
+```
+{:failshot=>"failed_e8ebfe9fc5004df7865b6a6f9f1f5491.png", :server_log=>"sauce_job_e8ebfe9fc5004df7865b6a6f9f1f5491.log", :sauce_data=>{:id=>"e8ebfe9fc5004df7865b6a6f9f1f5491", :"custom-data"=>nil, :owner=>"testing_arrgyle", :status=>"complete", :error=>nil, :name=>"failshot", :browser=>"iexplore", :browser_version=>"7.0.5730.13", :os=>"Windows 2003", :creation_time=>1373831090, :start_time=>1373831090, :end_time=>1373831105, :video_url=>"http://saucelabs.com/jobs/e8ebfe9fc5004df7865b6a6f9f1f5491/video.flv", :log_url=>"http://saucelabs.com/jobs/e8ebfe9fc5004df7865b6a6f9f1f5491/selenium-server.log", :public=>nil, :tags=>[], :passed=>false}}
+```
 
 ## Contribution Guidelines
 
