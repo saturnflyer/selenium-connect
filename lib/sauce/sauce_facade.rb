@@ -43,8 +43,12 @@ module Sauce
       requires_job_id
       # TODO let's switch this over to use whisk as well
       # This is used because it's easy to get all the data out of the job
-      job = Sauce::Job.find @job_id
-      JSON.parse job.to_json
+      begin
+        job = Sauce::Job.find @job_id
+        JSON.parse job.to_json
+      rescue StandardError => e
+        puts "An error occured while fetching the job data: #{e.message}"
+      end
     end
 
     private
