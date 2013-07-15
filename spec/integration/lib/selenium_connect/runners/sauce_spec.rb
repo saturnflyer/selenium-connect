@@ -26,10 +26,10 @@ describe 'Sauce Labs', selenium: true do
     execute_simple_test driver
     report = job.finish passed: true
     sauce_id = report.data[:sauce_data][:id]
-    report.data[:sauce_data][:name].should be == name
+    report.data[:sauce_data][:name].should be == 'successful_sauce_job'
     report.data[:sauce_data][:passed].should be_true
-    report.data[:server_log].should be == "sauce_job_#{sauce_id}.log"
-    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "sauce_job_#{sauce_id}.log")).should be_true
+    report.data[:assets][:server_log].should be == "passed_serverlog_successful_sauce_job_#{sauce_id}.log"
+    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "passed_serverlog_successful_sauce_job_#{sauce_id}.log")).should be_true
   end
 
   it 'should mark a sauce job as failed' do
@@ -56,8 +56,8 @@ describe 'Sauce Labs', selenium: true do
     end
     sauce_id = report.data[:sauce_data][:id]
     report.data[:sauce_data][:passed].should be false
-    report.data[:failshot].should be == "failed_#{sauce_id}.png"
-    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "failed_#{sauce_id}.png")).should be_true
+    report.data[:assets][:failshot].should be == "failed_failshot_failshot_#{sauce_id}.png"
+    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "failed_failshot_failshot_#{sauce_id}.png")).should be_true
   end
 
   after(:each) do

@@ -8,9 +8,10 @@ describe SeleniumConnect::Job do
   before(:each) do
     config = double 'SeleniumConnect::Configuration'
     report_factory = double 'SeleniumConnect::Report::ReportFactory'
+    sauce_facade = double 'Sauce::SauceFacade'
     @report = double 'SeleniumConnect::Report::JobReport'
     allow(report_factory).to receive(:build).and_return(@report)
-    @job = SeleniumConnect::Job.new config, report_factory
+    @job = SeleniumConnect::Job.new config, report_factory, sauce_facade
   end
 
   it 'should be initialized' do

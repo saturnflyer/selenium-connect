@@ -3,6 +3,7 @@
 require 'selenium_connect/job'
 require 'selenium_connect/server'
 require 'selenium_connect/configuration'
+require 'sauce/sauce_facade'
 require 'selenium_connect/report/report_factory'
 
 # Selenium Connect main module
@@ -24,7 +25,8 @@ class SeleniumConnect
   end
 
   def create_job(opts = {})
-    SeleniumConnect::Job.new @config, @report_factory
+    sauce_facade = Sauce::SauceFacade.new @config.api_timeout
+    SeleniumConnect::Job.new @config, @report_factory, sauce_facade
   end
 
   def finish
