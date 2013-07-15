@@ -37,8 +37,7 @@ class SeleniumConnect
       rescue Selenium::WebDriver::Error::WebDriverError
       # rubocop:enable HandleExceptions
       end
-      report_data = symbolize_keys @data
-      @report_factory.build :job, report_data
+      @report_factory.build :job, @data
     end
 
     private
@@ -63,7 +62,11 @@ class SeleniumConnect
 
         job_data = @sauce_facade.fetch_job_data
         @data[:sauce_data] = job_data if job_data
-        @data[:assets][:sauce_data_log] = save_asset("#{status}_saucejob_#{@job_name}_#{job_id}.log", job_data) if job_data
+
+        job_data_log_file = "#{status}_saucejob_#{@job_name}_#{job_id}.log"
+        @data[:assets][:job_data_log] = job_data_log_file
+        @data = symbolize_keys @data
+        save_asset(job_data_log_file, @data)
       end
 
       def save_asset(filename, asset)
