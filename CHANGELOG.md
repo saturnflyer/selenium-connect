@@ -1,3 +1,11 @@
+#3.2.0 (2013-07-15)
+added better error handling to the sauce api calls and improved naming convention for job assets
+
+- Bumped version to 3.2.0 to prepare for release.
+- cleaned up the way the job log was saving
+- added one more error check around the sauce data
+- refactored the log saving and sauce api access, now can configure the api time out and the requests will poll when trying to fetch the data from the server
+
 #3.1.2 (2013-07-14)
 removed references to curb
 
