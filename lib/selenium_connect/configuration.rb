@@ -17,7 +17,7 @@ class SeleniumConnect
 
     # SauceLabs
     attr_accessor :sauce_username, :sauce_api_key,
-                  :os, :browser_version, :description
+                  :os, :browser_version, :description, :api_timeout
 
     def initialize(opts = {})
       @host     = 'localhost'

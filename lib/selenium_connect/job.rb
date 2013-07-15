@@ -1,26 +1,27 @@
 # Encoding: utf-8
+
 require 'selenium_connect/runner'
 require 'sauce/client'
 require 'rest_client'
 require 'selenium-webdriver'
 require 'json'
 require 'sauce_whisk'
-
 # selenium connect
 class SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Job
 
-    def initialize(config, report_factory)
+    def initialize(config, report_factory, sauce_facade)
       @config = config
       @report_factory = report_factory
+      @sauce_facade = sauce_facade
     end
 
     # Creates and returns the driver, using options passed in
     def start(opts = {})
-
+      @job_name = slugify_name opts[:name] if opts.has_key? :name
       # TODO this could be refactored out into an options parser of sorts
-      @config.description = opts[:name] if opts.has_key? :name
+      @config.description = @job_name ||= 'unnamed_job'
       @driver = Runner.new(@config).driver
     end
 
@@ -30,63 +31,54 @@ class SeleniumConnect
       # extracted from the earlier main finish
       begin
         @driver.quit
-        data = {}
-        if @config.host == 'saucelabs'
-          job_id = @driver.session_id
-          if opts.has_key?(:failed) && opts[:failed]
-            fail_job job_id
-            if opts.has_key?(:failshot) && opts[:failshot]
-              data[:failshot] = save_last_screenshot job_id
-            end
-          end
-          if opts.has_key?(:passed) && opts[:passed]
-            pass_job job_id
-          end
-          data.merge! fetch_logs(job_id)
-        end
+        @data = { assets: {} }
+        process_sauce_logs(opts) if @config.host == 'saucelabs'
       # rubocop:disable HandleExceptions
       rescue Selenium::WebDriver::Error::WebDriverError
       # rubocop:enable HandleExceptions
       end
-      report_data = symbolize_keys data
-      @report_factory.build :job, report_data
+      @report_factory.build :job, @data
     end
 
     private
 
-      # TODO all this sauce stuff needs to be pulled out of the job class
-      # TODO need to put error handling around the sauce api requests
-      def save_last_screenshot(job_id)
-        begin
-        # Seemingly need to wait slightly for the images to be processed
-        sleep(2)
-        filename = "failed_#{job_id}.png"
-        image = SauceWhisk::Jobs.fetch_asset job_id, 'final_screenshot.png'
-        image_file = File.join(Dir.getwd, @config.log, filename) if @config.log
-        File.open(image_file, 'w') { |f| f.write image }
-        filename
-        rescue RestClient::ResourceNotFound
-          puts 'Unable to download image!'
+      def process_sauce_logs(opts = {})
+        job_id = @driver.session_id
+        @sauce_facade.job_id = job_id
+        if opts.has_key?(:failed) && opts[:failed]
+          status = 'failed'
+          @sauce_facade.fail_job
+          if opts.has_key?(:failshot) && opts[:failshot]
+          screenshot = @sauce_facade.fetch_last_screenshot
+          @data[:assets][:failshot] = save_asset("#{status}_failshot_#{@job_name}_#{job_id}.png", screenshot) if screenshot
+          end
+        end
+        if opts.has_key?(:passed) && opts[:passed]
+          status = 'passed'
+          @sauce_facade.pass_job
+        end
+        server_log = @sauce_facade.fetch_server_log
+        @data[:assets][:server_log] = save_asset("#{status}_serverlog_#{@job_name}_#{job_id}.log", server_log) if server_log
+
+        job_data = @sauce_facade.fetch_job_data
+        @data[:sauce_data] = job_data if job_data
+
+        job_data_log_file = "#{status}_saucejob_#{@job_name}_#{job_id}.log"
+        @data[:assets][:job_data_log] = job_data_log_file
+        @data = symbolize_keys @data
+        save_asset(job_data_log_file, @data)
+      end
+
+      def save_asset(filename, asset)
+        if @config.log
+          asset_file = File.join(Dir.getwd, @config.log, filename)
+          File.open(asset_file, 'w') { |f| f.write asset }
+          filename
         end
       end
 
-      def fail_job(job_id)
-        SauceWhisk::Jobs.fail_job job_id
-      end
-
-      def pass_job(job_id)
-        SauceWhisk::Jobs.pass_job job_id
-      end
-
-      def fetch_logs(job_id)
-        sauce_job = Sauce::Job.find(job_id)
-        # Seemingly need to wait slightly for the images to be processed
-        sleep(2)
-        filename = "sauce_job_#{job_id}.log"
-        server_log = SauceWhisk::Jobs.fetch_asset job_id, 'selenium-server.log'
-        log_file = File.join(Dir.getwd, @config.log, filename) if @config.log
-        File.open(log_file, 'w') { |f| f.write server_log }
-        { server_log: filename, sauce_data: JSON.parse(sauce_job.to_json) }
+      def slugify_name(name)
+        name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')
       end
 
       # TODO this should be pulled out into a generic report... or something

@@ -1,4 +1,4 @@
-#selenium-connect 3.1.2 (2013-07-14)
+#selenium-connect 3.2.0 (2013-07-15)
 
 [![Gem Version](https://badge.fury.io/rb/selenium-connect.png)](http://badge.fury.io/rb/selenium-connect) [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png?branch=develop)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png?branch=develop)](https://coveralls.io/r/arrgyle/selenium-connect?branch=develop)
 
@@ -90,6 +90,7 @@ sauce_username: 'test_user_name'
 sauce_api_key:
 browser_version:
 description: #sauce job/test description
+api_timeout: #how many seconds we should try to get the assets (default 10)
 ```
 
 You can pass parameters into the new config object like:
@@ -124,7 +125,7 @@ report = job.finish failed: true, failshot: true
 The `report` is simply a container for arbitrary data. Right now we are passing back the sauce details. Here is an example of `report.data` for a failed job:
 
 ```
-{:failshot=>"failed_e8ebfe9fc5004df7865b6a6f9f1f5491.png", :server_log=>"sauce_job_e8ebfe9fc5004df7865b6a6f9f1f5491.log", :sauce_data=>{:id=>"e8ebfe9fc5004df7865b6a6f9f1f5491", :"custom-data"=>nil, :owner=>"testing_arrgyle", :status=>"complete", :error=>nil, :name=>"failshot", :browser=>"iexplore", :browser_version=>"7.0.5730.13", :os=>"Windows 2003", :creation_time=>1373831090, :start_time=>1373831090, :end_time=>1373831105, :video_url=>"http://saucelabs.com/jobs/e8ebfe9fc5004df7865b6a6f9f1f5491/video.flv", :log_url=>"http://saucelabs.com/jobs/e8ebfe9fc5004df7865b6a6f9f1f5491/selenium-server.log", :public=>nil, :tags=>[], :passed=>false}}
+{:assets=>{:server_log=>"failed_serverlog_failing_sauce_job_3ee1fddf4032476fa3f9de94298766ae.log", :job_data_log=>"failed_saucejob_failing_sauce_job_3ee1fddf4032476fa3f9de94298766ae.log"}, :sauce_data=>{:id=>"3ee1fddf4032476fa3f9de94298766ae", :"custom-data"=>nil, :owner=>"testing_arrgyle", :status=>"in progress", :error=>nil, :name=>"failing_sauce_job", :browser=>"iexplore", :browser_version=>"7.0.5730.13", :os=>"Windows 2003", :creation_time=>1373916900, :start_time=>1373916901, :end_time=>0, :video_url=>"http://saucelabs.com/jobs/3ee1fddf4032476fa3f9de94298766ae/video.flv", :log_url=>"http://saucelabs.com/jobs/3ee1fddf4032476fa3f9de94298766ae/selenium-server.log", :public=>nil, :tags=>[], :passed=>false}}
 ```
 
 ## Contribution Guidelines

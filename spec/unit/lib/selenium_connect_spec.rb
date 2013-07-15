@@ -9,6 +9,7 @@ describe SeleniumConnect do
     @config = double 'SeleniumConnect::Configuration'
     allow(@config).to receive(:is_a?).and_return(true)
     allow(@config).to receive(:host).and_return(false)
+    allow(@config).to receive(:api_timeout).and_return(10)
 
     report_factory = double 'SeleniumConnect::Report::ReportFactory'
     @report = double 'SeleniumConnect::Report::MainReport'
