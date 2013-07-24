@@ -21,7 +21,7 @@ class SeleniumConnect
     def start(opts = {})
       @job_name = slugify_name opts[:name] if opts.has_key? :name
       # TODO this could be refactored out into an options parser of sorts
-      @config.description = @job_name ||= 'unnamed_job'
+      @config.sauce_opts.job_name = @job_name ||= 'unnamed_job'
       @driver = Runner.new(@config).driver
     end
 
