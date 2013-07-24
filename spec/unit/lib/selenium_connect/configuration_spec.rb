@@ -45,4 +45,41 @@ describe SeleniumConnect::Configuration do
     @configuration.port.should eq     4444
     @configuration.browser.should eq  'firefox'
   end
+
+  it 'should allow for an arbitrary hash of sauce configuration' do
+    @configuration.populate_with_hash sauce_opts: { record_video: true, capture_html: true }
+    @configuration.sauce_opts.record_video.should be_true
+    @configuration.sauce_opts.capture_html.should be_true
+  end
+
+  it 'should use selenium version 2.33.0 version by default for sauce' do
+    @configuration.sauce_opts.selenium_version.should eq '2.33.0'
+  end
+
+  # the goal here is to allow internal refactoring to use the new configuration pattern
+  # to support deprecating the top level configs later
+  it 'should merge the explicitly configured sauce options into the strut' do
+    os = 'Linux'
+    browser_version = '10'
+    browser = 'chrome'
+    description = 'test'
+    @configuration.populate_with_hash os: os, browser_version: browser_version, browser: browser, description: description
+    @configuration.sauce_opts.os.should eq os
+    @configuration.sauce_opts.browser.should eq browser
+    @configuration.sauce_opts.browser_version.should eq browser_version
+    @configuration.sauce_opts.job_name.should eq description
+  end
+
+  it 'should take the sauce_opts as priority' do
+    @configuration.populate_with_hash sauce_opts: { browser: 'ie', job_name: 'cool' }, browser: 'chrome', description: 'other'
+    @configuration.sauce_opts.browser.should eq 'ie'
+    @configuration.description.should eq 'other'
+    @configuration.sauce_opts.job_name.should eq 'cool'
+  end
+
+  it 'should use the description as the job name if no job name is specified' do
+    @configuration.populate_with_hash description: 'other'
+    @configuration.description.should eq 'other'
+    @configuration.sauce_opts.job_name.should eq 'other'
+  end
 end

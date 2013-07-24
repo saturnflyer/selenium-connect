@@ -16,9 +16,13 @@ profile_name:
 
 
 # Saucelabs
-os:
 sauce_username: 'test_user_name'
 sauce_api_key:
+api_timeout: 10
+
+os:
 browser_version:
 description:
-api_timeout: 10
+
+sauce_opts:
+    selenium_version: '2.32.0'

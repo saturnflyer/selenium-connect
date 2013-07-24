@@ -1,3 +1,9 @@
+#3.3.0 (2013-07-24)
+updated configuration to support any sauce config and set default sauce selenium version
+
+- Bumped version to 3.3.0 to prepare for release.
+- updated the configuration object to support passing any arbitrary sauce configuration parameter while also supporting the original configurations for backwards compatibility, also setting a default selenium server version
+
 #3.2.0 (2013-07-15)
 added better error handling to the sauce api calls and improved naming convention for job assets
 
