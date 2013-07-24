@@ -85,12 +85,19 @@ profile_path:
 profile_name:
 
 # Saucelabs
-os:
 sauce_username: 'test_user_name'
 sauce_api_key:
+api_timeout: #how many seconds we should try to get the assets (default 10)
+os:
 browser_version:
 description: #sauce job/test description
-api_timeout: #how many seconds we should try to get the assets (default 10)
+# set any sauce options below, they will override those above
+sauce_opts:
+    selenium_version: #default is 2.33.0
+    os:
+    browser_version:
+    job_name: #sauce job/test description
+
 ```
 
 You can pass parameters into the new config object like:

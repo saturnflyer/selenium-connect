@@ -27,11 +27,7 @@ class SeleniumConnect
 
       def init_browser
         get_credentials
-        Sauce::Selenium2.new({
-          os:                 config.os,
-          browser:            config.browser,
-          browser_version:    config.browser_version,
-          job_name:           config.description })
+        Sauce::Selenium2.new(config.sauce_opts.marshal_dump)
       end
 
     end # Saucelabs
