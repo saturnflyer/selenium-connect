@@ -1,3 +1,9 @@
+#3.3.1 (2013-07-24)
+Fixed bug with the job naming
+
+- Bumped version to 3.3.1 to prepare for release.
+- fixed bug with job nameing per new configurations
+
 #3.3.0 (2013-07-24)
 updated configuration to support any sauce config and set default sauce selenium version
 
