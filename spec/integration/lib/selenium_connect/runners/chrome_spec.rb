@@ -16,4 +16,17 @@ describe 'Chrome', selenium: true do
     job.finish
     sc.finish
   end
+
+  it 'should work correctly with a configuration file' do
+    config = SeleniumConnect::Configuration.new
+    config.populate_with_yaml "#{ENV['SUPPORT_PATH']}/chrome.yaml"
+    sc = SeleniumConnect.start config
+    job = sc.create_job
+    driver = job.start
+
+    execute_simple_test driver
+
+    job.finish
+    sc.finish
+  end
 end
