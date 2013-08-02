@@ -33,6 +33,7 @@ class SeleniumConnect
         @driver.quit
         @data = { assets: {} }
         process_sauce_logs(opts) if @config.host == 'saucelabs'
+        process_chrome_logs(opts) if @config.browser == 'chrome'
       # rubocop:disable HandleExceptions
       rescue Selenium::WebDriver::Error::WebDriverError
       # rubocop:enable HandleExceptions
@@ -41,6 +42,11 @@ class SeleniumConnect
     end
 
     private
+
+      def process_chrome_logs(opts = {})
+        chromelog = File.join(Dir.getwd, 'chromedriver.log')
+        FileUtils.mv(chromelog, File.join(Dir.getwd, @config.log)) if File.exist?(chromelog)
+      end
 
       def process_sauce_logs(opts = {})
         job_id = @driver.session_id
