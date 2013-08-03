@@ -44,8 +44,10 @@ class SeleniumConnect
     private
 
       def process_chrome_logs(opts = {})
-        chromelog = File.join(Dir.getwd, 'chromedriver.log')
-        FileUtils.mv(chromelog, File.join(Dir.getwd, @config.log)) if File.exist?(chromelog)
+        ['chromedriver.log', 'libpeerconnection.log'].each do |log_file|
+          path = File.join(Dir.getwd, log_file)
+          FileUtils.mv(path, File.join(Dir.getwd, @config.log)) if File.exist?(path)
+        end
       end
 
       def process_sauce_logs(opts = {})
