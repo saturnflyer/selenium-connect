@@ -20,7 +20,7 @@ class SeleniumConnect
     # Creates and returns the driver, using options passed in
     def start(opts = {})
       @job_name = slugify_name opts[:name] if opts.has_key? :name
-      # TODO this could be refactored out into an options parser of sorts
+      # TODO: this could be refactored out into an options parser of sorts
       @config.sauce_opts.job_name = @job_name ||= 'unnamed_job'
       @driver = Runner.new(@config).driver
     end
@@ -33,6 +33,7 @@ class SeleniumConnect
         @driver.quit
         @data = { assets: {} }
         process_sauce_logs(opts) if @config.host == 'saucelabs'
+        process_chrome_logs(opts) if @config.browser == 'chrome'
       # rubocop:disable HandleExceptions
       rescue Selenium::WebDriver::Error::WebDriverError
       # rubocop:enable HandleExceptions
@@ -41,6 +42,19 @@ class SeleniumConnect
     end
 
     private
+
+      # if a log path is configured move the logs, otherwise delete them
+      def process_chrome_logs(opts = {})
+        ['chromedriver.log', 'libpeerconnection.log'].each do |log_file|
+          path = File.join(Dir.getwd, log_file)
+
+          if @config.log
+            FileUtils.mv(path, File.join(Dir.getwd, @config.log)) if File.exist? path
+          else
+            FileUtils.rm path if File.exist? path
+          end
+        end
+      end
 
       def process_sauce_logs(opts = {})
         job_id = @driver.session_id
@@ -81,7 +95,7 @@ class SeleniumConnect
         name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')
       end
 
-      # TODO this should be pulled out into a generic report... or something
+      # TODO: this should be pulled out into a generic report... or something
       def symbolize_keys(hash)
         hash.reduce({}) do |result, (key, value)|
           new_key = key.class == String ? key.to_sym : key

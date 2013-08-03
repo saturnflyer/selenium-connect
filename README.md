@@ -1,8 +1,8 @@
-#selenium-connect 3.3.1 (2013-07-24)
+#selenium-connect 3.4.0 (2013-08-03)
 
 [![Gem Version](https://badge.fury.io/rb/selenium-connect.png)](http://badge.fury.io/rb/selenium-connect) [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png?branch=develop)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png?branch=develop)](https://coveralls.io/r/arrgyle/selenium-connect?branch=develop)
 
-A stupid simple way to run your Selenium tests on your computer, against a Selenium Grid, or in the cloud (e.g. SauceLabs). For a rocking implementation of this library, checkout [ChemistryKit](https://github.com/arrgyle/chemistrykit)!
+A stupid simple way to run your Selenium tests on your computer, against a Selenium Grid, or in the cloud (e.g. SauceLabs). For a rocking implementation of this library, checkout [ChemistryKit](https://github.com/arrgyle/chemistrykit)! For more usage examples check out our [Friends](#friends) section!
 
 All the documentation for Selenium Connect can be found in this README, organized as follows:
 
@@ -11,6 +11,7 @@ All the documentation for Selenium Connect can be found in this README, organize
 - [Configuration](#configuration)
 - [Contribution Guidelines](#contribution-guidelines)
 - [Deployment](#deployment)
+- [Friends](#friends)
 
 ## Getting Started
 ```ruby
@@ -170,3 +171,11 @@ And another to finish the release:
     rake release_finish['A helpful tag message that will be included in the gemspec.']
 
 This handles updating the change log, committing, and tagging the release.
+
+## Friends
+
+Below you can find some honorable mentions of those friends that are using Selenium Connect:
+
+![image](http://d14f1fnryngsxt.cloudfront.net/images/logo/animotologotext_f78c60cbbd36837c7aad596e3b3bb019.svg)
+
+We are proud that [Animoto](http://animoto.com/) uses Selenium Connect to help them test their awesome web app.

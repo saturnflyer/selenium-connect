@@ -39,7 +39,7 @@ class SeleniumConnect
 
     def server_start
       if @config.host == 'localhost'
-        # TODO this is just temp,
+        # TODO: this is just temp,
         # in the next iteration we will inject this in by default in start
         # to a required argument in initialize
         @server = Server.new(config)

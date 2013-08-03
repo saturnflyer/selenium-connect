@@ -30,7 +30,7 @@ describe SeleniumConnect::Configuration do
   end
 
   it 'supports the config_file= method' do
-    @configuration.config_file= "#{ENV['SUPPORT_PATH']}/example.yaml"
+    @configuration.config_file = "#{ENV['SUPPORT_PATH']}/example.yaml"
     @configuration.sauce_username.should eq VALID_SAUCE_USERNAME
   end
 

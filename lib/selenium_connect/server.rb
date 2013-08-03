@@ -58,7 +58,7 @@ class SeleniumConnect
       rake_file = File.open(rake_file_path, 'w')
       rake_file << generate_rake_task
       rake_file.close
-      return rake_file_path
+      rake_file_path
     end
 
     def rake(task)

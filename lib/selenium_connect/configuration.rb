@@ -29,7 +29,7 @@ class SeleniumConnect
       populate_with_hash opts unless opts.empty?
     end
 
-    # TODO eventually roll all sauce options under this node
+    # TODO: eventually roll all sauce options under this node
     # and deprecate setting them at the top level
     def sauce_opts=(opts = {})
       opts.each do |key, value|
@@ -40,7 +40,7 @@ class SeleniumConnect
     def populate_with_hash(hash)
       hash.each do |key, value|
         begin
-          self.send "#{key}=", value unless value.nil?
+          send "#{key}=", value unless value.nil?
         rescue NoMethodError
           raise ArgumentError.new "The config key: \"#{key}\" is unknown!"
         end
