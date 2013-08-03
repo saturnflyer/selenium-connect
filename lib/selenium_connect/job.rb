@@ -51,7 +51,7 @@ class SeleniumConnect
           if @config.log
             FileUtils.mv(path, File.join(Dir.getwd, @config.log)) if File.exist? path
           else
-            FileUtils.mv path if File.exist? path
+            FileUtils.rm path if File.exist? path
           end
         end
       end
