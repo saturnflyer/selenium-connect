@@ -46,8 +46,8 @@ module Sauce
       begin
         job = Sauce::Job.find @job_id
         JSON.parse job.to_json
-      rescue StandardError => e
-        puts "An error occured while fetching the job data: #{e.message}"
+      rescue StandardError => exception
+        puts "An error occured while fetching the job data: #{exception.message}"
       end
     end
 
@@ -60,11 +60,11 @@ module Sauce
       def polling_api_request(timeout)
         sleep 1
         yield
-        rescue RestClient::Exception => e
+        rescue RestClient::Exception => exception
           if timeout > 0
             polling_api_request(timeout - 1) { yield }
           else
-            puts "Request timed out after #{timeout} with: #{e.message}"
+            puts "Request timed out after #{timeout} with: #{exception.message}"
           end
       end
   end
