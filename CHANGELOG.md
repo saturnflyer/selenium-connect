@@ -1,3 +1,17 @@
+#3.4.0 (2013-08-03)
+Added more code quality tools and capture enhanced chrome logs
+
+- Bumped version to 3.4.0 to prepare for release.
+- fixed error with chrome processor
+- added reek and a rake task and fixed on of the smell issues, leaving it only as warnings for now but we should fix the smells at some point
+- added flog and updated rubocop version, fixed all quality issues, updated rake tasks for flog and rubocop
+- moved development dependencies to gemfile to support git based repo for latest rubocop
+- added a test for the chrome log files and also updated it to pull the libpeer log
+- updated readme
+- added animoto to the readme
+- updated job finishing to move chrome log to evidence folder
+- added advanced logs to the evidence directory
+
 #3.3.1 (2013-07-24)
 Fixed bug with the job naming
 
