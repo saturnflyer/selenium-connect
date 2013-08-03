@@ -174,7 +174,7 @@ This handles updating the change log, committing, and tagging the release.
 
 ## Friends
 
-Below you can find some honorable mentions of those friends that are using Selenium Connect
+Below you can find some honorable mentions of those friends that are using Selenium Connect:
 
 ![image](http://d14f1fnryngsxt.cloudfront.net/images/logo/animotologotext_f78c60cbbd36837c7aad596e3b3bb019.svg)
 
