@@ -20,7 +20,7 @@ class SeleniumConnect
     # Creates and returns the driver, using options passed in
     def start(opts = {})
       @job_name = slugify_name opts[:name] if opts.has_key? :name
-      # TODO this could be refactored out into an options parser of sorts
+      # TODO: this could be refactored out into an options parser of sorts
       @config.sauce_opts.job_name = @job_name ||= 'unnamed_job'
       @driver = Runner.new(@config).driver
     end
@@ -43,10 +43,16 @@ class SeleniumConnect
 
     private
 
+      # if a log path is configured move the logs, otherwise delete them
       def process_chrome_logs(opts = {})
         ['chromedriver.log', 'libpeerconnection.log'].each do |log_file|
           path = File.join(Dir.getwd, log_file)
-          FileUtils.mv(path, File.join(Dir.getwd, @config.log)) if File.exist?(path)
+
+          if @config.log
+            FileUtils.mv(path, File.join(Dir.getwd, @config.log)) if File.exist? path
+          else
+            FileUtils.mv path if File.exist? path
+          end
         end
       end
 
@@ -89,7 +95,7 @@ class SeleniumConnect
         name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')
       end
 
-      # TODO this should be pulled out into a generic report... or something
+      # TODO: this should be pulled out into a generic report... or something
       def symbolize_keys(hash)
         hash.reduce({}) do |result, (key, value)|
           new_key = key.class == String ? key.to_sym : key

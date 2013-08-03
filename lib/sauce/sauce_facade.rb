@@ -41,7 +41,7 @@ module Sauce
 
     def fetch_job_data
       requires_job_id
-      # TODO let's switch this over to use whisk as well
+      # TODO: let's switch this over to use whisk as well
       # This is used because it's easy to get all the data out of the job
       begin
         job = Sauce::Job.find @job_id
@@ -58,16 +58,14 @@ module Sauce
       end
 
       def polling_api_request(timeout)
-        begin
-          sleep 1
-          yield
+        sleep 1
+        yield
         rescue RestClient::Exception => e
           if timeout > 0
             polling_api_request(timeout - 1) { yield }
           else
             puts "Request timed out after #{timeout} with: #{e.message}"
           end
-        end
       end
   end
 end

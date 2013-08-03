@@ -1,13 +1,18 @@
 # Encoding: utf-8
 
 require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
+require 'flog_task'
 
 task default: :build
 
-task build: [:clean, :prepare, :rubocop, :unit, :integration]
+task build: [:clean, :prepare, :quality, :unit, :integration]
 
 desc 'Runs standard build activities.'
-task build_full: [:clean, :prepare, :rubocop, :unit, :integration, :system]
+task build_full: [:clean, :prepare, :quality, :unit, :integration, :system]
+
+desc 'Runs quality checks.'
+task quality: [:rubocop, :flog_total, :flog_average]
 
 desc 'Removes the build directory.'
 task :clean do
@@ -40,9 +45,18 @@ RSpec::Core::RakeTask.new(:system) do |t|
   t.rspec_opts = get_rspec_flags('system', '--tag selenium')
 end
 
-desc 'Runs code quality check'
-task :rubocop do
-  sh 'rubocop'
+Rubocop::RakeTask.new
+
+# TODO: lower the quality score and improve the code!
+FlogTask.new :flog_total, 1250 do |t|
+  t.method = :total_score
+  t.verbose = true
+end
+
+# TODO: lower the quality score and improve the code!
+FlogTask.new :flog_average, 10 do |t|
+  t.method = :average
+  t.verbose = true
 end
 
 # TODO This could probably be more cleanly automated

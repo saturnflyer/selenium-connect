@@ -28,7 +28,7 @@ class SeleniumConnect
           log_path = File.join(Dir.getwd, config.log, 'chrome')
           caps['chrome.switches'] = ["--user-data-dir=#{log_path}", '--enable-logging', '--v=1', "--log-net-log=#{log_path}/net_log.log", '--net-log-level=0']
         end
-      caps
+        caps
       end
 
     end # Chrome

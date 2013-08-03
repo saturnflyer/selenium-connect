@@ -30,7 +30,7 @@ class SeleniumConnect
         executable_path = get_executable_path
         browser = Selenium::WebDriver::Remote::Capabilities.phantomjs
         browser['phantomjs.binary.path'] = executable_path
-        return browser
+        browser
       end
 
       def init_browser

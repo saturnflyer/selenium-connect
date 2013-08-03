@@ -38,7 +38,7 @@ class SeleniumConnect
         browser = Selenium::WebDriver::Remote::Capabilities.firefox
         browser[:firefox_binary] = config.browser_path if config.browser_path
         browser[:firefox_profile] = profile
-        return browser
+        browser
       end
 
       def init_browser
