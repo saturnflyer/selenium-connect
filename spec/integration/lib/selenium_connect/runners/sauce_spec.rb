@@ -15,7 +15,7 @@ describe 'Sauce Labs', selenium: true do
       browser: 'iexplore',
       browser_version: '7',
       description: 'test description',
-      sauce_opts: { selenium_version: '2.33.0' }
+      sauce_opts: { selenium_version: '2.32.0' }
     }
     config = SeleniumConnect::Configuration.new opts
     @sc = SeleniumConnect.start config
@@ -27,11 +27,11 @@ describe 'Sauce Labs', selenium: true do
     driver = job.start name: name
     execute_simple_test driver
     report = job.finish passed: true
-    sauce_id = report.data[:sauce_data][:id]
     report.data[:sauce_data][:name].should be == 'successful_sauce_job'
     report.data[:sauce_data][:passed].should be_true
-    report.data[:assets][:server_log].should be == "passed_serverlog_successful_sauce_job_#{sauce_id}.log"
-    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "passed_serverlog_successful_sauce_job_#{sauce_id}.log")).should be_true
+    report.data[:assets][:server_log].should be == 'server.log'
+    File.exist?(File.join(Dir.pwd, 'build', 'tmp', 'server.log')).should be_true
+    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom.html')).should be_true
   end
 
   it 'should mark a sauce job as failed' do
@@ -56,10 +56,9 @@ describe 'Sauce Labs', selenium: true do
       # simulate a failure situation
       report = job.finish failed: true, failshot: true
     end
-    sauce_id = report.data[:sauce_data][:id]
     report.data[:sauce_data][:passed].should be false
-    report.data[:assets][:failshot].should be == "failed_failshot_failshot_#{sauce_id}.png"
-    File.exist?(File.join(Dir.pwd, 'build', 'tmp', "failed_failshot_failshot_#{sauce_id}.png")).should be_true
+    report.data[:assets][:failshot].should be == 'failshot.png'
+    File.exist?(File.join(Dir.pwd, 'build', 'tmp', 'failshot.png')).should be_true
   end
 
   after(:each) do

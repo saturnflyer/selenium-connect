@@ -25,4 +25,4 @@ browser_version:
 description:
 
 sauce_opts:
-    selenium_version: '2.33.0'
+    selenium_version: '2.32.0'

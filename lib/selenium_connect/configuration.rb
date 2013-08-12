@@ -25,7 +25,7 @@ class SeleniumConnect
       @port     = 4444
       @browser  = 'firefox'
       @sauce_opts = OpenStruct.new
-      @sauce_opts.selenium_version = '2.33.0'
+      @sauce_opts.selenium_version = '2.32.0'
       populate_with_hash opts unless opts.empty?
     end
 
