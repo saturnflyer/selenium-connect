@@ -1,3 +1,11 @@
+#3.5.0 (2013-08-12)
+updated selenium server jar and sauce version default plus screenshots and dom html for everyone
+
+- Bumped version to 3.5.0 to prepare for release.
+- updated documentation
+- updated the sauce version of selenium server to 2.32, upgraded the local selenium server bin to 2.34, changed logfiles to be more readable, added the ability to grab the dom html and the non sauce screenshots on failure
+- updated selenium server jar
+
 #3.4.0 (2013-08-03)
 Added more code quality tools and capture enhanced chrome logs
 
