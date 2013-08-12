@@ -1,4 +1,4 @@
-#selenium-connect 3.4.0 (2013-08-03)
+#selenium-connect 3.5.0 (2013-08-12)
 
 [![Gem Version](https://badge.fury.io/rb/selenium-connect.png)](http://badge.fury.io/rb/selenium-connect) [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png?branch=develop)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png?branch=develop)](https://coveralls.io/r/arrgyle/selenium-connect?branch=develop)
 
@@ -120,7 +120,7 @@ job.start name: 'website should load'
 #…
 ```
 
-Similarly, when you finish your job you can pass in parameters. Right now this is limited to sauce labs jobs, as it lets you mark the tests as passed, failed, and turn on downloading the failure screenshot:
+Similarly, when you finish your job you can pass in parameters. You can use the `failshot` parameter to turn on the saving of the last screenshot. For SauceLabs you can mark the tests as passed or failed:
 
 ```Ruby
 # sweet your test passed!

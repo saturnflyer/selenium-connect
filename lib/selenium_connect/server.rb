@@ -33,7 +33,7 @@ class SeleniumConnect
             if configuration.jar
               "t.jar = '#{configuration.jar}'"
             else
-              "t.jar = '#{current_dir_path + '/../../bin/selenium-server-standalone-2.33.0.jar'}'"
+              "t.jar = '#{current_dir_path + '/../../bin/selenium-server-standalone-2.34.0.jar'}'"
             end
          }
          t.background

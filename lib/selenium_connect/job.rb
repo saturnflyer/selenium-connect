@@ -30,6 +30,10 @@ class SeleniumConnect
 
       # extracted from the earlier main finish
       begin
+        save_html
+        if opts.has_key?(:failshot) && opts[:failshot] && @config.host != 'saucelabs'
+          save_screenshot
+        end
         @driver.quit
         @data = { assets: {} }
         process_sauce_logs(opts) if @config.host == 'saucelabs'
@@ -42,6 +46,15 @@ class SeleniumConnect
     end
 
     private
+
+      def save_screenshot
+        path = File.join(Dir.getwd, @config.log, 'failshot.png')
+        @driver.save_screenshot path
+      end
+
+      def save_html
+        save_asset('dom.html', @driver.page_source)
+      end
 
       # if a log path is configured move the logs, otherwise delete them
       def process_chrome_logs(opts = {})
@@ -64,7 +77,7 @@ class SeleniumConnect
           @sauce_facade.fail_job
           if opts.has_key?(:failshot) && opts[:failshot]
           screenshot = @sauce_facade.fetch_last_screenshot
-          @data[:assets][:failshot] = save_asset("#{status}_failshot_#{@job_name}_#{job_id}.png", screenshot) if screenshot
+          @data[:assets][:failshot] = save_asset('failshot.png', screenshot) if screenshot
           end
         end
         if opts.has_key?(:passed) && opts[:passed]
@@ -72,12 +85,12 @@ class SeleniumConnect
           @sauce_facade.pass_job
         end
         server_log = @sauce_facade.fetch_server_log
-        @data[:assets][:server_log] = save_asset("#{status}_serverlog_#{@job_name}_#{job_id}.log", server_log) if server_log
+        @data[:assets][:server_log] = save_asset('server.log', server_log) if server_log
 
         job_data = @sauce_facade.fetch_job_data
         @data[:sauce_data] = job_data if job_data
 
-        job_data_log_file = "#{status}_saucejob_#{@job_name}_#{job_id}.log"
+        job_data_log_file = 'sauce_job.log'
         @data[:assets][:job_data_log] = job_data_log_file
         @data = symbolize_keys @data
         save_asset(job_data_log_file, @data)

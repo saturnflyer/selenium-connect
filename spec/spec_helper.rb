@@ -27,6 +27,11 @@ RSpec.configure do |config|
   config.before(:all) do
     setup_test_environment
   end
+
+  config.before(:each) do
+    FileUtils.rm_rf(File.join(Dir.pwd, 'build', 'tmp'))
+    Dir.mkdir(File.join(Dir.pwd, 'build', 'tmp'))
+  end
   config.order = 'random'
 end
 
