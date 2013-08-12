@@ -14,7 +14,8 @@ describe 'Sauce Labs', selenium: true do
       os: 'windows',
       browser: 'iexplore',
       browser_version: '7',
-      description: 'test description'
+      description: 'test description',
+      sauce_opts: { selenium_version: '2.33.0' }
     }
     config = SeleniumConnect::Configuration.new opts
     @sc = SeleniumConnect.start config
