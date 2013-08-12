@@ -120,7 +120,7 @@ job.start name: 'website should load'
 #…
 ```
 
-Similarly, when you finish your job you can pass in parameters. Right now this is limited to sauce labs jobs, as it lets you mark the tests as passed, failed, and turn on downloading the failure screenshot:
+Similarly, when you finish your job you can pass in parameters. You can use the `failshot` parameter to turn on the saving of the last screenshot. For SauceLabs you can mark the tests as passed or failed:
 
 ```Ruby
 # sweet your test passed!
