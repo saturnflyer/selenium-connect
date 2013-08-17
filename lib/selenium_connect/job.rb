@@ -62,7 +62,7 @@ class SeleniumConnect
           status = 'failed'
           @sauce_facade.fail_job
           if opts.has_key?(:failshot) && opts[:failshot]
-          screenshot = @sauce_facade.fetch_last_screenshot
+            screenshot = @sauce_facade.fetch_last_screenshot
           @data[:assets][:failshot] = save_asset('failshot.png', screenshot) if screenshot
           end
         end
