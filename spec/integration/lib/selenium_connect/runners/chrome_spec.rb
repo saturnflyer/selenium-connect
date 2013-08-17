@@ -29,8 +29,7 @@ describe 'Chrome', selenium: true do
     job.finish failshot: true
     sc.finish
 
-    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'chromedriver.log')).should be_true
-    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'libpeerconnection.log')).should be_true
+    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'chrome.log')).should be_true
     File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom.html')).should be_true
     File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'failshot.png')).should be_true
   end
