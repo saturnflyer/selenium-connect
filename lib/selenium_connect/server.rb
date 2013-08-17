@@ -29,7 +29,7 @@ class SeleniumConnect
         rake_file_path = current_dir_path + '/rake.task'
         File.open(rake_file_path, 'w') do |file|
           file.puts "require 'selenium/rake/server_task'"
-          file.puts "Selenium::Rake::ServerTask.new(:server) do |t|"
+          file.puts 'Selenium::Rake::ServerTask.new(:server) do |t|'
           if configuration.jar
             file.puts "t.jar = '#{configuration.jar}'"
           else
@@ -39,7 +39,7 @@ class SeleniumConnect
           if configuration.log
             file.puts "t.log = '#{File.join(Dir.getwd, configuration.log, 'server.log')}'"
           else
-            file.puts "t.log = false"
+            file.puts 't.log = false'
           end
           file.puts "t.port = #{configuration.port}"
           opts = ''
@@ -51,8 +51,8 @@ class SeleniumConnect
             file.puts "t.opts = %w[#{opts}]"
           end
           file.puts 'end'
-          end
-        rake_file_path
+        end
+          rake_file_path
       end
 
     def rake(task)
