@@ -48,7 +48,7 @@ class SeleniumConnect
     end
 
     def populate_with_yaml(file)
-        populate_with_hash YAML.load_file file
+      populate_with_hash YAML.load_file file
     end
 
     # The below methods are setters for the explicitly defined sauce and browser

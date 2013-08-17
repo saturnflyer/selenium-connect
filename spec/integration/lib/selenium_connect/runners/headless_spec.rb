@@ -9,14 +9,14 @@ describe 'Headless', selenium: true do
   let(:quit)    { SeleniumConnect.finish }
 
   before(:each) do
-      config = SeleniumConnect::Configuration.new browser: 'phantomjs'
-      @sc = SeleniumConnect.start config
-      @job = @sc.create_job
-      @driver = @job.start
+    config = SeleniumConnect::Configuration.new browser: 'phantomjs'
+    @sc = SeleniumConnect.start config
+    @job = @sc.create_job
+    @driver = @job.start
   end
 
   it 'should run a basic test with phantom js' do
-      execute_simple_test @driver
+    execute_simple_test @driver
   end
 
   it 'should not find something on a page' do
@@ -26,8 +26,8 @@ describe 'Headless', selenium: true do
   end
 
   after(:each) do
-      @job.finish
-      @sc.finish
+    @job.finish
+    @sc.finish
   end
 
 end
