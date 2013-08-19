@@ -1,3 +1,12 @@
+#3.6.0 (2013-08-18)
+upgraded selenium version and improved chrome log storage
+
+- Bumped version to 3.6.0 to prepare for release.
+- more code quality fixes
+- code quality fixes
+- cleaned up the server class a little and added sensible chrome log file saving to the jar so we don\'t move files around
+- upgraded to newer version of jar file
+
 #3.5.0 (2013-08-12)
 updated selenium server jar and sauce version default plus screenshots and dom html for everyone
 
