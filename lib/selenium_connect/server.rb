@@ -25,41 +25,35 @@ class SeleniumConnect
 
     private
 
-    def generate_rake_task
-      "require 'selenium/rake/server_task'
-
-       Selenium::Rake::ServerTask.new(:server) do |t|
-         #{
-            if configuration.jar
-              "t.jar = '#{configuration.jar}'"
-            else
-              "t.jar = '#{current_dir_path + '/../../bin/selenium-server-standalone-2.34.0.jar'}'"
-            end
-         }
-         t.background
-         #{
-          if configuration.log
-            "t.log = '#{File.join(Dir.getwd, configuration.log, 'server.log')}'"
+      def get_rake_file
+        rake_file_path = current_dir_path + '/rake.task'
+        File.open(rake_file_path, 'w') do |file|
+          file.puts "require 'selenium/rake/server_task'"
+          file.puts 'Selenium::Rake::ServerTask.new(:server) do |t|'
+          if configuration.jar
+            file.puts "t.jar = '#{configuration.jar}'"
           else
-            "t.log = false"
+            file.puts "t.jar = '#{current_dir_path + '/../../bin/selenium-server-standalone-2.35.0.jar'}'"
           end
-         }
-         t.port = #{configuration.port}
-         #{
-            if configuration.browser == 'chrome'
-              "t.opts = '-Dwebdriver.chrome.driver=#{current_dir_path + '/../../bin/chromedriver'}'"
+          file.puts 't.background'
+          if configuration.log
+            file.puts "t.log = '#{File.join(Dir.getwd, configuration.log, 'server.log')}'"
+          else
+            file.puts 't.log = false'
+          end
+          file.puts "t.port = #{configuration.port}"
+          opts = ''
+          if configuration.browser == 'chrome'
+            opts += '-Dwebdriver.chrome.driver=' + current_dir_path + '/../../bin/chromedriver'
+            if configuration.log
+              opts += ' -Dwebdriver.chrome.logfile=' + File.join(Dir.getwd, configuration.log, 'chrome.log')
             end
-         }
-       end"
-    end
-
-    def get_rake_file
-      rake_file_path = current_dir_path + '/rake.task'
-      rake_file = File.open(rake_file_path, 'w')
-      rake_file << generate_rake_task
-      rake_file.close
-      rake_file_path
-    end
+            file.puts "t.opts = %w[#{opts}]"
+          end
+          file.puts 'end'
+        end
+          rake_file_path
+      end
 
     def rake(task)
       system "rake -f #{get_rake_file} server:#{task}"

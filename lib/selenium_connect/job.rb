@@ -37,7 +37,6 @@ class SeleniumConnect
         @driver.quit
         @data = { assets: {} }
         process_sauce_logs(opts) if @config.host == 'saucelabs'
-        process_chrome_logs(opts) if @config.browser == 'chrome'
       # rubocop:disable HandleExceptions
       rescue Selenium::WebDriver::Error::WebDriverError
       # rubocop:enable HandleExceptions
@@ -56,19 +55,6 @@ class SeleniumConnect
         save_asset('dom.html', @driver.page_source)
       end
 
-      # if a log path is configured move the logs, otherwise delete them
-      def process_chrome_logs(opts = {})
-        ['chromedriver.log', 'libpeerconnection.log'].each do |log_file|
-          path = File.join(Dir.getwd, log_file)
-
-          if @config.log
-            FileUtils.mv(path, File.join(Dir.getwd, @config.log)) if File.exist? path
-          else
-            FileUtils.rm path if File.exist? path
-          end
-        end
-      end
-
       def process_sauce_logs(opts = {})
         job_id = @driver.session_id
         @sauce_facade.job_id = job_id
@@ -76,7 +62,7 @@ class SeleniumConnect
           status = 'failed'
           @sauce_facade.fail_job
           if opts.has_key?(:failshot) && opts[:failshot]
-          screenshot = @sauce_facade.fetch_last_screenshot
+            screenshot = @sauce_facade.fetch_last_screenshot
           @data[:assets][:failshot] = save_asset('failshot.png', screenshot) if screenshot
           end
         end
