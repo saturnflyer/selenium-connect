@@ -52,7 +52,12 @@ class SeleniumConnect
       end
 
       def save_html
-        save_asset('dom.html', @driver.page_source)
+        dom_number = 0
+        @driver.window_handles.each do |handle|
+          @driver.switch_to.window(handle)
+          save_asset("dom_#{dom_number}.html", @driver.page_source)
+          dom_number += 1
+        end
       end
 
       def process_sauce_logs(opts = {})
