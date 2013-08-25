@@ -24,14 +24,15 @@ describe 'Sauce Labs', selenium: true do
   it 'just execute a sauce job successfully' do
     job = @sc.create_job
     name = 'successful sauce job'
-    driver = job.start name: name
+    driver = job.start name: name, sauce_opts: { public: 'share' }
     execute_simple_test driver
     report = job.finish passed: true
     report.data[:sauce_data][:name].should be == 'successful_sauce_job'
     report.data[:sauce_data][:passed].should be_true
-    report.data[:assets][:server_log].should be == 'server.log'
+    report.data[:sauce_data][:public].should eq 'share'
+    report.data[:assets][:server_log].should eq 'server.log'
     File.exist?(File.join(Dir.pwd, 'build', 'tmp', 'server.log')).should be_true
-    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom.html')).should be_true
+    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom_0.html')).should be_true
   end
 
   it 'should mark a sauce job as failed' do

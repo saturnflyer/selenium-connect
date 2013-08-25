@@ -44,7 +44,7 @@ describe 'Chrome', selenium: true do
     driver.find_element(css: '.example a').click
     unless driver.title =~ /Poogle/
       # simulate a failure situation
-      report = job.finish failed: true, failshot: true
+      job.finish failed: true, failshot: true
     end
     File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom_0.html')).should be_true
     File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom_1.html')).should be_true
