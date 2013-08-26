@@ -1,4 +1,4 @@
-#selenium-connect 3.6.0 (2013-08-18)
+#selenium-connect 3.7.0 (2013-08-26)
 
 [![Gem Version](https://badge.fury.io/rb/selenium-connect.png)](http://badge.fury.io/rb/selenium-connect) [![Build Status](https://travis-ci.org/arrgyle/selenium-connect.png?branch=develop)](https://travis-ci.org/arrgyle/selenium-connect) [![Code Climate](https://codeclimate.com/github/arrgyle/selenium-connect.png)](https://codeclimate.com/github/arrgyle/selenium-connect) [![Coverage Status](https://coveralls.io/repos/arrgyle/selenium-connect/badge.png?branch=develop)](https://coveralls.io/r/arrgyle/selenium-connect?branch=develop)
 
@@ -45,9 +45,13 @@ sc.finish
 ### Start
 If host is set to "localhost" and no jar file is specified, it will run the version of [selenium-standalone-server.jar](https://code.google.com/p/selenium/downloads/list) that is bundled with the library (currently 2.33.0). Or, you can specify your own jar if you have one you prefer to use. This is done with c.jar = 'path-to-jar-file'.
 
-If no additional parameters are set, the Selenium Server will be run in the background with logging disabled. If a logging directory is provided (with c.log = 'path-to-log-dir') then 2 output files will be generated:
-+ Selenium Server JSON Wire Protocol output (server.log)
-+ Browser output (browser.log) -- currently only available for Firefox
+If no additional parameters are set, the Selenium Server will be run in the background with logging disabled. If a logging directory is provided (with c.log = 'path-to-log-dir') then the following output files will be generated:
+
+- Selenium Server JSON Wire Protocol output (server.log)
+- firefox.log (If using Firefox as the browser)
+- chrome.log (If using Chrome as the browser)
+- dom_0.html (Or dom_1.html etc for each open window at the time the job is finished, a dump of the html)
+- failshot.png (If failshot is marked as true, a screenshot of the end state)
 
 This localhost functionality is driven using the [Selenium Rake Server Task](http://selenium.googlecode.com/svn/trunk/docs/api/rb/Selenium/Rake/ServerTask.html).
 
@@ -116,9 +120,12 @@ When you create your job you can pass in parameters, right now just `:name` that
 
 ```Ruby
 #…
-job.start name: 'website should load'
+job.start name: 'website should load', sauce_opts: { public: 'team' }
 #…
 ```
+
+Note you can also pass a hash of `sauce_opts` to the job start function that will let you do additional run time configuration with options as detailed here: [https://saucelabs.com/docs/additional-config](https://saucelabs.com/docs/additional-config)
+
 
 Similarly, when you finish your job you can pass in parameters. You can use the `failshot` parameter to turn on the saving of the last screenshot. For SauceLabs you can mark the tests as passed or failed:
 

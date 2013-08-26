@@ -19,9 +19,12 @@ class SeleniumConnect
 
     # Creates and returns the driver, using options passed in
     def start(opts = {})
-      @job_name = slugify_name opts[:name] if opts.has_key? :name
       # TODO: this could be refactored out into an options parser of sorts
-      @config.sauce_opts.job_name = @job_name ||= 'unnamed_job'
+      @job_name = opts.key?(:name) ? slugify_name(opts[:name]) : 'unnamed_job'
+      sauce_config = {}
+      sauce_config.merge!(opts[:sauce_opts]) if opts.key? :sauce_opts
+      sauce_config.merge!(job_name: @job_name)
+      @config.sauce_opts = sauce_config
       @driver = Runner.new(@config).driver
     end
 
@@ -31,7 +34,7 @@ class SeleniumConnect
       # extracted from the earlier main finish
       begin
         save_html
-        if opts.has_key?(:failshot) && opts[:failshot] && @config.host != 'saucelabs'
+        if opts.key?(:failshot) && opts[:failshot] && @config.host != 'saucelabs'
           save_screenshot
         end
         @driver.quit
@@ -52,21 +55,26 @@ class SeleniumConnect
       end
 
       def save_html
-        save_asset('dom.html', @driver.page_source)
+        dom_number = 0
+        @driver.window_handles.each do |handle|
+          @driver.switch_to.window(handle)
+          save_asset("dom_#{dom_number}.html", @driver.page_source)
+          dom_number += 1
+        end
       end
 
       def process_sauce_logs(opts = {})
         job_id = @driver.session_id
         @sauce_facade.job_id = job_id
-        if opts.has_key?(:failed) && opts[:failed]
+        if opts.key?(:failed) && opts[:failed]
           status = 'failed'
           @sauce_facade.fail_job
-          if opts.has_key?(:failshot) && opts[:failshot]
+          if opts.key?(:failshot) && opts[:failshot]
             screenshot = @sauce_facade.fetch_last_screenshot
           @data[:assets][:failshot] = save_asset('failshot.png', screenshot) if screenshot
           end
         end
-        if opts.has_key?(:passed) && opts[:passed]
+        if opts.key?(:passed) && opts[:passed]
           status = 'passed'
           @sauce_facade.pass_job
         end
