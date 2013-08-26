@@ -30,7 +30,7 @@ describe 'Chrome', selenium: true do
     sc.finish
 
     File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'chrome.log')).should be_true
-    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom.html')).should be_true
+    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom_0.html')).should be_true
     File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'failshot.png')).should be_true
   end
 
