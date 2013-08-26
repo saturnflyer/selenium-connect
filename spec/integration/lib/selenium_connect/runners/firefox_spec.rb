@@ -68,4 +68,21 @@ describe 'Firefox', selenium: true do
     job.finish
     sc.finish
   end
+
+  it 'should download all the dom dumps if there are multiple windows open' do
+    config = SeleniumConnect::Configuration.new browser: 'firefox', log: '/build/tmp'
+    sc = SeleniumConnect.start config
+    job = sc.create_job
+    driver = job.start
+
+    driver.get 'http://the-internet.herokuapp.com/windows'
+    driver.find_element(css: '.example a').click
+    unless driver.title =~ /Poogle/
+      # simulate a failure situation
+      job.finish failed: true, failshot: true
+    end
+    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom_0.html')).should be_true
+    File.exist?(File.join(ENV['BUILD_PATH'], 'tmp', 'dom_1.html')).should be_true
+    sc.finish
+  end
 end
