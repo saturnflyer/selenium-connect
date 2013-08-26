@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.email         = ['dave@arrgyle.com', 'jason@arrgyle.com']
   s.homepage      = 'https://github.com/arrgyle/selenium-connect'
   s.summary       = 'A stupid simple way to run your Selenium tests on localhost, against a Selenium Grid, or in the cloud (e.g. SauceLabs).'
-  s.description   = 'upgraded selenium version and improved chrome log storage'
+  s.description   = 'Can now pass run time sauce options to a job and will capture all open window doms'
   s.license       = 'MIT'
 
   s.files         = `git ls-files`.split($/)
