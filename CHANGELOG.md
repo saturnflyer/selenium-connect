@@ -1,3 +1,12 @@
+#3.7.0 (2013-08-26)
+Can now pass run time sauce options to a job and will capture all open window doms
+
+- Bumped version to 3.7.0 to prepare for release.
+- upgraded chromedriver and moved the tests to the right place
+- updated tests and doc for additional configurations
+- added the ability to pass in a hash of sauce opts to the job start array in order to set team permissions and what have
+- first crack at multi window assets
+
 #3.6.0 (2013-08-18)
 upgraded selenium version and improved chrome log storage
 
