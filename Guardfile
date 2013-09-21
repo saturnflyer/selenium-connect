@@ -4,3 +4,7 @@ guard :rspec do
   watch('spec/spec_helper.rb')  { "spec" }
 end
 
+guard :rubocop, all_on_start: false do
+  watch(%r{^spec/.+\.rb$})
+  watch(%r{^lib/.+\.rb$})
+end
