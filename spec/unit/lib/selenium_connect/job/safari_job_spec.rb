@@ -13,4 +13,8 @@ describe SeleniumConnect::Job::SafariJob do
   it 'can be run locally' do
     job.should respond_to :run_with_local_runner
   end
+
+  it 'can be run remotely' do
+    job.should respond_to :run_with_remote_runner
+  end
 end
