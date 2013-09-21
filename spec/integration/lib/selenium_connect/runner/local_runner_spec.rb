@@ -20,7 +20,6 @@ describe SeleniumConnect::Runner::LocalRunner do
   end
 
   it 'should run an opera job locally' do
-    pending 'Known issue launching opera.'
     @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::OperaJob.new)
   end
 

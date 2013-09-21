@@ -12,7 +12,7 @@ require 'selenium_connect/job/phantom_job'
 
 describe SeleniumConnect::Runner::RemoteRunner do
 
-  SERVER_BIN = 'selenium-server-standalone-2.35.0.jar'
+  SERVER_BIN = 'selenium-server-standalone-2.34.0.jar'
 
   before(:each) do
     server_bin = File.join(Dir.pwd, 'bin', SERVER_BIN)
@@ -32,8 +32,8 @@ describe SeleniumConnect::Runner::RemoteRunner do
   end
 
   # TODO: this is throwing a strange error
+  # 2.35 does not work
   it 'should run an opera job on locally started remote by default' do
-    pending 'Known issue launching opera.'
     @server.start
     @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::OperaJob.new)
   end

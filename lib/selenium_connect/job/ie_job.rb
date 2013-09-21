@@ -21,12 +21,6 @@ class SeleniumConnect
         # TODO: implement this
       end
 
-      # def run_with_sauce_runner(runner)
-      # end
-
-      # def run_with_remote_runner(runner)
-      # end
-
       private
 
         # this should be refactored out to a base class or a mixin

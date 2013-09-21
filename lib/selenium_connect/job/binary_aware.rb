@@ -12,7 +12,7 @@ class SeleniumConnect
         when 'phantomjs'
           return File.join(binary_dir, 'phantomjs')
         when 'selenium'
-          return File.join(binary_dir, 'selenium-server-standalone-2.35.0.jar')
+          return File.join(binary_dir, 'selenium-server-standalone-2.34.0.jar')
         else
           raise ArgumentError, "Unknown binary: \"#{name}\""
         end

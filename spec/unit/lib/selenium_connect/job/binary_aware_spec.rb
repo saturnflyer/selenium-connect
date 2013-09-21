@@ -23,7 +23,7 @@ describe SeleniumConnect::Job::BinaryAware do
   end
 
   it 'should return the selenium server binary' do
-    klass.new.binary_path('selenium').should eq File.join(Dir.pwd, 'bin', 'selenium-server-standalone-2.35.0.jar')
+    klass.new.binary_path('selenium').should eq File.join(Dir.pwd, 'bin', 'selenium-server-standalone-2.34.0.jar')
   end
 
   it 'should raise and exception for unknown binary' do
