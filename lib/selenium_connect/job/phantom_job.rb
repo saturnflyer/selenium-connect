@@ -1,11 +1,13 @@
 # Encoding: utf-8
 
 require 'selenium-webdriver'
+require 'selenium_connect/job/binary_aware'
 
 class SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Job
     class PhantomJob
+      include BinaryAware
 
       # this picks the specific runner method, this could be removed by havving the runner class
       # call the right runner method as it knows itself
@@ -18,6 +20,7 @@ class SeleniumConnect
       # there would be a method like run_with for each type of runner that this job supports
       # could be pulled out into mix in like LocallyRunnable or something for general behavior
       def run_with_local_runner(runner)
+        Selenium::WebDriver::PhantomJS.path = binary_path 'phantomjs'
         runner.driver = Selenium::WebDriver.for :phantomjs
       end
 

@@ -9,6 +9,10 @@ class SeleniumConnect
         case name
         when 'chromedriver'
           return File.join(binary_dir, 'chromedriver')
+        when 'phantomjs'
+          return File.join(binary_dir, 'phantomjs')
+        else
+          raise ArgumentError, "Unknown binary: \"#{name}\""
         end
       end
 

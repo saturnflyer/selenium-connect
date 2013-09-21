@@ -17,4 +17,14 @@ describe SeleniumConnect::Job::BinaryAware do
   it 'should return the chromedriver binary path' do
     klass.new.binary_path('chromedriver').should eq File.join(Dir.pwd, 'bin', 'chromedriver')
   end
+
+  it 'should return the phantomjs binary path' do
+    klass.new.binary_path('phantomjs').should eq File.join(Dir.pwd, 'bin', 'phantomjs')
+  end
+
+  it 'should raise and exception for unknown binary' do
+    expect do
+      klass.new.binary_path('bad_binary')
+    end.to raise_error(ArgumentError, 'Unknown binary: "bad_binary"')
+  end
 end
