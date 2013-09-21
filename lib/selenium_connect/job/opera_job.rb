@@ -1,11 +1,13 @@
 # Encoding: utf-8
 
 require 'selenium-webdriver'
+require 'selenium_connect/job/binary_aware'
 
 class SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Job
     class OperaJob
+      include BinaryAware
 
       # this picks the specific runner method, this could be removed by havving the runner class
       # call the right runner method as it knows itself
@@ -18,6 +20,8 @@ class SeleniumConnect
       # there would be a method like run_with for each type of runner that this job supports
       # could be pulled out into mix in like LocallyRunnable or something for general behavior
       def run_with_local_runner(runner)
+        Selenium::WebDriver::Opera::Service.selenium_server_jar = binary_path 'selenium'
+        # ENV['SELENIUM_SERVER_JAR'] = binary_path 'selenium'
         runner.driver = Selenium::WebDriver.for :opera
       end
 
@@ -25,7 +29,8 @@ class SeleniumConnect
       # end
 
       def run_with_remote_runner(runner)
-        runner.driver = Selenium::WebDriver.for(:remote, desired_capabilities: :opera)
+        caps = Selenium::WebDriver::Remote::Capabilities.opera(platform: :mac, 'opera.binary' => '/Applications/Opera.app/Contents/MacOS/Opera')
+        runner.driver = Selenium::WebDriver.for(:remote, :desired_capabilities => caps)
       end
 
       private

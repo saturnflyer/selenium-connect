@@ -16,7 +16,7 @@ describe SeleniumConnect::Runner::RemoteRunner do
 
   before(:each) do
     server_bin = File.join(Dir.pwd, 'bin', SERVER_BIN)
-    @server = Selenium::Server.new server_bin, background: true
+    @server = Selenium::Server.new server_bin, background: true, log: '/tmp/ss.log'
   end
 
   it 'should run a firefox job on locally started remote by default' do
@@ -32,25 +32,32 @@ describe SeleniumConnect::Runner::RemoteRunner do
   end
 
   # TODO: this is throwing a strange error
-  # it 'should run an opera job on locally started remote by default' do
-  #   @server.start
-  #   @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::OperaJob.new)
-  # end
+  it 'should run an opera job on locally started remote by default' do
+    pending 'Known issue launching opera.'
+    @server.start
+    @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::OperaJob.new)
+  end
 
   it 'should run a safari job on locally started remote by default' do
     @server.start
     @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::SafariJob.new)
   end
 
-  # it 'should run a phantom job on locally started remote by default' do
-  #   @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::PhantomJob.new)
-  # end
+  # TODO: it seems like this should be pointing to the local bin
+  it 'should run a phantom job on locally started remote by default' do
+    @server.start
+    @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::PhantomJob.new)
+  end
 
   after(:each) do
-    execute_simple_test @job.driver
-    @job.finish
-    @server.stop
-    `pgrep -o -f #{SERVER_BIN}`.should be_empty
+    if @job
+      execute_simple_test @job.driver
+      @job.finish
+      @server.stop
+      `pgrep -o -f #{SERVER_BIN}`.should be_empty
+      pid = `pgrep -o -f #{SERVER_BIN}`
+    `kill -9 #{pid}` unless pid.empty?
+    end
   end
 
   after(:all) do
