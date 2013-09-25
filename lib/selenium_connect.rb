@@ -6,4 +6,11 @@ require 'selenium_connect/runner/runner_factory'
 # Selenium Connect main module
 module SeleniumConnect
   module_function
+
+  def run_job
+    # TODO: of course this would be config driven, but these are the defaults
+    runner = Runner::RunnerFactory.build 'local'
+    job = Job::JobFactory.build 'firefox'
+    runner.run job
+  end
 end
