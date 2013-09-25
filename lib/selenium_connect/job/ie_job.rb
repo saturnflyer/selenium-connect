@@ -2,7 +2,7 @@
 
 require 'selenium-webdriver'
 
-class SeleniumConnect
+module SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Job
     class IeJob

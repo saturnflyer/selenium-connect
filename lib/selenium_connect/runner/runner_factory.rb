@@ -4,7 +4,7 @@ require 'selenium_connect/runner/local_runner'
 require 'selenium_connect/runner/remote_runner'
 require 'selenium_connect/runner/sauce_runner'
 
-class SeleniumConnect
+module SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Runner
     module RunnerFactory

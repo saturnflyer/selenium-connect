@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-class SeleniumConnect
+module SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Runner
     class LocalRunner

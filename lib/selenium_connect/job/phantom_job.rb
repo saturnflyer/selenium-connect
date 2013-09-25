@@ -3,7 +3,7 @@
 require 'selenium-webdriver'
 require 'selenium_connect/job/binary_aware'
 
-class SeleniumConnect
+module SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Job
     class PhantomJob

@@ -7,7 +7,7 @@ require 'selenium_connect/job/safari_job'
 require 'selenium_connect/job/phantom_job'
 require 'selenium_connect/job/ie_job'
 
-class SeleniumConnect
+module SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Job
     module JobFactory

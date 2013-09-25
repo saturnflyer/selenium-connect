@@ -1,6 +1,6 @@
 # Encoding: utf-8
 
-class SeleniumConnect
+module SeleniumConnect
   class Job
     module BinaryAware
 

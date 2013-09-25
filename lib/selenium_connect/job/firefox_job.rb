@@ -3,7 +3,7 @@
 require 'selenium-webdriver'
 require 'sauce'
 
-class SeleniumConnect
+module SeleniumConnect
   # encapsulates the creation of a driver and a run
   class Job
     class FirefoxJob
