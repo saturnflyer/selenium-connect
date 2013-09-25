@@ -21,8 +21,8 @@ class SeleniumConnect
         runner.driver = Selenium::WebDriver.for :safari
       end
 
-      # def run_with_sauce_runner(runner)
-      # end
+      def run_with_sauce_runner(runner)
+      end
 
       def run_with_remote_runner(runner)
         runner.driver = Selenium::WebDriver.for(:remote, desired_capabilities: :safari)

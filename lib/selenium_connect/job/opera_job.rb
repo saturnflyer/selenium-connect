@@ -25,8 +25,8 @@ class SeleniumConnect
         runner.driver = Selenium::WebDriver.for :opera
       end
 
-      # def run_with_sauce_runner(runner)
-      # end
+      def run_with_sauce_runner(runner)
+      end
 
       def run_with_remote_runner(runner)
         caps = Selenium::WebDriver::Remote::Capabilities.opera(platform: :mac, 'opera.binary' => '/Applications/Opera.app/Contents/MacOS/Opera')

@@ -10,7 +10,7 @@ describe SeleniumConnect::Job::IeJob do
     job.should respond_to :run
   end
 
-  it 'can be run via sauce' do
+  it 'can be run with sauce' do
     job.should respond_to :run_with_sauce_runner
   end
 end

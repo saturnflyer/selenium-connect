@@ -17,4 +17,8 @@ describe SeleniumConnect::Job::OperaJob do
   it 'can be run remotely' do
     job.should respond_to :run_with_remote_runner
   end
+
+  it 'can be run with sauce' do
+    job.should respond_to :run_with_sauce_runner
+  end
 end

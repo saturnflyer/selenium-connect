@@ -8,7 +8,11 @@ class SeleniumConnect
       attr_accessor :driver
 
       def run(job)
-        @driver = job.run(self)
+        begin
+          @driver = job.run(self)
+        rescue NoMethodError
+          raise ArgumentError, "At the moment, SeleniumConnect does not support running \"#{job.class.name.split('::').last}\" with \"#{self.class.name.split('::').last}.\""
+        end
         self
       end
 

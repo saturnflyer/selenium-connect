@@ -9,6 +9,7 @@ require 'selenium_connect/job/chrome_job'
 require 'selenium_connect/job/opera_job'
 require 'selenium_connect/job/safari_job'
 require 'selenium_connect/job/phantom_job'
+require 'selenium_connect/job/ie_job'
 
 describe SeleniumConnect::Runner::RemoteRunner do
 
@@ -47,6 +48,12 @@ describe SeleniumConnect::Runner::RemoteRunner do
   it 'should run a phantom job on locally started remote by default' do
     @server.start
     @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::PhantomJob.new)
+  end
+
+  it 'does not support an ie job remotely' do
+    expect do
+      @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::IeJob.new)
+    end.to raise_error(ArgumentError, 'At the moment, SeleniumConnect does not support running "IeJob" with "RemoteRunner."')
   end
 
   after(:each) do

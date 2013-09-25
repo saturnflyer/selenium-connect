@@ -8,6 +8,7 @@ require 'selenium_connect/job/chrome_job'
 require 'selenium_connect/job/opera_job'
 require 'selenium_connect/job/safari_job'
 require 'selenium_connect/job/phantom_job'
+require 'selenium_connect/job/ie_job'
 
 describe SeleniumConnect::Runner::LocalRunner do
 
@@ -29,6 +30,12 @@ describe SeleniumConnect::Runner::LocalRunner do
 
   it 'should run a phantom job locally' do
     @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::PhantomJob.new)
+  end
+
+  it 'does not support an ie job locally' do
+    expect do
+      @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::IeJob.new)
+    end.to raise_error(ArgumentError, 'At the moment, SeleniumConnect does not support running "IeJob" with "LocalRunner."')
   end
 
   after(:each) do

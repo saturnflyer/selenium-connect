@@ -12,6 +12,6 @@ Documentation:
 
 AllCops:
   Excludes:
-    - lib_old/
-    - spec/unit/lib_old
-    - spec/integration/lib_old
+    - lib_old/**
+    - spec/unit/lib_old/**
+    - spec/integration/lib_old/**

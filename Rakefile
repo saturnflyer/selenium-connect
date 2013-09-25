@@ -2,19 +2,16 @@
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
-require 'flog_task'
-require 'flay_task'
-require 'reek/rake/task'
 
 task default: :build
 
-task build: [:clean, :prepare, :quality, :unit, :integration]
+task build: [:clean, :prepare, :quality, :unit]
 
 desc 'Runs standard build activities.'
-task build_full: [:clean, :prepare, :quality, :unit, :integration, :system]
+task build_full: [:clean, :prepare, :quality, :unit, :integration]
 
 desc 'Runs quality checks.'
-task quality: [:rubocop, :reek, :flog_total, :flog_average, :flay]
+task quality: [:rubocop]
 
 desc 'Removes the build directory.'
 task :clean do
@@ -48,30 +45,6 @@ RSpec::Core::RakeTask.new(:system) do |t|
 end
 
 Rubocop::RakeTask.new
-
-# TODO: lower the quality score and improve the code!
-FlogTask.new :flog_total, 10000 do |t|
-  t.method = :total_score
-  t.verbose = true
-end
-
-# TODO: lower the quality score and improve the code!
-FlogTask.new :flog_average, 100 do |t|
-  t.method = :average
-  t.verbose = true
-end
-
-# TODO: lower the quality score and improve the code!
-FlayTask.new :flay, 10000 do |t|
-  t.verbose = true
-end
-
-# TODO: fix all the smells and turn on failing on error
-Reek::Rake::Task.new do |t|
-    t.fail_on_error = false
-    t.verbose = false
-    t.reek_opts = '--quiet'
-end
 
 # TODO: This could probably be more cleanly automated
 desc 'Start a release (Requires Git Flow)'
