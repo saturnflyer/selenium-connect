@@ -1,6 +1,7 @@
 # Encoding: utf-8
 
 require 'selenium-webdriver'
+require 'sauce'
 
 class SeleniumConnect
   # encapsulates the creation of a driver and a run
@@ -22,6 +23,13 @@ class SeleniumConnect
       end
 
       def run_with_sauce_runner(runner)
+        # TODO: of course this gets refactored out and configurable
+        # furthermore this should be a local file, found by testing rather than part of the codebase
+        username = 'testing_arrgyle'
+        access_key = 'ab7a6e17-16df-42d2-9ef6-c8d2539cc38a'
+        # Default is firefox, should be explicit but testing for now
+        opts = { username: username, access_key: access_key }
+        runner.driver = Sauce::Selenium2.new(opts)
       end
 
       def run_with_remote_runner(runner)

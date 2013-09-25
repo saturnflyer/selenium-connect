@@ -12,25 +12,25 @@ require 'selenium_connect/job/ie_job'
 
 describe SeleniumConnect::Runner::SauceRunner do
 
-  # it 'should run a firefox job with sauce' do
-  #   @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::FirefoxJob.new)
-  # end
+  it 'should run a firefox job with sauce' do
+    @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::FirefoxJob.new)
+  end
 
-  # it 'should run a chrome job with sauce' do
-  #   @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::ChromeJob.new)
-  # end
+  it 'should run a chrome job with sauce' do
+    @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::ChromeJob.new)
+  end
 
-  # it 'should run an opera job with sauce' do
-  #   @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::OperaJob.new)
-  # end
+  it 'should run an opera job with sauce' do
+    @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::OperaJob.new)
+  end
 
-  # it 'should run a safari job with sauce' do
-  #   @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::SafariJob.new)
-  # end
+  it 'should run a safari job with sauce' do
+    @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::SafariJob.new)
+  end
 
-  # it 'should run an Ie job with sauce' do
-  #   @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::PhantomJob.new)
-  # end
+  it 'should run an Ie job with sauce' do
+    @job  = SeleniumConnect::Runner::SauceRunner.new.run(SeleniumConnect::Job::IeJob.new)
+  end
 
   it 'does not support a phamtom job with sauce' do
     expect do
