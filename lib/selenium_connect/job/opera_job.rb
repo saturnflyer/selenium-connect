@@ -20,7 +20,7 @@ class SeleniumConnect
       # there would be a method like run_with for each type of runner that this job supports
       # could be pulled out into mix in like LocallyRunnable or something for general behavior
       def run_with_local_runner(runner)
-        Selenium::WebDriver::Opera::Service.selenium_server_jar = binary_path 'selenium'
+        Selenium::WebDriver::Opera::Service.selenium_server_jar = binary_path 'selenium', '2.34.0'
         # ENV['SELENIUM_SERVER_JAR'] = binary_path 'selenium'
         runner.driver = Selenium::WebDriver.for :opera
       end
@@ -30,7 +30,7 @@ class SeleniumConnect
 
       def run_with_remote_runner(runner)
         caps = Selenium::WebDriver::Remote::Capabilities.opera(platform: :mac, 'opera.binary' => '/Applications/Opera.app/Contents/MacOS/Opera')
-        runner.driver = Selenium::WebDriver.for(:remote, :desired_capabilities => caps)
+        runner.driver = Selenium::WebDriver.for(:remote, desired_capabilities: caps)
       end
 
       private

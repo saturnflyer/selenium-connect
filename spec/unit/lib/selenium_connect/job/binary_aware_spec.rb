@@ -22,8 +22,12 @@ describe SeleniumConnect::Job::BinaryAware do
     klass.new.binary_path('phantomjs').should eq File.join(Dir.pwd, 'bin', 'phantomjs')
   end
 
-  it 'should return the selenium server binary' do
-    klass.new.binary_path('selenium').should eq File.join(Dir.pwd, 'bin', 'selenium-server-standalone-2.34.0.jar')
+  it 'should return the latest server binary by default' do
+    klass.new.binary_path('selenium').should eq File.join(Dir.pwd, 'bin', 'selenium-server-standalone-2.35.0.jar')
+  end
+
+  it 'should return a specific version of the server if specified' do
+    klass.new.binary_path('selenium', '2.34.0').should eq File.join(Dir.pwd, 'bin', 'selenium-server-standalone-2.34.0.jar')
   end
 
   it 'should raise and exception for unknown binary' do

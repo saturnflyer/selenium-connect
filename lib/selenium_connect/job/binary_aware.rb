@@ -4,7 +4,7 @@ class SeleniumConnect
   class Job
     module BinaryAware
 
-      def binary_path(name)
+      def binary_path(name, version = nil)
         binary_dir = File.join(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..')), 'bin')
         case name
         when 'chromedriver'
@@ -12,7 +12,8 @@ class SeleniumConnect
         when 'phantomjs'
           return File.join(binary_dir, 'phantomjs')
         when 'selenium'
-          return File.join(binary_dir, 'selenium-server-standalone-2.34.0.jar')
+          version ||= '2.35.0'
+          return File.join(binary_dir, "selenium-server-standalone-#{version}.jar")
         else
           raise ArgumentError, "Unknown binary: \"#{name}\""
         end
