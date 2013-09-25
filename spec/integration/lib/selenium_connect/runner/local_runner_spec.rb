@@ -12,23 +12,23 @@ require 'selenium_connect/job/ie_job'
 
 describe SeleniumConnect::Runner::LocalRunner do
 
-  it 'should run a firefox job locally' do
+  it 'should run a firefox job locally', :system do
     @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::FirefoxJob.new)
   end
 
-  it 'should run a chrome job locally' do
+  it 'should run a chrome job locally', :system do
     @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::ChromeJob.new)
   end
 
-  it 'should run an opera job locally' do
+  it 'should run an opera job locally', :system do
     @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::OperaJob.new)
   end
 
-  it 'should run a safari job locally' do
+  it 'should run a safari job locally', :system do
     @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::SafariJob.new)
   end
 
-  it 'should run a phantom job locally' do
+  it 'should run a phantom job locally', :system do
     @job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::PhantomJob.new)
   end
 

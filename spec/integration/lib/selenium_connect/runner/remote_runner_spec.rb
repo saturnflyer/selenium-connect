@@ -20,12 +20,12 @@ describe SeleniumConnect::Runner::RemoteRunner do
     @server = Selenium::Server.new server_bin, background: true, log: '/tmp/ss.log'
   end
 
-  it 'should run a firefox job on locally started remote by default' do
+  it 'should run a firefox job on locally started remote by default', :system do
     @server.start
     @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::FirefoxJob.new)
   end
 
-  it 'should run a chrome job on locally started remote by default' do
+  it 'should run a chrome job on locally started remote by default', :system do
     chrome_bin = File.join(Dir.pwd, 'bin', 'chromedriver')
     @server << "-Dwebdriver.chrome.driver=#{chrome_bin}"
     @server.start
@@ -34,18 +34,18 @@ describe SeleniumConnect::Runner::RemoteRunner do
 
   # TODO: this is throwing a strange error
   # 2.35 does not work
-  it 'should run an opera job on locally started remote by default' do
+  it 'should run an opera job on locally started remote by default', :system do
     @server.start
     @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::OperaJob.new)
   end
 
-  it 'should run a safari job on locally started remote by default' do
+  it 'should run a safari job on locally started remote by default', :system do
     @server.start
     @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::SafariJob.new)
   end
 
   # TODO: it seems like this should be pointing to the local bin
-  it 'should run a phantom job on locally started remote by default' do
+  it 'should run a phantom job on locally started remote by default', :system do
     @server.start
     @job  = SeleniumConnect::Runner::RemoteRunner.new.run(SeleniumConnect::Job::PhantomJob.new)
   end

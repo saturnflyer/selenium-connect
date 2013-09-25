@@ -6,7 +6,7 @@ require 'selenium_connect/runner/local_runner'
 
 describe 'job runner', selenium: true do
 
-  it 'should run a firefox job locally' do
+  it 'should run a firefox job locally', :system do
     job  = SeleniumConnect::Runner::LocalRunner.new.run(SeleniumConnect::Job::FirefoxJob.new)
     execute_simple_test job.driver
     job.finish

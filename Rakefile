@@ -5,10 +5,10 @@ require 'rubocop/rake_task'
 
 task default: :build
 
-task build: [:clean, :prepare, :quality, :unit]
+task build: [:clean, :prepare, :quality, :unit, :integration]
 
 desc 'Runs standard build activities.'
-task build_full: [:clean, :prepare, :quality, :unit, :integration]
+task build_full: [:clean, :prepare, :quality, :unit, :integration, :system]
 
 desc 'Runs quality checks.'
 task quality: [:rubocop]
@@ -30,18 +30,18 @@ def get_rspec_flags(log_name, others = nil)
 end
 
 RSpec::Core::RakeTask.new(:unit) do |t|
-  t.pattern = FileList['spec/unit/**/*_spec.rb']
+  t.pattern = FileList['spec/unit/lib/**/*_spec.rb']
   t.rspec_opts = get_rspec_flags('unit')
 end
 
 RSpec::Core::RakeTask.new(:integration) do |t|
-  t.pattern = FileList['spec/integration/**/*_spec.rb']
-  t.rspec_opts = get_rspec_flags('integration', '--tag=~selenium')
+  t.pattern = FileList['spec/integration/lib/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('integration', '--tag ~system')
 end
 
 RSpec::Core::RakeTask.new(:system) do |t|
-  t.pattern = FileList['spec/integration/**/*_spec.rb']
-  t.rspec_opts = get_rspec_flags('system', '--tag selenium')
+  t.pattern = FileList['spec/integration/lib/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('system', '--tag system')
 end
 
 Rubocop::RakeTask.new
