@@ -16,7 +16,7 @@ describe SeleniumConnect::Runner::RemoteRunner do
 
   it 'should return itself when running a new job' do
     mock_job = double 'SeleniumConnect::Job'
-    allow(mock_job).to receive(:run)
+    allow(mock_job).to receive(:run_with_remote_runner)
     runner.run(mock_job).should be_an_instance_of SeleniumConnect::Runner::RemoteRunner
   end
 

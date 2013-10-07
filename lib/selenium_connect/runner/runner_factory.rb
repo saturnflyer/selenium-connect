@@ -10,7 +10,7 @@ require 'selenium_connect/config/runner/sauce'
 
 module SeleniumConnect
   # encapsulates the creation of a driver and a run
-  class Runner
+  module Runner
     module RunnerFactory
       module_function
 
@@ -26,7 +26,7 @@ module SeleniumConnect
           config = SeleniumConnect::Config::Runner::Sauce.new opts[:options]
           SeleniumConnect::Runner::SauceRunner.new config
         else
-          raise ArgumentError, "The runner \"#{opts[:type]}\" is unknown."
+          fail ArgumentError, "The runner \"#{opts[:type]}\" is unknown."
         end
       end
 

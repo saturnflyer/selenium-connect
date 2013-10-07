@@ -10,14 +10,6 @@ module SeleniumConnect
     class OperaJob < Base
       include BinaryAware
 
-      # this picks the specific runner method, this could be removed by havving the runner class
-      # call the right runner method as it knows itself
-      def run(runner)
-        puts runner.class.inspect
-        method = "run_with_#{to_snake_case(runner.class.name.split('::').last)}".intern
-        send(method, runner)
-      end
-
       # there would be a method like run_with for each type of runner that this job supports
       # could be pulled out into mix in like LocallyRunnable or something for general behavior
       def run_with_local_runner(runner)

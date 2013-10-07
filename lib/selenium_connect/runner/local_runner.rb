@@ -1,19 +1,15 @@
 # Encoding: utf-8
 
+require 'selenium_connect/runner/base'
+
 module SeleniumConnect
   # encapsulates the creation of a driver and a run
-  class Runner
-    class LocalRunner
-
-      attr_accessor :driver
-
-      def initialize(config)
-        @config = config
-      end
+  module Runner
+    class LocalRunner < Base
 
       def run(job)
         begin
-          @driver = job.run(self)
+          @driver = job.run_with_local_runner(self)
         rescue NoMethodError
           raise ArgumentError, "At the moment, SeleniumConnect does not support running \"#{job.class.name.split('::').last}\" with \"#{self.class.name.split('::').last}.\""
         end

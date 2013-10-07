@@ -9,10 +9,6 @@ describe SeleniumConnect::Job::OperaJob do
     SeleniumConnect::Job::OperaJob.new config
   end
 
-  it 'should respond to run' do
-    job.should respond_to :run
-  end
-
   it 'can be run locally' do
     job.should respond_to :run_with_local_runner
   end

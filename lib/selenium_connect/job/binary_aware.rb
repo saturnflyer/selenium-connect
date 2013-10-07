@@ -15,7 +15,7 @@ module SeleniumConnect
           version ||= '2.35.0'
           return File.join(binary_dir, "selenium-server-standalone-#{version}.jar")
         else
-          raise ArgumentError, "Unknown binary: \"#{name}\""
+          fail ArgumentError, "Unknown binary: \"#{name}\""
         end
       end
 

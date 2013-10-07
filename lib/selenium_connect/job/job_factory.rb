@@ -28,7 +28,7 @@ module SeleniumConnect
         when 'phantom'
           SeleniumConnect::Job::PhantomJob.new opts
         else
-          raise ArgumentError, "The job \"#{opts[:browser]}\" is unknown."
+          fail ArgumentError, "The job \"#{opts[:browser]}\" is unknown."
         end
       end
 
