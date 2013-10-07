@@ -9,26 +9,26 @@ require 'selenium_connect/job/ie_job'
 
 module SeleniumConnect
   # encapsulates the creation of a driver and a run
-  class Job
+  module Job
     module JobFactory
       module_function
 
-      def build(name)
-        case name
+      def build(opts)
+        case opts[:browser]
         when 'firefox'
-          SeleniumConnect::Job::FirefoxJob.new
+          SeleniumConnect::Job::FirefoxJob.new opts
         when 'chrome'
-          SeleniumConnect::Job::ChromeJob.new
+          SeleniumConnect::Job::ChromeJob.new opts
         when 'safari'
-          SeleniumConnect::Job::SafariJob.new
+          SeleniumConnect::Job::SafariJob.new opts
         when 'opera'
-          SeleniumConnect::Job::OperaJob.new
+          SeleniumConnect::Job::OperaJob.new opts
         when 'ie'
-          SeleniumConnect::Job::IeJob.new
+          SeleniumConnect::Job::IeJob.new opts
         when 'phantom'
-          SeleniumConnect::Job::PhantomJob.new
+          SeleniumConnect::Job::PhantomJob.new opts
         else
-          raise ArgumentError, "The job \"#{name}\" is unknown."
+          raise ArgumentError, "The job \"#{opts[:browser]}\" is unknown."
         end
       end
 

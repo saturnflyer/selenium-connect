@@ -2,11 +2,12 @@
 
 require 'selenium-webdriver'
 require 'selenium_connect/job/binary_aware'
+require 'selenium_connect/job/base'
 
 module SeleniumConnect
   # encapsulates the creation of a driver and a run
-  class Job
-    class OperaJob
+  module Job
+    class OperaJob < Base
       include BinaryAware
 
       # this picks the specific runner method, this could be removed by havving the runner class

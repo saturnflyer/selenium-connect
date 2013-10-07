@@ -4,7 +4,10 @@ require 'spec_helper'
 require 'selenium_connect/runner/remote_runner'
 
 describe SeleniumConnect::Runner::RemoteRunner do
-  let(:runner) { SeleniumConnect::Runner::RemoteRunner.new }
+  let(:runner) do
+    config = double 'SeleniumConnect::Config::Runner::Remote'
+    SeleniumConnect::Runner::RemoteRunner.new(config)
+  end
 
   it 'should respond to driver' do
     runner.should respond_to :driver

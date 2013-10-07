@@ -4,7 +4,10 @@ require 'spec_helper'
 require 'selenium_connect/runner/local_runner'
 
 describe SeleniumConnect::Runner::LocalRunner do
-  let(:runner) { SeleniumConnect::Runner::LocalRunner.new }
+  let(:runner) do
+    config = double 'SeleniumConnect::Config::Runner::Local'
+    SeleniumConnect::Runner::LocalRunner.new(config)
+  end
 
   it 'should respond to driver' do
     runner.should respond_to :driver

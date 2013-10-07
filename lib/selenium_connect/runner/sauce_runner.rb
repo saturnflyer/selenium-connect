@@ -7,6 +7,10 @@ module SeleniumConnect
 
       attr_accessor :driver
 
+      def initialize(config)
+        @config = config
+      end
+
       def run(job)
         begin
           @driver = job.run(self)

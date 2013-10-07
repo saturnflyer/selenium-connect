@@ -1,11 +1,12 @@
 # Encoding: utf-8
 
 require 'selenium-webdriver'
+require 'selenium_connect/job/base'
 
 module SeleniumConnect
   # encapsulates the creation of a driver and a run
-  class Job
-    class SafariJob
+  module Job
+    class SafariJob < Base
 
       # this picks the specific runner method, this could be removed by havving the runner class
       # call the right runner method as it knows itself

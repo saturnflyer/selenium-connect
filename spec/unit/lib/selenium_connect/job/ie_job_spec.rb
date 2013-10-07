@@ -4,7 +4,10 @@ require 'spec_helper'
 require 'selenium_connect/job/ie_job'
 
 describe SeleniumConnect::Job::IeJob do
-  let(:job) { SeleniumConnect::Job::IeJob.new }
+  let(:job) do
+    config = double 'SeleniumConnect::Config::Job'
+    SeleniumConnect::Job::IeJob.new config
+  end
 
   it 'should respond to run' do
     job.should respond_to :run

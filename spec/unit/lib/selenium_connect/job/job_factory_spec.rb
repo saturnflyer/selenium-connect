@@ -12,7 +12,7 @@ describe SeleniumConnect::Job::JobFactory do
 
   it 'should raise an error for unknown job' do
     expect do
-      factory.build 'bad_job'
+      factory.build browser: 'bad_job'
     end.to raise_error(ArgumentError, 'The job "bad_job" is unknown.')
   end
 

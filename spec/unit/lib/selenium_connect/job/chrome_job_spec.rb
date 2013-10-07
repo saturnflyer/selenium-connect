@@ -4,7 +4,10 @@ require 'spec_helper'
 require 'selenium_connect/job/chrome_job'
 
 describe SeleniumConnect::Job::ChromeJob do
-  let(:job) { SeleniumConnect::Job::ChromeJob.new }
+  let(:job) do
+    config = double 'SeleniumConnect::Config::Job'
+    SeleniumConnect::Job::ChromeJob.new config
+  end
 
   it 'should respond to run' do
     job.should respond_to :run

@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
 module SeleniumConnect
-  class Job
+  module Job
     module BinaryAware
 
       def binary_path(name, version = nil)

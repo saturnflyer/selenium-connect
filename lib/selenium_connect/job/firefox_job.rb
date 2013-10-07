@@ -1,12 +1,13 @@
 # Encoding: utf-8
 
+require 'selenium_connect/job/base'
 require 'selenium-webdriver'
 require 'sauce'
 
 module SeleniumConnect
   # encapsulates the creation of a driver and a run
-  class Job
-    class FirefoxJob
+  module Job
+    class FirefoxJob < Base
 
       # this picks the specific runner method, this could be removed by havving the runner class
       # call the right runner method as it knows itself

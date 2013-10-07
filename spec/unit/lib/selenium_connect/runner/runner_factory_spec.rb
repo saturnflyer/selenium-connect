@@ -12,7 +12,7 @@ describe SeleniumConnect::Runner::RunnerFactory do
 
   it 'should raise an error for unknown runner' do
     expect do
-      factory.build 'bad_runner'
+      factory.build type: 'bad_runner'
     end.to raise_error(ArgumentError, 'The runner "bad_runner" is unknown.')
   end
 
