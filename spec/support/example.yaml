@@ -26,3 +26,18 @@ description:
 
 sauce_opts:
     selenium_version: '2.32.0'
+
+
+log_dir:
+
+job:
+    browser:
+    os:
+
+
+runner:
+    type: 'local'
+    options:
+        username:
+        api_key:
+        api_timeout:
