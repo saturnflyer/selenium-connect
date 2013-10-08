@@ -3,9 +3,11 @@
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
-task default: :build
+task default: :build_ci
 
 task build: [:clean, :prepare, :quality, :unit, :integration]
+
+taske build_ci: [:build, :headless]
 
 desc 'Runs standard build activities.'
 task build_full: [:clean, :prepare, :quality, :unit, :integration, :system]
@@ -42,6 +44,11 @@ end
 RSpec::Core::RakeTask.new(:system) do |t|
   t.pattern = FileList['spec/integration/lib/**/*_spec.rb']
   t.rspec_opts = get_rspec_flags('system', '--tag system')
+end
+
+RSpec::Core::RakeTask.new(:headless) do |t|
+  t.pattern = FileList['spec/integration/lib/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('system', '--tag headless')
 end
 
 Rubocop::RakeTask.new

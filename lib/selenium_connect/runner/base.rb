@@ -17,7 +17,7 @@ module SeleniumConnect
         before_driver_quit opts
         @driver.quit
         after_driver_quit opts
-        @session
+        symbolize_keys(@session)
       end
 
       protected
@@ -63,6 +63,15 @@ module SeleniumConnect
 
       def log_path
         File.join(Dir.getwd, @log_dir) if @log_dir
+      end
+
+      def symbolize_keys(hash)
+        hash.reduce({}) do |result, (key, value)|
+          new_key = key.class == String ? key.to_sym : key
+          new_value = value.class == Hash ? symbolize_keys(value) : value
+          result[new_key] = new_value
+          result
+        end
       end
 
     end

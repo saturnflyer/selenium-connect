@@ -26,7 +26,7 @@ module SeleniumConnect
 
       def after_driver_quit(opts)
 
-        if opts.key?(:passed)
+        if opts.key?(:status)
           if opts[:status] == 'passed'
             @sauce_facade.pass_job
           else

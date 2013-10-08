@@ -30,6 +30,7 @@ module SeleniumConnect
           result
         end
       end
+
     end
   end
 end
