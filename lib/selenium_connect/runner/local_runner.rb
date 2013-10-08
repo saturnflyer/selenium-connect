@@ -15,12 +15,6 @@ module SeleniumConnect
         end
         self
       end
-
-      # here we would do any post job clean up stuff
-      def finish
-        @driver.quit
-      end
-
     end
   end
 end

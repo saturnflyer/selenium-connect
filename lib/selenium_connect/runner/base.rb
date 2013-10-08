@@ -33,8 +33,12 @@ module SeleniumConnect
 
         def save_screenshot
           path = File.join(log_path, 'failshot.png')
-          record_asset path
-          @driver.save_screenshot path
+          begin
+            @driver.save_screenshot path
+            record_asset path
+          rescue NoMethodError
+            puts 'WARNING: Screenshot not supported for this webdriver implementation.'
+          end
         end
 
         def save_dom_html
