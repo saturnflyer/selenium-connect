@@ -4,6 +4,8 @@ module SeleniumConnect
   module Config
     class Base
 
+      attr_reader :opts
+
       def initialize(opts = {})
         opts = {} if opts.nil?
         @opts = defaults.merge(opts)

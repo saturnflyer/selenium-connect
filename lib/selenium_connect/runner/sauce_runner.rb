@@ -9,7 +9,11 @@ module SeleniumConnect
 
       def run(job)
         begin
-          @driver = job.run_with_sauce_runner(self)
+          job.run_with_sauce_runner(self)
+
+          @driver= Sauce::Selenium2.new(opts)
+
+
         rescue NoMethodError
           raise ArgumentError, "At the moment, SeleniumConnect does not support running \"#{job.class.name.split('::').last}\" with \"#{self.class.name.split('::').last}.\""
         end
