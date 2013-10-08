@@ -12,3 +12,7 @@ module SeleniumConnect
     end
   end
 end
+
+      # def slugify_name(name)
+      #   name.downcase.strip.gsub(' ', '_').gsub(/[^\w-]/, '')
+      # end

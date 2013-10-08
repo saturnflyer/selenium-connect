@@ -23,3 +23,21 @@ module SeleniumConnect
     end
   end
 end
+
+      # end
+
+      # private
+
+      # def get_executable_path
+      #   current_dir_path = File.join(File.dirname(File.expand_path(__FILE__)))
+      #   current_dir_path + '/../../../bin/phantomjs'
+      # end
+
+      # def config_browser
+      #   executable_path = get_executable_path
+      #   browser = Selenium::WebDriver::Remote::Capabilities.phantomjs
+      #   browser['phantomjs.binary.path'] = executable_path
+      #   browser
+      # end
+
+      # def init_browser
