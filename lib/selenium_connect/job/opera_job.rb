@@ -31,13 +31,6 @@ module SeleniumConnect
         caps = Selenium::WebDriver::Remote::Capabilities.opera(platform: :mac, 'opera.binary' => '/Applications/Opera.app/Contents/MacOS/Opera')
         runner.driver = Selenium::WebDriver.for(:remote, desired_capabilities: caps)
       end
-
-      private
-
-        # this should be refactored out to a base class or a mixin
-        def to_snake_case(string)
-          string.gsub(/::/, '/').gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z\d])([A-Z])/, '\1_\2').tr('-', '_').downcase
-        end
     end
   end
 end

@@ -20,13 +20,6 @@ module SeleniumConnect
       def run_with_remote_runner(runner)
         runner.driver = Selenium::WebDriver.for(:remote, desired_capabilities: :phantomjs)
       end
-
-      private
-
-        # this should be refactored out to a base class or a mixin
-        def to_snake_case(string)
-          string.gsub(/::/, '/').gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').gsub(/([a-z\d])([A-Z])/, '\1_\2').tr('-', '_').downcase
-        end
     end
   end
 end
