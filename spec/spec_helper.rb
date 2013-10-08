@@ -38,5 +38,5 @@ end
 def setup_test_environment
   ENV['SUPPORT_PATH'] = File.join(Dir.pwd, 'spec', 'support')
   ENV['BUILD_PATH'] = File.join(Dir.pwd, 'build')
+  ENV['LOG_PATH'] = File.join('build', 'tmp')
 end
-

@@ -2,19 +2,18 @@
 
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
-require 'flog_task'
-require 'flay_task'
-require 'reek/rake/task'
 
-task default: :build
+task default: :build_ci
 
 task build: [:clean, :prepare, :quality, :unit, :integration]
+
+task build_ci: [:build, :headless]
 
 desc 'Runs standard build activities.'
 task build_full: [:clean, :prepare, :quality, :unit, :integration, :system]
 
 desc 'Runs quality checks.'
-task quality: [:rubocop, :reek, :flog_total, :flog_average, :flay]
+task quality: [:rubocop]
 
 desc 'Removes the build directory.'
 task :clean do
@@ -33,45 +32,26 @@ def get_rspec_flags(log_name, others = nil)
 end
 
 RSpec::Core::RakeTask.new(:unit) do |t|
-  t.pattern = FileList['spec/unit/**/*_spec.rb']
+  t.pattern = FileList['spec/unit/lib/**/*_spec.rb']
   t.rspec_opts = get_rspec_flags('unit')
 end
 
 RSpec::Core::RakeTask.new(:integration) do |t|
-  t.pattern = FileList['spec/integration/**/*_spec.rb']
-  t.rspec_opts = get_rspec_flags('integration', '--tag=~selenium')
+  t.pattern = FileList['spec/integration/lib/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('integration', '--tag ~system')
 end
 
 RSpec::Core::RakeTask.new(:system) do |t|
-  t.pattern = FileList['spec/integration/**/*_spec.rb']
-  t.rspec_opts = get_rspec_flags('system', '--tag selenium')
+  t.pattern = FileList['spec/integration/lib/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('system', '--tag system')
+end
+
+RSpec::Core::RakeTask.new(:headless) do |t|
+  t.pattern = FileList['spec/integration/lib/**/*_spec.rb']
+  t.rspec_opts = get_rspec_flags('system', '--tag headless')
 end
 
 Rubocop::RakeTask.new
-
-# TODO: lower the quality score and improve the code!
-FlogTask.new :flog_total, 10000 do |t|
-  t.method = :total_score
-  t.verbose = true
-end
-
-# TODO: lower the quality score and improve the code!
-FlogTask.new :flog_average, 100 do |t|
-  t.method = :average
-  t.verbose = true
-end
-
-# TODO: lower the quality score and improve the code!
-FlayTask.new :flay, 10000 do |t|
-  t.verbose = true
-end
-
-# TODO: fix all the smells and turn on failing on error
-Reek::Rake::Task.new do |t|
-    t.fail_on_error = false
-    t.verbose = false
-    t.reek_opts = '--quiet'
-end
 
 # TODO: This could probably be more cleanly automated
 desc 'Start a release (Requires Git Flow)'

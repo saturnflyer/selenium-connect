@@ -9,3 +9,9 @@ SymbolName:
 
 Documentation:
   Enabled: false
+
+AllCops:
+  Excludes:
+    - lib_old/**
+    - spec/unit/lib_old/**
+    - spec/integration/lib_old/**

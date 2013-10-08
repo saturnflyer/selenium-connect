@@ -1,0 +1,2 @@
+tests_dir: spec/unit/lib
+additional_test_dirs: [spec/integration/lib]
