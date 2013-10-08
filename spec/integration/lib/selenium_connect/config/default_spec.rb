@@ -12,9 +12,4 @@ describe SeleniumConnect::Config::Default do
     job = SeleniumConnect::Config::Job.new
     SeleniumConnect::Config::Default.new runner, job
   end
-
-  it 'should return default options' do
-    config.log_dir.should eq '/tmp'
-  end
-
 end

@@ -22,7 +22,7 @@ describe SeleniumConnect::Runner::RunnerFactory do
   end
 
   it 'should instantiate a sauce runner' do
-    config = SeleniumConnect::Config::Runner::Sauce.new
+    config = SeleniumConnect::Config::Runner::Sauce.new username: 'user', access_key: 'key'
     runner = factory.build config
     runner.should be_an_instance_of SeleniumConnect::Runner::SauceRunner
   end

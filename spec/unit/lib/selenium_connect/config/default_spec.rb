@@ -12,7 +12,7 @@ describe SeleniumConnect::Config::Default do
   end
 
   it 'should return default options' do
-    config.log_dir.should eq '/tmp'
+    config.log_dir.should be_nil
   end
 
 end

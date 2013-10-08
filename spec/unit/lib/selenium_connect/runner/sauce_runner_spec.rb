@@ -7,6 +7,8 @@ describe SeleniumConnect::Runner::SauceRunner do
   let(:runner) do
     config = double 'SeleniumConnect::Config::Runner::Sauce'
     config.should_receive(:opts).and_return({})
+    config.should_receive(:access_key).and_return('key')
+    config.should_receive(:username).and_return('user')
     SeleniumConnect::Runner::SauceRunner.new(config)
   end
 

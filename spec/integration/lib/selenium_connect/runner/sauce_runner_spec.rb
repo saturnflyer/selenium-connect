@@ -17,47 +17,52 @@ describe SeleniumConnect::Runner::SauceRunner do
   let(:runner_config) do
     opts = {
       username: 'testing_arrgyle',
-      access_key: 'ab7a6e17-16df-42d2-9ef6-c8d2539cc38a'
+      access_key: 'ab7a6e17-16df-42d2-9ef6-c8d2539cc38a',
+      log_dir: ENV['LOG_PATH']
     }
     SeleniumConnect::Config::Runner::Sauce.new opts
   end
 
   it 'should run a firefox job with sauce', :system do
     job_config = SeleniumConnect::Config::Job.new
-    @job  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::FirefoxJob.new job_config)
+    @session  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::FirefoxJob.new job_config)
   end
 
   it 'should run a chrome job with sauce', :system do
     job_config = SeleniumConnect::Config::Job.new
-    @job  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::ChromeJob.new job_config)
+    @session  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::ChromeJob.new job_config)
   end
 
   it 'should run an opera job with sauce', :system do
     job_config = SeleniumConnect::Config::Job.new
-    @job  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::OperaJob.new job_config)
+    @session  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::OperaJob.new job_config)
   end
 
   it 'should run a safari job with sauce', :system do
     job_config = SeleniumConnect::Config::Job.new
-    @job  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::SafariJob.new job_config)
+    @session  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::SafariJob.new job_config)
   end
 
   it 'should run an Ie job with sauce', :system do
     job_config = SeleniumConnect::Config::Job.new
-    @job  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::IeJob.new job_config)
+    @session  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::IeJob.new job_config)
   end
 
   it 'does not support a phamtom job with sauce' do
     job_config = SeleniumConnect::Config::Job.new
     expect do
-      @job  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::PhantomJob.new job_config)
+      @session  = SeleniumConnect::Runner::SauceRunner.new(runner_config).run(SeleniumConnect::Job::PhantomJob.new job_config)
     end.to raise_error(ArgumentError, 'At the moment, SeleniumConnect does not support running "PhantomJob" with "SauceRunner."')
   end
 
   after(:each) do
-    if @job
-      execute_simple_test @job.driver
-      @job.finish
+    if @session
+      execute_simple_test @session.driver
+      @session.finish
+      log_file_exists?('dom_0.html')
+      log_file_exists?('failshot.png')
+      log_file_exists?('session.json')
+      log_file_exists?('server.log')
     end
   end
 end

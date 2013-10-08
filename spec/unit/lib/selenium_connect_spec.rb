@@ -7,6 +7,6 @@ describe SeleniumConnect do
   let(:sc) { SeleniumConnect }
 
   it 'should respond to run_job' do
-    sc.should respond_to :run_job
+    sc.should respond_to :start
   end
 end

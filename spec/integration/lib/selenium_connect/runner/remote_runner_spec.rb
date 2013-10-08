@@ -27,44 +27,44 @@ describe SeleniumConnect::Runner::RemoteRunner do
 
   it 'should run a firefox job on locally started remote by default', :system do
     @server.start
-    @job  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::FirefoxJob.new job_config)
+    @session  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::FirefoxJob.new job_config)
   end
 
   it 'should run a chrome job on locally started remote by default', :system do
     chrome_bin = File.join(Dir.pwd, 'bin', 'chromedriver')
     @server << "-Dwebdriver.chrome.driver=#{chrome_bin}"
     @server.start
-    @job  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::ChromeJob.new job_config)
+    @session  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::ChromeJob.new job_config)
   end
 
   # TODO: this is throwing a strange error
   # 2.35 does not work
   it 'should run an opera job on locally started remote by default', :system do
     @server.start
-    @job  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::OperaJob.new job_config)
+    @session  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::OperaJob.new job_config)
   end
 
   it 'should run a safari job on locally started remote by default', :system do
     @server.start
-    @job  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::SafariJob.new job_config)
+    @session  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::SafariJob.new job_config)
   end
 
   # TODO: it seems like this should be pointing to the local bin
   it 'should run a phantom job on locally started remote by default', :system do
     @server.start
-    @job  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::PhantomJob.new job_config)
+    @session  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::PhantomJob.new job_config)
   end
 
   it 'does not support an ie job remotely' do
     expect do
-      @job  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::IeJob.new job_config)
+      @session  = SeleniumConnect::Runner::RemoteRunner.new(runner_config).run(SeleniumConnect::Job::IeJob.new job_config)
     end.to raise_error(ArgumentError, 'At the moment, SeleniumConnect does not support running "IeJob" with "RemoteRunner."')
   end
 
   after(:each) do
-    if @job
-      execute_simple_test @job.driver
-      @job.finish
+    if @session
+      execute_simple_test @session.driver
+      @session.finish
       @server.stop
       `pgrep -o -f #{SERVER_BIN}`.should be_empty
       pid = `pgrep -o -f #{SERVER_BIN}`

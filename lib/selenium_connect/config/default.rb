@@ -19,7 +19,7 @@ module SeleniumConnect
 
       def defaults
         {
-          log_dir: '/tmp'
+          log_dir: nil
         }
       end
 

@@ -1,0 +1,8 @@
+job:
+    browser: 'safari'
+
+runner:
+    type: 'sauce'
+    options:
+        log_dir: 'build/tmp'
+        username: 'user'

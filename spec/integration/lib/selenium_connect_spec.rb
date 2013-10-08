@@ -7,8 +7,9 @@ describe SeleniumConnect, :system do
   let(:sc) { SeleniumConnect }
 
   it 'should run a basic job using default settings' do
-    job = sc.run_job
-    execute_simple_test job.driver
-    job.finish
+    session = sc.start
+    execute_simple_test session.driver
+    session.finish
   end
+
 end

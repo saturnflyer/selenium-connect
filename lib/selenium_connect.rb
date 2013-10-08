@@ -8,7 +8,7 @@ require 'selenium_connect/config/builder'
 module SeleniumConnect
   module_function
 
-  def run_job(opts = {})
+  def start(opts = {})
     config = SeleniumConnect::Config::Builder.build opts
     runner = Runner::RunnerFactory.build config.runner
     job = Job::JobFactory.build config.job
