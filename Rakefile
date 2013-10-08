@@ -7,7 +7,7 @@ task default: :build_ci
 
 task build: [:clean, :prepare, :quality, :unit, :integration]
 
-taske build_ci: [:build, :headless]
+task build_ci: [:build, :headless]
 
 desc 'Runs standard build activities.'
 task build_full: [:clean, :prepare, :quality, :unit, :integration, :system]
