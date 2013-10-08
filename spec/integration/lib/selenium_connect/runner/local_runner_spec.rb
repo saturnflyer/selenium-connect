@@ -46,7 +46,7 @@ describe SeleniumConnect::Runner::LocalRunner do
     log_file_exists?('session.json')
   end
 
-  it 'should run a phantom job locally', :system, :headless do
+  it 'should run a phantom job locally', :system do
     @session  = SeleniumConnect::Runner::LocalRunner.new(runner_config).run(SeleniumConnect::Job::PhantomJob.new job_config)
     ensure_complete
   end
