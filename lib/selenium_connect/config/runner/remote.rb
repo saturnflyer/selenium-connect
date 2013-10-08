@@ -11,6 +11,10 @@ module SeleniumConnect
           {}
         end
 
+        def type
+          'remote'
+        end
+
       end
     end
   end

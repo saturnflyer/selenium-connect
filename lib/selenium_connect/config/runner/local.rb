@@ -11,6 +11,10 @@ module SeleniumConnect
           {}
         end
 
+        def type
+          'local'
+        end
+
       end
     end
   end

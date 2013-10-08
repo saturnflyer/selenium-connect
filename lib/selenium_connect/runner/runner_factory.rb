@@ -14,16 +14,13 @@ module SeleniumConnect
     module RunnerFactory
       module_function
 
-      def build(opts)
-        case opts[:type]
+      def build(config)
+        case config.type
         when 'local'
-          config = SeleniumConnect::Config::Runner::Local.new opts[:options]
           SeleniumConnect::Runner::LocalRunner.new config
         when 'remote'
-          config = SeleniumConnect::Config::Runner::Remote.new opts[:options]
           SeleniumConnect::Runner::RemoteRunner.new config
         when 'sauce'
-          config = SeleniumConnect::Config::Runner::Sauce.new opts[:options]
           SeleniumConnect::Runner::SauceRunner.new config
         else
           fail ArgumentError, "The runner \"#{opts[:type]}\" is unknown."

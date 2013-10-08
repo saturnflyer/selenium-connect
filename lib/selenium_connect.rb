@@ -2,17 +2,16 @@
 
 require 'selenium_connect/job/job_factory'
 require 'selenium_connect/runner/runner_factory'
+require 'selenium_connect/config/builder'
 
 # Selenium Connect main module
 module SeleniumConnect
   module_function
 
   def run_job(opts = {})
-
-
-
-    runner = Runner::RunnerFactory.build 'local'
-    job = Job::JobFactory.build 'firefox'
+    config = SeleniumConnect::Config::Builder.build opts
+    runner = Runner::RunnerFactory.build config.runner
+    job = Job::JobFactory.build config.job
     runner.run job
   end
 end

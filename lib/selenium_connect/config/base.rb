@@ -15,6 +15,10 @@ module SeleniumConnect
           raise ArgumentError, 'Property not found for ' + name
       end
 
+      def type
+        fail Exception, 'Runner type must be defined in child class!'
+      end
+
       protected
 
         def defaults

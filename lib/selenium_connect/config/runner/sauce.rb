@@ -23,6 +23,10 @@ module SeleniumConnect
           @opts[:api_key] ||= fail ArgumentError, 'The sauce api_key must be defined. Please do so.'
         end
 
+        def type
+          'sauce'
+        end
+
       end
     end
   end

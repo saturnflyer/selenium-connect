@@ -13,20 +13,20 @@ module SeleniumConnect
     module JobFactory
       module_function
 
-      def build(opts)
-        case opts[:browser]
+      def build(config)
+        case config.browser
         when 'firefox'
-          SeleniumConnect::Job::FirefoxJob.new opts
+          SeleniumConnect::Job::FirefoxJob.new config
         when 'chrome'
-          SeleniumConnect::Job::ChromeJob.new opts
+          SeleniumConnect::Job::ChromeJob.new config
         when 'safari'
-          SeleniumConnect::Job::SafariJob.new opts
+          SeleniumConnect::Job::SafariJob.new config
         when 'opera'
-          SeleniumConnect::Job::OperaJob.new opts
+          SeleniumConnect::Job::OperaJob.new config
         when 'ie'
-          SeleniumConnect::Job::IeJob.new opts
+          SeleniumConnect::Job::IeJob.new config
         when 'phantom'
-          SeleniumConnect::Job::PhantomJob.new opts
+          SeleniumConnect::Job::PhantomJob.new config
         else
           fail ArgumentError, "The job \"#{opts[:browser]}\" is unknown."
         end
