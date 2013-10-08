@@ -11,9 +11,10 @@ describe SeleniumConnect::Job::JobFactory do
   end
 
   it 'should raise an error for unknown job' do
+    config = double 'SeleniumConnect::Config::Job'
+    config.should_receive(:browser).and_return('bad_job')
     expect do
-      factory.build browser: 'bad_job'
+      factory.build config
     end.to raise_error(ArgumentError, 'The job "bad_job" is unknown.')
   end
-
 end

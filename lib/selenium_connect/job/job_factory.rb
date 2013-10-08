@@ -14,7 +14,8 @@ module SeleniumConnect
       module_function
 
       def build(config)
-        case config.browser
+        browser = config.browser
+        case browser
         when 'firefox'
           SeleniumConnect::Job::FirefoxJob.new config
         when 'chrome'
@@ -28,7 +29,7 @@ module SeleniumConnect
         when 'phantom'
           SeleniumConnect::Job::PhantomJob.new config
         else
-          fail ArgumentError, "The job \"#{opts[:browser]}\" is unknown."
+          fail ArgumentError, "The job \"#{browser}\" is unknown."
         end
       end
 

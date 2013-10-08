@@ -15,7 +15,8 @@ module SeleniumConnect
       module_function
 
       def build(config)
-        case config.type
+        type = config.type
+        case type
         when 'local'
           SeleniumConnect::Runner::LocalRunner.new config
         when 'remote'
@@ -23,7 +24,7 @@ module SeleniumConnect
         when 'sauce'
           SeleniumConnect::Runner::SauceRunner.new config
         else
-          fail ArgumentError, "The runner \"#{opts[:type]}\" is unknown."
+          fail ArgumentError, "The runner \"#{type}\" is unknown."
         end
       end
 

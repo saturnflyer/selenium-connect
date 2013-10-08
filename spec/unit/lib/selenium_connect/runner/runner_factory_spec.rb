@@ -11,8 +11,10 @@ describe SeleniumConnect::Runner::RunnerFactory do
   end
 
   it 'should raise an error for unknown runner' do
+    config = double 'SeleniumConnect::Config::Runner::Local'
+    config.should_receive(:type).and_return('bad_runner')
     expect do
-      factory.build type: 'bad_runner'
+      factory.build config
     end.to raise_error(ArgumentError, 'The runner "bad_runner" is unknown.')
   end
 
