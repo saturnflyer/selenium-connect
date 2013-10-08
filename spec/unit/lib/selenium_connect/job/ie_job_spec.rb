@@ -6,6 +6,7 @@ require 'selenium_connect/job/ie_job'
 describe SeleniumConnect::Job::IeJob do
   let(:job) do
     config = double 'SeleniumConnect::Config::Job'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Job::IeJob.new config
   end
 

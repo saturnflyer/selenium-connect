@@ -4,7 +4,7 @@ module SeleniumConnect
   module Runner
     class Base
 
-      attr_accessor :driver, :config
+      attr_accessor :driver, :opts
 
       def initialize(config)
         @opts = config.opts

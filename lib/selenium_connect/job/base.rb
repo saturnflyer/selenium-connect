@@ -5,7 +5,8 @@ module SeleniumConnect
     class Base
 
       def initialize(config)
-        @config = config
+        @opts = config.opts
+        @opts.delete :browser
       end
 
     end

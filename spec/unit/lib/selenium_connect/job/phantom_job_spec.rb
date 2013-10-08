@@ -6,6 +6,7 @@ require 'selenium_connect/job/phantom_job'
 describe SeleniumConnect::Job::PhantomJob do
   let(:job) do
     config = double 'SeleniumConnect::Config::Job'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Job::PhantomJob.new config
   end
 

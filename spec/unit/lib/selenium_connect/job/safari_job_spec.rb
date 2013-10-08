@@ -6,6 +6,7 @@ require 'selenium_connect/job/safari_job'
 describe SeleniumConnect::Job::SafariJob do
   let(:job) do
     config = double 'SeleniumConnect::Config::Job'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Job::SafariJob.new config
   end
 

@@ -6,6 +6,7 @@ require 'selenium_connect/job/opera_job'
 describe SeleniumConnect::Job::OperaJob do
   let(:job) do
     config = double 'SeleniumConnect::Config::Job'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Job::OperaJob.new config
   end
 

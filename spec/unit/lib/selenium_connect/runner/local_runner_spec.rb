@@ -6,6 +6,7 @@ require 'selenium_connect/runner/local_runner'
 describe SeleniumConnect::Runner::LocalRunner do
   let(:runner) do
     config = double 'SeleniumConnect::Config::Runner::Local'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Runner::LocalRunner.new(config)
   end
 

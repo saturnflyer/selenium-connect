@@ -6,6 +6,7 @@ require 'selenium_connect/runner/remote_runner'
 describe SeleniumConnect::Runner::RemoteRunner do
   let(:runner) do
     config = double 'SeleniumConnect::Config::Runner::Remote'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Runner::RemoteRunner.new(config)
   end
 

@@ -6,6 +6,7 @@ require 'selenium_connect/job/firefox_job'
 describe SeleniumConnect::Job::FirefoxJob do
   let(:job) do
     config = double 'SeleniumConnect::Config::Job'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Job::FirefoxJob.new config
   end
 

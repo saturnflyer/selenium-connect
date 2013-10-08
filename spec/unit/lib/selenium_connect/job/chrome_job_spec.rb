@@ -6,6 +6,7 @@ require 'selenium_connect/job/chrome_job'
 describe SeleniumConnect::Job::ChromeJob do
   let(:job) do
     config = double 'SeleniumConnect::Config::Job'
+    config.should_receive(:opts).and_return({})
     SeleniumConnect::Job::ChromeJob.new config
   end
 

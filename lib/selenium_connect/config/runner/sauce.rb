@@ -10,7 +10,7 @@ module SeleniumConnect
         def defaults
           {
           username: nil,
-          api_key: nil,
+          access_key: nil,
           api_timeout: 10
           }
         end
@@ -19,8 +19,8 @@ module SeleniumConnect
           @opts[:username] ||= fail ArgumentError, 'The sauce username must be defined. Please do so.'
         end
 
-        def api_key
-          @opts[:api_key] ||= fail ArgumentError, 'The sauce api_key must be defined. Please do so.'
+        def access_key
+          @opts[:access_key] ||= fail ArgumentError, 'The sauce access_key must be defined. Please do so.'
         end
 
         def type
