@@ -16,16 +16,11 @@ module SeleniumConnect
 
       def build(config)
         type = config.type
-        case type
-        when 'local'
-          SeleniumConnect::Runner::LocalRunner.new config
-        when 'remote'
-          SeleniumConnect::Runner::RemoteRunner.new config
-        when 'sauce'
-          SeleniumConnect::Runner::SauceRunner.new config
-        else
-          fail ArgumentError, "The runner \"#{type}\" is unknown."
-        end
+        runner_type = type.to_s.gsub(/(?:^|_)([a-z])/){ $1.upcase }
+        runner_class = const_get("SeleniumConnect::Runner::#{runner_type}Runner")
+        runner_class.new(config)
+      rescue NameError
+        fail ArgumentError, "The runner \"#{type}\" is unknown."
       end
 
     end

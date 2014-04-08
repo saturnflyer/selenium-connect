@@ -17,4 +17,19 @@ describe SeleniumConnect::Job::JobFactory do
       factory.build config
     end.to raise_error(ArgumentError, 'The job "bad_job" is unknown.')
   end
+
+  it 'attempts to load non-standard jobs' do
+    randomly_generated_name = %w{ a b c d e f g }.sample(7).join
+    job_class_name = randomly_generated_name.sub(/^./){|letter| letter.upcase } + 'Job'
+
+    generated_job_class = Class.new(SeleniumConnect::Job::Base)
+
+    SeleniumConnect::Job.const_set(job_class_name, generated_job_class)
+
+    config = double('SeleniumConnect::Config::Job', browser: randomly_generated_name, opts: {})
+
+    expect do
+      factory.build config
+    end.to_not raise_error
+  end
 end

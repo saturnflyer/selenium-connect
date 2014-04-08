@@ -15,22 +15,11 @@ module SeleniumConnect
 
       def build(config)
         browser = config.browser
-        case browser
-        when 'firefox'
-          SeleniumConnect::Job::FirefoxJob.new config
-        when 'chrome'
-          SeleniumConnect::Job::ChromeJob.new config
-        when 'safari'
-          SeleniumConnect::Job::SafariJob.new config
-        when 'opera'
-          SeleniumConnect::Job::OperaJob.new config
-        when 'ie'
-          SeleniumConnect::Job::IeJob.new config
-        when 'phantom'
-          SeleniumConnect::Job::PhantomJob.new config
-        else
-          fail ArgumentError, "The job \"#{browser}\" is unknown."
-        end
+        job_type = browser.to_s.gsub(/(?:^|_)([a-z])/){ $1.upcase }
+        job_class = const_get("SeleniumConnect::Job::#{job_type}Job")
+        job_class.new(config)
+      rescue NameError
+        fail ArgumentError, "The job \"#{browser}\" is unknown."
       end
 
     end

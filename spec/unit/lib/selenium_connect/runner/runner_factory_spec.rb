@@ -18,4 +18,19 @@ describe SeleniumConnect::Runner::RunnerFactory do
     end.to raise_error(ArgumentError, 'The runner "bad_runner" is unknown.')
   end
 
+  it 'attempts to load non-standard runners' do
+    randomly_generated_name = %w{ a b c d e f g }.sample(7).join
+    runner_class_name = randomly_generated_name.sub(/^./){|letter| letter.upcase } + 'Runner'
+
+    generated_runner_class = Class.new(SeleniumConnect::Runner::Base)
+
+    SeleniumConnect::Runner.const_set(runner_class_name, generated_runner_class)
+
+    config = double('SeleniumConnect::Config::Runner', type: randomly_generated_name, opts: {})
+
+    expect do
+      factory.build config
+    end.to_not raise_error
+  end
+
 end
